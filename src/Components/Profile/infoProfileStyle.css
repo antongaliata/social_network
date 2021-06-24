@@ -1,0 +1,108 @@
+.container_about {
+    border-top: 1px solid rgb(241, 239, 239);;
+    margin-top: 20px;
+    word-break: break-word;
+    max-width: 350px;
+}
+
+.container_about .text {
+    margin-top: 10px;
+    font-size: 15px;
+    font-family: Arial, Helvetica, Verdana, sans-serif;
+}
+.contacts div{
+    color: #8fa7ef;
+}
+
+.container_info {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    margin-top: 20px;
+    padding: 5px 5px;
+    background: white;
+    box-shadow: 4px 4px 8px 0 rgba(34, 60, 80, 0.2);
+    border: 1px solid rgb(241, 239, 239);
+}
+
+.container_info span {
+    color: darkgray;
+}
+
+
+.edit {
+    width: 100%;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.edit input {
+    height: 25px;
+    margin: 2px;
+    border: none;
+    border-bottom: 1px solid rgb(241, 239, 239);
+    outline: none;
+}
+
+.edit input:focus {
+    border-bottom: 1px solid #0975e8;
+}
+
+
+.edit textarea {
+    background: rgb(241, 239, 239);
+    border: none;
+    border-bottom: 1px solid rgb(241, 239, 239);
+    outline: none;
+    width: 100%;
+    min-height: 200px;
+    resize: none;
+}
+
+.edit textarea:focus {
+    border-bottom: 1px solid #0975e8;
+}
+
+
+.butt {
+    position: absolute;
+    right: 2px;
+    top: 4px;
+    width: 20px;
+    filter: invert(50%);
+    cursor: pointer;
+}
+.container_info .butt:hover{
+    filter: invert(0);
+}
+
+.container_about_job{
+    margin: 20px 0;
+}
+.container_about_job div{
+    height: 15px;
+    display: flex;
+    align-items: center;
+    font-size: 12px;
+}
+.container_about_job .inputText{
+    width: 100%;
+}
+
+
+.container_edit_fullName{
+    width: 100%;
+    background: rgb(241, 239, 239);
+    padding:  2px;
+
+}
+.container_edit_fullName input{
+    width: 99%;
+}
+
+.container_job{
+    height: 30px;
+    margin: 30px 0;
+    border-top: 1px solid rgb(241, 239, 239); ;
+}

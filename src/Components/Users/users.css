@@ -1,0 +1,107 @@
+.window_users {
+    background: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    box-shadow: 4px 4px 8px 0 rgba(34, 60, 80, 0.2);
+    border: 1px solid rgb(241, 239, 239);
+}
+
+
+.wrapper_users {
+    margin: 15px 15px;
+}
+
+.user {
+    background: white;
+    height: 100px;
+    width: 100%;
+    border-bottom: 1px solid rgb(241, 239, 239);
+    display: flex;
+    justify-content: space-between;
+}
+
+.user:hover {
+    background: rgb(241, 239, 239);
+}
+
+.container_button_user {
+    width: 110px;
+    height: 100%;
+    display: flex;
+    align-items: flex-end;
+    padding: 0 10px 10px 0;
+}
+
+button {
+    color: white;
+    width: 100%;
+    height: 25px;
+    border: none;
+    outline: none;
+    transition: .3s;
+}
+
+
+.but_follow {
+    background: rgb(97, 160, 243);
+}
+
+.but_follow:hover {
+    background: #5982ee;
+}
+
+.but_unfollow {
+    background: tomato;
+}
+
+.but_unfollow:hover {
+    background: #f3492f;
+}
+
+
+.navLink_wrapper {
+    display: flex;
+    text-decoration: none;
+    height: 100%;
+    width: 100%;
+}
+
+.navLink_wrapper button {
+    position: absolute;
+    right: 5px;
+    bottom: 10px;
+}
+
+.navLink_wrapper .name {
+    width: 100%;
+    text-align: center;
+    padding-top: 10px;
+    color: black;
+}
+
+.navLink_wrapper .photo img {
+    background: white;
+    margin: 10px;
+    width: 80px;
+    height: 80px;
+    border: 1px solid rgb(241, 239, 239);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

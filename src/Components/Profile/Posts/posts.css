@@ -1,0 +1,49 @@
+.post {
+    border-bottom: 1px solid rgb(241, 239, 239);
+    width: 100%;
+    min-height: 70px;
+    word-break: break-all;
+    display: flex;
+    background: white;
+}
+
+.post .avatar {
+    width: 50px;
+    height: 50px;
+    border: 1px solid rgb(241, 239, 239);
+    margin: 5px;
+}
+
+.wrapper_message_like {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.post_message {
+    padding: 4px;
+    width: 100%;
+}
+
+.post_like {
+    display: flex;
+    flex-direction: row-reverse;
+    user-select: none;
+    filter: invert(35%);
+    height: 20px;
+    padding-right: 2px;
+}
+
+.post_like span {
+    cursor: pointer;
+    user-select: none;
+    font-size: 17px;
+
+}
+
+.post_like img {
+    width: 17px;
+    height: 15px;
+    padding-left: 1px;
+}

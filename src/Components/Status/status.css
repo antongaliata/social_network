@@ -1,0 +1,41 @@
+
+.text_status img {
+    width: 12px;
+    position: absolute;
+    right: 0;
+}
+
+
+.text_status {
+    width: 100%;
+    min-height: 30px;
+    font-size: 17px;
+    padding-right: 15px;
+    word-wrap: break-word;
+}
+
+
+.wrapper_status input {
+    width: 100%;
+    height: 100%;
+    border: none;
+    outline: none;
+    font-size: 17px;
+    word-wrap: break-word;
+}
+
+.wrapper_status {
+    border-bottom: 1px solid rgb(241, 239, 239);
+    min-height: 30px;
+    margin-top: 10px;
+    position: relative;
+    width: 750px;
+    word-wrap: break-word;
+}
+
+.wrapper_status img {
+    filter: invert(50%);
+}
+.wrapper_status img:hover {
+    filter: invert(0);
+}

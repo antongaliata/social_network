@@ -1,0 +1,123 @@
+
+
+
+
+.wrapper_login{
+    width: 100%;
+    height: 90%;
+    background: rgb(241, 239, 239);
+    position: absolute;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+
+
+.container_inputs input {
+    width: 300px;
+    height: 40px;
+    border-radius: 2px;
+    border: none;
+    outline: none;
+    opacity: .4;
+    font-size: 20px;
+    padding: 5px;
+    margin-top: 15px;
+}
+
+
+.container_inputs input:focus {
+    background: white;
+    opacity: .9;
+
+}
+
+
+.container_inputs {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    height: 120px;
+    margin-top: 10px;
+}
+
+
+.container_remember {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 35px;
+    width: 300px;
+    margin: 0 auto;
+}
+
+.container_remember span {
+    margin-left: 5px;
+    opacity: .7;
+}
+
+
+.login_container {
+    background: rgba(47, 45, 46, .8);
+    width: 400px;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    color: white;
+    box-shadow: 4px 4px 8px 0 rgba(34, 60, 80, 0.2);
+}
+
+.login_container h1 {
+    text-align: center;
+    opacity: .7;
+}
+
+
+.container_button {
+    margin: 10px;
+    display: flex;
+    justify-content: center;
+}
+
+.container_button button {
+    width: 150px;
+    height: 40px;
+    color: white;
+    font-size: 20px;
+    background: rgb(97,160,243);
+    border-radius: 2px;
+    border: none;
+    transition: .4s;
+}
+
+.container_button button:hover {
+    background: #5982ee;
+    opacity: .8;
+    color: rgb(47, 45, 46);
+}
+
+
+.errorMessage {
+    color: red;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
