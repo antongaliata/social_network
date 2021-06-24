@@ -20,6 +20,13 @@ export class Friends extends React.Component<FriendsType> {
         this.props.getSubscribedThunk(1, 10)
     }
 
+    componentDidUpdate(prevProps: Readonly<FriendsType>, prevState: Readonly<{}>, snapshot?: any) {
+        if (prevProps.stateUsers.friends !== this.props.stateUsers.friends){
+            this.props.getSubscribedThunk(1, 10)
+        }
+    }
+
+
     render() {
         return <> {this.props.stateUsers.loadingStatus && <Preloader/>}
 

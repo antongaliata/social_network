@@ -2,7 +2,7 @@ import {Dispatch} from "redux";
 import {authType, requestAPI} from "../requestAPI/requestAPI";
 
 export type authStateType = {
-    id: number | null
+    id: number
     email: string | null
     login: string | null
     isAuth: boolean
@@ -43,7 +43,7 @@ type actionType = authMeACType |
     loginErrorACType
 
 const initialState: authStateType = {
-    id: null,
+    id: 0,
     email: null,
     login: null,
     isAuth: false,
