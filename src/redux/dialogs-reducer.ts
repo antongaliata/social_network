@@ -44,7 +44,7 @@ export const dialogsReducer = (state = initialState, action: actionType): dialog
             })
             return copyState
         }
-        case "DIALOGS/BOT-MESSAGE": {
+        case 'DIALOGS/BOT-MESSAGE': {
             const copyState = {
                 ...state,
                 message: [...state.message]
@@ -85,7 +85,7 @@ export const dialogsReducer = (state = initialState, action: actionType): dialog
             })
             return copyState
         }
-        case "DIALOGS/IS-TYPING": {
+        case 'DIALOGS/IS-TYPING': {
             return {...state, isTyping: action.isTyping}
         }
 

@@ -21,23 +21,26 @@ const Messages = (props: MessagesType) => {
 
     return <div className={'window_messages'}>
 
-        {props.messageObj.message.map((mes, i) => {
-            if (mes.whoId === props.myId) {
-                return <div className={'messages'}
-                            key={props.myId + i}>{mes.text}</div>
+        <div className={'wrapper_messages'}>
+            {props.messageObj.message.map((mes, i) => {
+                if (mes.whoId === props.myId) {
+                    return <div className={'messages'}
+                                key={props.myId + i}>
+                        <div>{mes.text}</div>
+                    </div>
 
-            } else if (mes.whoId !== props.myId) {
-                return <div className={'messagesBot'}
-                            key={props.messageObj.idDialogs + i}>{mes.text}</div>
-            }
-        })}
-
-        {props.isTyping && <Typing/>}
-
-        <div className={'wrapper_textarea'}><textarea
-            onChange={(e) => props.changeTextInputDialogs(e.currentTarget.value)}
-            ref={newMessageText}
-            value={props.textInput}/>
+                } else if (mes.whoId !== props.myId) {
+                    return <div className={'messagesBot'}
+                                key={props.messageObj.idDialogs + i}>{mes.text}</div>
+                }
+            })}
+        </div>
+        <div className={'wrapper_textarea'}>
+            {props.isTyping && <Typing/>}
+            <textarea
+                onChange={(e) => props.changeTextInputDialogs(e.currentTarget.value)}
+                ref={newMessageText}
+                value={props.textInput}/>
             <button onClick={() => {
                 props.changeSendMessage(props.messageObj.idDialogs, props.myId)
                 props.changeTextInputDialogs('')
