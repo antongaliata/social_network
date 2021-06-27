@@ -1,0 +1,54 @@
+.list_users {
+    border-right: 1px solid rgb(241, 239, 239);
+    height: 100%;
+    min-width: 350px;
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+    background: white;
+}
+
+.list_users a {
+    height: 50px;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    transition: .1s;
+}
+.noFocusUser:hover{
+    background: #e7e7e7;
+}
+
+.focusUser {
+    background: #66abee;
+}
+
+.focusUser:hover{
+    background: #66abee;
+}
+
+.list_users a img {
+    background: white;
+    height: 90%;
+    border: 1px solid gray;
+    border-radius: 50%;
+    margin: 5px;
+}
+
+.list_users::-webkit-scrollbar {
+    width: 5px;
+    background-color: #f9f9fd;
+}
+
+.list_users::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: #cdcbcb;
+}
+
+.list_users::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    background-color: #f9f9fd;
+}

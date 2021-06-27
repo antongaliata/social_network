@@ -9,20 +9,20 @@ export type DialogsType = {
 }
 export type MessageType = {
     idDialogs: number
-    message: Array<{ whoId: number | null, text: string }>
+    message: Array<{ whoId: number | null, text: string, time: string }>
 }
 
 export type dialogsPageType = {
     dialogs: Array<DialogsType>
     message: Array<MessageType>
-    textInputDialog: string
+    textInputDialog: Array<{text: string, idUser: number}>
     isTyping: boolean
 }
 
 export const initialState: dialogsPageType = {
     dialogs: [] as Array<DialogsType>,
     message: [] as Array<MessageType>,
-    textInputDialog: '',
+    textInputDialog: [{text: '', idUser: 0}],
     isTyping: false
 }
 
@@ -35,11 +35,15 @@ export const dialogsReducer = (state = initialState, action: actionType): dialog
                 ...state,
                 message: [...state.message]
             }
+            const now = new Date()
+            let min = now.getMinutes().toString()
+            min = min.toString().length === 1 ? '0' + '' + min.toString() : min.toString()
+            const currentTime = now.getHours() + ':' + min
 
-            const textMessage: string = state.textInputDialog
+            const textMessage: string = state.textInputDialog.find(s=> s.idUser === action.idDialogs)?.text || ''
             copyState.message.forEach(mes => {
                 if (mes.idDialogs === action.idDialogs) {
-                    mes.message.push({whoId: action.myId, text: textMessage})
+                    mes.message.push({whoId: action.myId, text: textMessage, time: currentTime})
                 }
             })
             return copyState
@@ -49,11 +53,15 @@ export const dialogsReducer = (state = initialState, action: actionType): dialog
                 ...state,
                 message: [...state.message]
             }
+            const now = new Date()
+            let min = now.getMinutes().toString()
+            min = min.toString().length === 1 ? '0' + '' + min.toString() : min.toString()
+            const currentTime = now.getHours() + ':' + min
 
             const botName = copyState.dialogs.find(user => user.id === action.userId)
             copyState.message.forEach(mes => {
                 if (mes.idDialogs === action.idDialogs) {
-                    mes.message.push({whoId: action.userId, text: `hello, I'm ${botName?.name}`})
+                    mes.message.push({whoId: action.userId, text: `hello, I'm ${botName?.name}`, time: currentTime})
                 }
             })
             return copyState
@@ -62,7 +70,13 @@ export const dialogsReducer = (state = initialState, action: actionType): dialog
         case 'DIALOGS/CHANGE-TEXT-INPUT' : {
             return {
                 ...state,
-                textInputDialog: action.text ? action.text : ''
+                textInputDialog: state.textInputDialog.map(textObj=>{
+                    if(textObj.idUser === action.idUser){
+                        return {...textObj, text: action.text || ''}
+                    }else {
+                        return {text: action.text || '', idUser: action.idUser}
+                    }
+                })
             }
         }
 
@@ -103,6 +117,7 @@ export type sendMessageACType = {
 export type changeTextInputDialogsACType = {
     type: 'DIALOGS/CHANGE-TEXT-INPUT'
     text: string | undefined
+    idUser: number
 }
 
 export type getStateDialogsACType = {
@@ -138,8 +153,8 @@ export const sendMessageAC = (idDialogs: number, myId: number): sendMessageACTyp
     return {type: 'SEND-MESSAGE', idDialogs, myId}
 }
 
-export const changeTextInputDialogsAC = (text: string | undefined): changeTextInputDialogsACType => {
-    return {type: 'DIALOGS/CHANGE-TEXT-INPUT', text}
+export const changeTextInputDialogsAC = (text: string | undefined, idUser: number): changeTextInputDialogsACType => {
+    return {type: 'DIALOGS/CHANGE-TEXT-INPUT', text, idUser}
 }
 
 const botMessageAC = (idDialogs: number, userId: number): botMessageACType => {
@@ -164,14 +179,13 @@ export const botMessageThunk = (idDialogs: number, userId: number) => {
     const delay = Math.floor(Math.random() * 3000)
 
     return (Dispatch: Dispatch) => {
-        setTimeout(()=>{
+        setTimeout(() => {
             Dispatch(handlerTypingAC(true))
             setTimeout(() => {
                 Dispatch(botMessageAC(idDialogs, userId))
                 Dispatch(handlerTypingAC(false))
             }, delay)
-        },500)
-
+        }, 500)
 
 
     }

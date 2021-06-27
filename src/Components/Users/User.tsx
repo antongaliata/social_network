@@ -7,7 +7,7 @@ type UserCardType = {
     imgNoPhoto: string
     followUser: ((idUser: number) => void) | null
     unfollowUser: (idUser: number) => void
-    getSubscribed: (() => void) | null
+
     disabledButton: Array<number>
 }
 
@@ -28,7 +28,6 @@ export const User = (props: UserCardType) => {
                         onClick={(EventTarget) => {
                             EventTarget.stopPropagation()
                             props.unfollowUser(props.user.id)
-                            props.getSubscribed && props.getSubscribed()
                         }}>unfollow</button> :
                 <button className={'but_follow'}
                         disabled={props.disabledButton.some((el) => el === props.user.id)}

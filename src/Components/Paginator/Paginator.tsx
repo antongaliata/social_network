@@ -8,6 +8,8 @@ type paginatorType = {
     selectedPageUsersAC: (page: number) => void
     quantityPageLength: number
     pageSize: number
+    updateSubscribers: ((numberPage: number) => void) | null
+
 }
 
 
@@ -23,7 +25,8 @@ const Paginator = (props: paginatorType) => {
             marginPagesDisplayed={1}
             pageRangeDisplayed={6}
             onPageChange={(selectedItem) => {
-               props.getUsersThunk(selectedItem.selected + 1, props.pageSize)
+                props.updateSubscribers && props.updateSubscribers(selectedItem.selected + 1)
+                props.getUsersThunk(selectedItem.selected + 1, props.pageSize)
                 props.selectedPageUsersAC(selectedItem.selected + 1)
             }}
             containerClassName={'pagination'}

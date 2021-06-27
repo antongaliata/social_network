@@ -5,12 +5,11 @@
 }
 
 .App {
-    background: rgb(241, 239, 239);
+    background: rgb(236, 238, 238);
     display: flex;
     flex-direction: column;
     height: 100vh;
 }
-
 
 
 .wrapper_preloader{
@@ -30,7 +29,7 @@
 
 
 .NavbarContainer {
-    background: rgb(241, 239, 239);
+    background: rgb(236, 238, 238);
     width: 25%;
 }
 
@@ -60,7 +59,7 @@
 
 
 .Body {
-    background: rgb(241, 239, 239);
+    background: rgb(236, 238, 238);
     position: relative;
     width: 1200px;
     height: 100%;
@@ -81,7 +80,7 @@
 
 .Header ul a {
     text-decoration: none;
-    color: darkgray;
+    color: white;
     font-size: 20px;
     transition: .2s;
 }
@@ -96,8 +95,8 @@
     flex-direction: row;
     justify-content: space-between;
     height: 60px;
-    background: rgb(255, 255, 255);
-    border-bottom: 1px solid rgb(241, 239, 239);
+    background: rgb(2,0,36);
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(186,98,190,1) 0%, rgba(69,206,233,1) 100%);
     box-shadow: 1px 3px 8px -2px rgba(34, 60, 80, 0.28);
     z-index: 1000;
     position: fixed;
@@ -111,9 +110,10 @@
     align-items: center;
     justify-content: center;
     font-family: 'Kaushan Script', cursive;
+    color: #f3e9e9;
     font-size: 30px;
     text-shadow: -1px 0 2px rgba(109, 101, 100, 1);
-
+    user-select: none;
 }
 
 

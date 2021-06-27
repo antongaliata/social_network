@@ -1,19 +1,26 @@
-.typing {
-    width: 5em;
-    height: 2em;
-    position: relative;
-    padding: 10px;
-    margin-left: 5px;
-    background: #e6e6e6;
-    border-radius: 10px;
+
+.typing_container {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin-left: 10px;
 }
 
+.typing_container span {
+    font-size: 15px;
+    font-style: italic;
+    color: #aaaaaa;
+    padding: 0 0 3px 5px;
+    user-select: none;
+    z-index: 100;
+}
+
+
 .typing__dot {
-    float: left;
-    width: 8px;
-    height: 8px;
-    margin: 0 4px;
-    background: #8d8c91;
+    width: 6px;
+    height: 6px;
+    margin: 0 2px;
+    background: #aaaaaa;
     border-radius: 50%;
     opacity: 0;
     animation: loadingFade 1s infinite;

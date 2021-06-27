@@ -2,13 +2,11 @@ import './typingStyle.css'
 import React from "react";
 
 const Typing = () => {
-    return <div>
+    return <div className={"typing_container"}>
+            <div className="typing__dot"/>
+            <div className="typing__dot"/>
+            <div className="typing__dot"/>
         <span>typing</span>
-        <div className="typing">
-            <div className="typing__dot"></div>
-            <div className="typing__dot"></div>
-            <div className="typing__dot"></div>
-        </div>
     </div>
 }
 

@@ -144,7 +144,6 @@ export const usersReducer = (state = initialState, action: actionType) => {
                 totalCountFriends: action.users.totalCount,
                 quantityPageFriends: quantityPage
             }
-
         }
 
         default : {
@@ -230,7 +229,19 @@ export const unfollowUserThunk = (idUser: number) => {
 }
 
 
-
+export const unfollowUserInComponentFriendsThunk = (idUser: number, pageUsers: number, pageSize: number) => {
+    return (Dispatch: any) => {
+        Dispatch(disabledButtonAC(idUser, true))
+        requestAPI.unsubscribeUser(idUser)
+            .then(res => {
+                if (!res.data.resultCode) {
+                    Dispatch(unfollowUserAC(idUser))
+                    Dispatch(disabledButtonAC(idUser, false))
+                    Dispatch(getSubscribedThunk(pageUsers, pageSize))
+                }
+            })
+    }
+}
 
 
 

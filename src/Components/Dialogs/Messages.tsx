@@ -1,54 +1,73 @@
 import './dialogs_and_message.css';
-import React from "react";
-import {MessageType} from "../../redux/dialogs-reducer";
-import Typing from "../Typing/Typing";
+import React, {useEffect} from "react";
+import {DialogsType, MessageType} from "../../redux/dialogs-reducer";
+import imgNoPhoto from "../../images/gender.png"
+import SendMessage from "./SendMessage";
 
 
 export type MessagesType = {
     messageObj: MessageType
-    textInput: string
+    textInput: Array<{ text: string, idUser: number }>
     changeSendMessage: (idDialogs: number, myId: number) => void
-    changeTextInputDialogs: (text: string | undefined) => void
+    changeTextInputDialogs: (text: string | undefined, idUser: number) => void
     myId: number
     botMessage: (idDialogs: number, userId: number) => void
     isTyping: boolean
+    user: DialogsType | undefined
+    myPhoto: string
 }
 
 
 const Messages = (props: MessagesType) => {
 
-    const newMessageText = React.createRef<HTMLTextAreaElement>()
+    const messagesEndRef = React.useRef<HTMLDivElement>(null)
+
+    useEffect(() => {
+        messagesEndRef.current?.scrollIntoView({behavior: "auto"})
+    })
+
 
     return <div className={'window_messages'}>
-
-        <div className={'wrapper_messages'}>
-            {props.messageObj.message.map((mes, i) => {
-                if (mes.whoId === props.myId) {
-                    return <div className={'messages'}
-                                key={props.myId + i}>
-                        <div>{mes.text}</div>
-                    </div>
-
-                } else if (mes.whoId !== props.myId) {
-                    return <div className={'messagesBot'}
-                                key={props.messageObj.idDialogs + i}>{mes.text}</div>
-                }
-            })}
+        <div className={'header_dialog'}>
+            <img src={props.user?.photo ? props.user?.photo : imgNoPhoto} alt={'avatar'}/>
+            {props.user?.name}
         </div>
-        <div className={'wrapper_textarea'}>
-            {props.isTyping && <Typing/>}
-            <textarea
-                onChange={(e) => props.changeTextInputDialogs(e.currentTarget.value)}
-                ref={newMessageText}
-                value={props.textInput}/>
-            <button onClick={() => {
-                props.changeSendMessage(props.messageObj.idDialogs, props.myId)
-                props.changeTextInputDialogs('')
-                props.botMessage(props.messageObj.idDialogs, props.messageObj.idDialogs)
-            }}>Отправить
-            </button>
+
+
+            <div className={'wrapper_messages'}>
+                {props.messageObj.message.map((mes, i) => {
+                    if (mes.whoId === props.myId) {
+                        return <div className={'messages'}
+                                    key={props.myId + i}>
+                            <div className={'myMessages'}>{mes.text}
+                                <div className={'time'}>{mes.time}</div>
+                            </div>
+                            <img alt={'avatar'} src={props.myPhoto ? props.myPhoto : imgNoPhoto}/>
+                        </div>
+
+                    } else if (mes.whoId !== props.myId) {
+                        return <div className={'messages2'} key={props.messageObj.idDialogs + i}>
+                            <img alt={'avatar'} src={props.user?.photo ? props.user?.photo : imgNoPhoto}/>
+                            <div className={'messagesBot'}>{mes.text}
+                                <div className={'time'}>{mes.time}</div>
+                            </div>
+
+                        </div>
+                    }
+                })}
+                <div ref={messagesEndRef}/>
+            </div>
+
+            <SendMessage
+                messageObj={props.messageObj}
+                textInput={props.textInput}
+                changeSendMessage={props.changeSendMessage}
+                changeTextInputDialogs={props.changeTextInputDialogs}
+                myId={props.myId}
+                botMessage={props.botMessage}
+                isTyping={props.isTyping}/>
         </div>
-    </div>
+
 }
 
 export default Messages;

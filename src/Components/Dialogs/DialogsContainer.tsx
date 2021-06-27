@@ -11,14 +11,14 @@ import {authMeThunk} from "../../redux/app-reducer";
 
 
 const mapStateToProps = (state: stateType) => {
-    return {dialogsState: state.dialogs, myId: state.app.id}
+    return {dialogsState: state.dialogs, myId: state.app.id, profile: state.profilePage}
 }
 
 const mapDispatchToProps = (Dispatch: any) => {
     return {
         authMe: () => Dispatch(authMeThunk()),
         changeSendMessage: (idDialogs: number, myId: number) => Dispatch(sendMessageAC(idDialogs, myId)),
-        changeTextInputDialogs: (text: string | undefined) => Dispatch(changeTextInputDialogsAC(text)),
+        changeTextInputDialogs: (text: string | undefined, idUser: number) => Dispatch(changeTextInputDialogsAC(text, idUser)),
         formDialogs: () => Dispatch(formDialogsThunk()),
         botMessage: (idDialogs: number, userId: number) => Dispatch(botMessageThunk(idDialogs, userId))
     }

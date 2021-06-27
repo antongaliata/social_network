@@ -20,6 +20,7 @@
     border-bottom: 1px solid rgb(241, 239, 239);
     display: flex;
     justify-content: space-between;
+    font-weight: bold;
 }
 
 .user:hover {
@@ -41,6 +42,7 @@ button {
     border: none;
     outline: none;
     transition: .3s;
+    cursor: pointer;
 }
 
 

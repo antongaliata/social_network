@@ -31,13 +31,13 @@ export default class Users extends React.Component<usersComponentType> {
                                  followUser={this.props.followUserThunk}
                                  unfollowUser={this.props.unfollowUserThunk}
                                  key={user.id}
-                                 disabledButton={this.props.usersState.disabledButton}
-                                 getSubscribed={null}/>
+                                 disabledButton={this.props.usersState.disabledButton}/>
                 })}
                 </div>
                 <Paginator getUsersThunk={this.props.getUsersThunk} selectedPageUsersAC={this.props.selectedPageUsersAC}
                            quantityPageLength={this.props.usersState.quantityPage.length}
-                           pageSize={this.props.usersState.pageSize}/>
+                           pageSize={this.props.usersState.pageSize}
+                           updateSubscribers={null}/>
             </div>
         </>
     }
