@@ -13,22 +13,19 @@ import {getSubscribedThunk} from "../redux/users-reducer";
 import {formDialogsThunk} from "../redux/dialogs-reducer";
 
 
-
 type AppType = {
     isLoading: boolean
     authMeThunk: () => void
     myId: number | null
     isAuth: boolean
-    formDialogsThunk: ()=>void
+    formDialogsThunk: () => void
 }
 
 class App extends React.Component<AppType> {
 
     componentDidMount() {
         this.props.authMeThunk()
-        // this.props.formDialogsThunk()
     }
-
 
     render() {
         return (
@@ -56,5 +53,5 @@ const mapStateToProps = (state: stateType) => {
     }
 }
 
-export default connect(mapStateToProps, {authMeThunk,getSubscribedThunk,formDialogsThunk})(App);
+export default connect(mapStateToProps, {authMeThunk, getSubscribedThunk, formDialogsThunk})(App);
 

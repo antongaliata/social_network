@@ -5,6 +5,7 @@ import {usersStateType} from "../../redux/users-reducer";
 import {User} from "./User";
 import Preloader from "../Preloader/Preloader";
 import Paginator from "../Paginator/Paginator";
+import {navBarType} from "../../redux/app-reducer";
 
 
 type usersComponentType = {
@@ -15,6 +16,7 @@ type usersComponentType = {
     followUserThunk: (idUser: number) => void
     unfollowUserThunk: (idUser: number) => void
     isAuth: boolean
+    handlerFocusNavLinkAC: (navLinkFocus: navBarType) => void
 }
 
 export default class Users extends React.Component<usersComponentType> {
@@ -27,11 +29,13 @@ export default class Users extends React.Component<usersComponentType> {
         return <> {this.props.usersState.loadingStatus && <Preloader/>}
             <div className={'window_users'}>
                 <div className={'wrapper_users'}>{this.props.usersState.users.map(user => {
-                    return <User user={user} imgNoPhoto={this.props.imgNoPhoto}
+                    return <User user={user}
+                                 imgNoPhoto={this.props.imgNoPhoto}
                                  followUser={this.props.followUserThunk}
                                  unfollowUser={this.props.unfollowUserThunk}
                                  key={user.id}
-                                 disabledButton={this.props.usersState.disabledButton}/>
+                                 disabledButton={this.props.usersState.disabledButton}
+                                 handlerFocusNavLinkAC={this.props.handlerFocusNavLinkAC}/>
                 })}
                 </div>
                 <Paginator getUsersThunk={this.props.getUsersThunk} selectedPageUsersAC={this.props.selectedPageUsersAC}

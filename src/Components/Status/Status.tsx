@@ -68,7 +68,7 @@ class Status extends React.Component<StatusType, { editMode: boolean, value: str
                            onBlur={this.changeEditMode}/> :
                     <div className={'text_status'}
                          style={this.props.myId === this.props.userId ? {cursor: 'pointer'} : {cursor: ''}}
-                         onDoubleClick={this.changeEditMode}>{this.state.value}
+                         onClick={this.changeEditMode}>{this.state.value}
                         {this.props.myId === this.props.userId && <img src={this.props.imgEdit} alt='edit'/>}
                     </div>
             }</div>

@@ -1,8 +1,8 @@
 import {UpdateProfileType} from "../../requestAPI/requestAPI";
 import React, {ChangeEvent, useEffect, useState} from "react";
 import './infoProfileStyle.css';
-import imgEditInfo from '../../images/edit_info.png'
-import imgSave from '../../images/save.png'
+import imgEditInfo from '../../images/edit2.png'
+import imgSave from '../../images/save2.png'
 
 type InfoProfileType = {
     profile: UpdateProfileType
@@ -67,7 +67,7 @@ export const InfoProfile = React.memo((props: InfoProfileType) => {
                 </div>
             </div>
             <div className={'container_about'}>
-                <div><span>about user:</span>
+                <div><span>about:</span>
                     <div className={'text'}>{props.profile.aboutMe}</div>
                 </div>
             </div>
@@ -103,7 +103,7 @@ export const InfoProfile = React.memo((props: InfoProfileType) => {
                 <input type={'text'} className={'inputText'} value={profileForm.lookingForAJobDescription} onChange={handlerInfoJob}/>
             </div>
 
-            <textarea placeholder={'about user'} onChange={handlerOboutMe}
+            <textarea placeholder={'about'} onChange={handlerOboutMe}
                       value={profileForm.aboutMe ? profileForm.aboutMe : ''}/>
 
         </div>}

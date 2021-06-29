@@ -1,5 +1,5 @@
 import React from "react";
-import {Posts} from "./Posts";
+import Posts from "./Posts";
 import {postsType} from "../../../redux/post-in-profile-reducer";
 
 type MyPostsType = {
@@ -8,11 +8,14 @@ type MyPostsType = {
     posts: postsType
     photo: string
     showPosts: boolean
+    handlerLikeAC: (id: string)=>void
+    deletePostAC: (idPost: string) => void
 }
 
 
 const MyPosts = (props: MyPostsType) => {
     const newPostsElement = React.createRef<HTMLTextAreaElement>()
+
 
     return <div className={'myPosts'}>
         <div className={'wrapper_text_but'}>{props.showPosts && <>
@@ -25,7 +28,11 @@ const MyPosts = (props: MyPostsType) => {
             </button>
         </>}</div>
         {props.showPosts && props.posts.posts.map((post => {
-            return <Posts post={post} key={post.id} photo={props.photo}/>
+            return <Posts key={post.id}
+                          post={post}
+                          photo={props.photo}
+                          handlerLikeAC={props.handlerLikeAC}
+                          deletePostAC={props.deletePostAC}/>
         }))}
     </div>
 }

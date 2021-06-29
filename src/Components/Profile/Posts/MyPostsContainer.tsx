@@ -1,5 +1,5 @@
 import React from "react";
-import {addPostAC, changeTextInputPostAC} from "../../../redux/post-in-profile-reducer";
+import {addPostAC, changeTextInputPostAC, deletePostAC, handlerLikeAC} from "../../../redux/post-in-profile-reducer";
 import {stateType} from "../../../redux/store";
 import {connect} from "react-redux";
 import MyPosts from "./MyPosts";
@@ -18,7 +18,9 @@ const mapDispatchToProps = (Dispatch: any) => {
             } else {
                 alert('введите текст')
             }
-        }
+        },
+        handlerLikeAC: (id: string) => Dispatch(handlerLikeAC(id)),
+        deletePostAC: (idPost: string) => Dispatch(deletePostAC(idPost))
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(MyPosts);

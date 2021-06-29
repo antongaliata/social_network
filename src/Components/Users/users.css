@@ -24,7 +24,7 @@
 }
 
 .user:hover {
-    background: rgb(241, 239, 239);
+    background: radial-gradient(circle, rgba(213,220,248,1) 0%, rgba(255,255,255,1) 83%);
 }
 
 .container_button_user {
@@ -48,18 +48,24 @@ button {
 
 .but_follow {
     background: rgb(97, 160, 243);
+    border-radius: 5px;
+    font-size: 1.1vh;
 }
 
 .but_follow:hover {
-    background: #5982ee;
+    background: #3864e8;
+    box-shadow: 5px 5px 5px -3px rgba(34, 60, 80, 0.6);
 }
 
 .but_unfollow {
     background: tomato;
+    border-radius: 5px;
+    font-size: 1.1vh;
 }
 
 .but_unfollow:hover {
     background: #f3492f;
+    box-shadow: 5px 5px 5px -3px rgba(34, 60, 80, 0.6);
 }
 
 
@@ -89,6 +95,7 @@ button {
     width: 80px;
     height: 80px;
     border: 1px solid rgb(241, 239, 239);
+    border-radius: 50%;
 }
 
 

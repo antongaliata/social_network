@@ -8,7 +8,6 @@ const settings = {
         'API-KEY': '3a123130-7eae-4888-b422-da332a4d5f0c'
     }
 }
-
 const instance = axios.default.create({
     baseURL: 'https://social-network.samuraijs.com/api/1.0/',
     ...settings

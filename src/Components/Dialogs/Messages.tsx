@@ -33,7 +33,6 @@ const Messages = (props: MessagesType) => {
             {props.user?.name}
         </div>
 
-
             <div className={'wrapper_messages'}>
                 {props.messageObj.message.map((mes, i) => {
                     if (mes.whoId === props.myId) {

@@ -31,6 +31,8 @@ export type ProfileUsersType = {
     profile: profileType
     status: string
     loadingStatus: boolean
+    myPhoto: photoType
+    myId: number
 }
 
 type getUserACType = {
@@ -57,12 +59,17 @@ type updatePhotoACType = {
     photos: photoType
 }
 
+type getMyIdForProfileType = {
+    type: 'PROFILE/GET-MY-ID'
+    myId: number
+}
 
 type actionType = getUserACType
     | getStatusUserACType
     | updateStatusACType
     | handlerLoadingStatusProfileACType
     | updatePhotoACType
+    | getMyIdForProfileType
 
 const initialState: ProfileUsersType = {
     profile: {
@@ -87,14 +94,31 @@ const initialState: ProfileUsersType = {
         }
     },
     status: '',
-    loadingStatus: false
+    loadingStatus: false,
+    myPhoto: {
+        small: '',
+        large: '',
+    },
+    myId: 0
 }
 
 
 export const profileReducer = (state = initialState, action: actionType) => {
     switch (action.type) {
+        case "PROFILE/GET-MY-ID": {
+            return {...state, myId: action.myId}
+        }
         case "PROFILE/GET-USER": {
-            return {...state, profile: {...action.user}}
+            let myPhoto = {}
+            if (state.myId === action.user.userId) {
+                myPhoto = action.user.photos
+            } else {
+                myPhoto = state.myPhoto
+            }
+            return {
+                ...state, profile: {...action.user},
+                myPhoto: myPhoto
+            }
         }
         case "GET-STATUS": {
             return {...state, status: action.status}
@@ -106,7 +130,6 @@ export const profileReducer = (state = initialState, action: actionType) => {
             return {...state, loadingStatus: action.loadingStatus}
         }
         case "PROFILE/UPDATE-PHOTO": {
-            console.log(action.photos)
             return {...state, profile: {...state.profile, ...action.photos}}
         }
         default : {
@@ -133,6 +156,10 @@ const handlerLoadingProfileAC = (loadingStatus: boolean): handlerLoadingStatusPr
 
 const updatePhotoAC = (photos: photoType): updatePhotoACType => {
     return {type: 'PROFILE/UPDATE-PHOTO', photos}
+}
+
+export const getMyIdForProfileAC = (myId: number): getMyIdForProfileType => {
+    return {type: 'PROFILE/GET-MY-ID', myId}
 }
 
 
@@ -174,14 +201,12 @@ export const updatePhotoThunk = (photoFile: any) => {
 
 
 export const updateProfileThunk = (profile: UpdateProfileType) => {
-
-    return async (Dispatch: any)=>{
+    return async (Dispatch: any) => {
         Dispatch(handlerLoadingProfileAC(true))
         const promise = await requestAPI.updateProfile(profile)
         try {
-            console.log(promise)
             Dispatch(getUserThunk(profile.userId.toString()))
-        }catch{
+        } catch {
             Dispatch(handlerLoadingProfileAC(false))
             console.log('catch')
             console.log(promise)

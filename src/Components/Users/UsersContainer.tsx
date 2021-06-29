@@ -5,6 +5,8 @@ import {followUserThunk, getStateUsersThunk, selectedPageUsersAC, unfollowUserTh
 import imgNoPhoto from '../../images/gender.png'
 import {witchAuthRedirect} from "../../hocComponent/HocAuth";
 import {compose} from "redux";
+import {handlerFocusNavLinkAC, navBarType} from "../../redux/app-reducer";
+
 
 
 const mapStateToProps = (state: stateType) => {
@@ -13,6 +15,7 @@ const mapStateToProps = (state: stateType) => {
 
 const mapDispatchToProps = (Dispatch: any) => {
     return {
+        handlerFocusNavLinkAC: (navLinkFocus: navBarType) => Dispatch(handlerFocusNavLinkAC(navLinkFocus)),
         getUsersThunk: (pageUsers: number, pageSize: number) => Dispatch(getStateUsersThunk(pageUsers, pageSize)),
         selectedPageUsersAC: (page: number) => Dispatch(selectedPageUsersAC(page)),
         followUserThunk: (userID: number) => Dispatch(followUserThunk(userID)),

@@ -1,18 +1,9 @@
 import {Dispatch} from "redux";
 import {authType, requestAPI} from "../requestAPI/requestAPI";
+import {getMyIdForProfileAC, photoType} from "./profile-reducer";
 
-export type authStateType = {
-    id: number
-    email: string | null
-    login: string | null
-    isAuth: boolean
-    wereRedirectWith: string
-    loadingStatus: boolean
-    loginMessageError: Array<string>
-}
 
 export type LoginType = { email: string, password: string, RememberMe: boolean }
-
 
 type authMeACType = {
     type: 'AUTH-ME'
@@ -30,17 +21,36 @@ type handlerPreloaderACType = {
     loadingStatus: boolean
 }
 
-
 type loginErrorACType = {
     type: 'LOGIN-ERROR'
     messagesError: Array<string>
+}
+
+type handlerFocusNavLinkACType = {
+    type: 'APP-NAV/FOCUS-NAV'
+    navLinkFocus: navBarType
 }
 
 
 type actionType = authMeACType |
     handlerWereRedirectWithACType |
     handlerPreloaderACType |
-    loginErrorACType
+    loginErrorACType |
+    handlerFocusNavLinkACType
+
+export type navBarType = 'profile' | 'friends' | 'message' | 'users' | 'news'
+export type authStateType = {
+    id: number
+    email: string | null
+    login: string | null
+    isAuth: boolean
+    wereRedirectWith: string
+    loadingStatus: boolean
+    loginMessageError: Array<string>
+    navBarFocus: navBarType
+    myPhoto: photoType
+}
+
 
 const initialState: authStateType = {
     id: 0,
@@ -49,18 +59,21 @@ const initialState: authStateType = {
     isAuth: false,
     wereRedirectWith: '',
     loadingStatus: false,
-    loginMessageError: []
+    loginMessageError: [],
+    navBarFocus: 'profile',
+    myPhoto: {small: '', large: ''}
 }
 
 export const appReducer = (state = initialState, action: actionType) => {
 
     switch (action.type) {
         case "AUTH-ME": {
+            console.log(action)
             if (action.isAuth) {
                 return {
                     ...state,
                     ...action.authState,
-                    isAuth: action.isAuth
+                    isAuth: action.isAuth,
                 }
             } else {
                 return {...state, isAuth: action.isAuth}
@@ -74,6 +87,9 @@ export const appReducer = (state = initialState, action: actionType) => {
         }
         case "LOGIN-ERROR": {
             return {...state, loginMessageError: [...action.messagesError]}
+        }
+        case "APP-NAV/FOCUS-NAV": {
+            return {...state, navBarFocus: action.navLinkFocus}
         }
 
         default :
@@ -98,6 +114,10 @@ export const handlerPreloaderAC = (loadingStatus: boolean): handlerPreloaderACTy
     return {type: 'APP/LOADING-STATUS', loadingStatus}
 }
 
+export const handlerFocusNavLinkAC = (navLinkFocus: navBarType): handlerFocusNavLinkACType => {
+    return {type: 'APP-NAV/FOCUS-NAV', navLinkFocus}
+}
+
 
 export const authMeThunk = () => {
 
@@ -107,8 +127,9 @@ export const authMeThunk = () => {
             .then(res => {
                 if (!res.data.resultCode) {
                     Dispatch(authMeAC(res.data.data, true))
+                    Dispatch(getMyIdForProfileAC(res.data.data.id))
+
                 } else {
-                    console.log(res.data)
                     Dispatch(authMeAC(res.data.data, false))
                 }
                 Dispatch(handlerPreloaderAC(false))

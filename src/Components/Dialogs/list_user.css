@@ -22,11 +22,11 @@
 }
 
 .focusUser {
-    background: #66abee;
+    background: #7797ef;
 }
 
 .focusUser:hover{
-    background: #66abee;
+    background: #5982ee;
 }
 
 .list_users a img {

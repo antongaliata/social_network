@@ -5,12 +5,15 @@
     word-break: break-all;
     display: flex;
     background: white;
+    position: relative;
+    padding-top: 10px;
 }
 
 .post .avatar {
     width: 50px;
     height: 50px;
     border: 1px solid rgb(241, 239, 239);
+    border-radius: 50%;
     margin: 5px;
 }
 
@@ -22,28 +25,69 @@
 }
 
 .post_message {
-    padding: 4px;
+    padding: 0 25px 0 10px;
     width: 100%;
+    font-size: 1.2vh;
+    font-family: 'Open Sans', sans-serif;
 }
 
-.post_like {
+.wrapper_post_like {
     display: flex;
     flex-direction: row-reverse;
-    user-select: none;
-    filter: invert(35%);
-    height: 20px;
-    padding-right: 2px;
 }
 
-.post_like span {
+
+.like, .dislike {
+    display: flex;
+    justify-content: center;
+    width: 55px;
+    color: #acabab;
+    font-size: 15px;
+    user-select: none;
+    height: 20px;
+    padding-right: 2px;
+    border-bottom: 2px solid #acabab;
+}
+
+.like {
+    border-bottom: 2px solid #3498DB;
+    color: #3498DB;
+}
+
+.like span, .dislike span {
     cursor: pointer;
     user-select: none;
     font-size: 17px;
-
+    display: flex;
+    align-items: center;
 }
 
-.post_like img {
+.like img, .dislike img {
     width: 17px;
-    height: 15px;
-    padding-left: 1px;
+    height: 16px;
+    padding-right: 2px;
 }
+
+
+.delete_post {
+    position: absolute;
+    right: 2px;
+    top: 0;
+    height: 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: start;
+    flex-direction: column-reverse;
+    color: #d9d7d7;
+    font-size: 13px;
+}
+
+.delete_post:hover{
+    color: red;
+}
+
+
+
+
+
+

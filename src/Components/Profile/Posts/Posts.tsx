@@ -1,38 +1,41 @@
 import './posts.css';
-import {store} from "../../../redux/store";
-import {handlerLikeAC, PostType} from "../../../redux/post-in-profile-reducer";
-import like2 from '../../../images/like4.png'
-import like from '../../../images/like3.png'
-import {Component} from "react";
+import {PostType} from "../../../redux/post-in-profile-reducer";
+import like from '../../../images/like2.png'
+import dislike from '../../../images/dislike.png'
 
 
 type PostsType = {
     post: PostType
     photo: string
+    handlerLikeAC: (id: string) => void
+    deletePostAC:(idPost: string)=>void
 }
 
-export class Posts extends Component<PostsType, { likeActive: boolean }> {
-    constructor(props: PostsType) {
-        super(props);
+const Posts = (props: PostsType) => {
+
+    const inLike = props.post.like
+
+    const onClickLike = () => {
+        props.handlerLikeAC(props.post.id)
+    }
+    const deletePost = ()=>{
+        props.deletePostAC(props.post.id)
     }
 
-
-    onClickLike = () => {
-        store.dispatch(handlerLikeAC(this.props.post.id))
-    }
-
-    render() {
-
-        return <div className={'post'}>
-            <img className={'avatar'} src={this.props.photo} alt='ava'/>
-            <div className={'wrapper_message_like'}>
-                <div className={'post_message'}>{this.props.post.message}</div>
-                <div className={'post_like'}><span onClick={this.onClickLike}><img
-                    src={this.props.post.like ? like2 : like} alt='like'/></span>{this.props.post.like}
+    return <div className={'post'}>
+        <img className={'avatar'} src={props.photo} alt='ava'/>
+        <span className={'delete_post'} onClick={deletePost}>&#10006;</span>
+        <div className={'wrapper_message_like'}>
+            <div className={'post_message'}>{props.post.message}</div>
+            <div className={'wrapper_post_like'}>
+                <div className={inLike ? 'like' : 'dislike'}><span onClick={onClickLike}>
+                    <img src={inLike ? like : dislike} alt='like'/>{props.post.like}</span>
                 </div>
             </div>
         </div>
-    }
+    </div>
 }
 
+
+export default Posts;
 

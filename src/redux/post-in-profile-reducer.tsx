@@ -42,6 +42,10 @@ export const postInProfileReducer = (state = initialState, action: actionType): 
             copyState.posts.unshift({id: v1(), message: copyState.textInput, like: 0})
             return copyState
         }
+        case "POST/DELETE-POST": {
+            return {...state, posts: state.posts.filter(post=> post.id !== action.idPost)}
+        }
+
         case 'HANDLER-LIKE' : {
             const copyState = {...state}
             copyState.posts.forEach(post => {
@@ -75,7 +79,13 @@ type handlerLikeACType = {
     id: string
 }
 
-type actionType = changeTextInputPostACType | addPostACType | handlerLikeACType
+type deletePostACType = {
+    type: 'POST/DELETE-POST'
+    idPost: string
+}
+
+
+type actionType = changeTextInputPostACType | addPostACType | handlerLikeACType | deletePostACType
 
 
 export const changeTextInputPostAC = (text: string | undefined): changeTextInputPostACType => {
@@ -84,6 +94,10 @@ export const changeTextInputPostAC = (text: string | undefined): changeTextInput
 
 export const addPostAC = (): addPostACType => {
     return {type: 'ADD-POST'}
+}
+
+export const deletePostAC = (idPost: string):deletePostACType => {
+    return {type: 'POST/DELETE-POST', idPost }
 }
 
 export const handlerLikeAC = (id: string): handlerLikeACType => {

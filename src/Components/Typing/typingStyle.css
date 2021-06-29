@@ -9,7 +9,7 @@
 .typing_container span {
     font-size: 15px;
     font-style: italic;
-    color: #aaaaaa;
+    color: #747474;
     padding: 0 0 3px 5px;
     user-select: none;
     z-index: 100;
@@ -20,7 +20,7 @@
     width: 6px;
     height: 6px;
     margin: 0 2px;
-    background: #aaaaaa;
+    background:  #747474;
     border-radius: 50%;
     opacity: 0;
     animation: loadingFade 1s infinite;

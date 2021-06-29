@@ -47,7 +47,6 @@
     box-shadow: 4px 4px 8px 0 rgba(34, 60, 80, 0.2);
     border: 1px solid rgb(241, 239, 239);
     position: relative;
-
 }
 
 .wrapper_avatar {
@@ -68,20 +67,18 @@
 }
 
 .input_camera div {
-    width: 35px;
-    height: 35px;
+    width: 40px;
+    height: 40px;
     position: absolute;
-    bottom: 36px;
-    right: 11px;
-    border: 1px solid rgb(241, 239, 239);
+    bottom: 30px;
+    right: 2px;
     border-radius: 50%;
     display: flex;
-    justify-content: center;
     align-items: center;
-    background: rgb(241, 239, 239);
+    justify-content: center;
+    background: white;
     cursor: pointer;
     transition: .3s;
-    opacity: .9;
 }
 
 .input_camera div:hover{
@@ -90,16 +87,16 @@
     opacity: 1;
 
 }
+.input_camera img {
+    width: 80%;
+    height: 80%;
+}
 
 .input_camera div:hover img{
-    width: 23px;
-    height: 23px;
+    width: 90%;
+    height: 90%;
 }
 
-.input_camera img {
-    width: 20px;
-    height: 20px;
-}
 
 
 .myPosts {
@@ -122,7 +119,7 @@
     padding: 2px;
 }
 .wrapper_text_but textarea:focus{
-    border: 2px solid rgb(97, 160, 243);
+    border: 2px solid #5982ee;
 }
 
 .wrapper_text_but button {
@@ -130,13 +127,16 @@
     height: 25px;
     border: none;
     outline: none;
-    background: rgb(97, 160, 243);
+    background: #5982ee;
     transition: .3s;
     color: white;
+    border-radius: 5px;
+    font-size: 1.1vh;
 }
 
 .wrapper_text_but button:hover {
-    background: #5982ee;
+    background: #3864e8;
+    box-shadow: 5px 5px 5px -3px rgba(34, 60, 80, 0.6);
 }
 
 

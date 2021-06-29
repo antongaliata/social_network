@@ -125,7 +125,6 @@ export type getStateDialogsACType = {
     users: Array<UsersType>
 }
 
-
 export type botMessageACType = {
     type: 'DIALOGS/BOT-MESSAGE'
     idDialogs: number

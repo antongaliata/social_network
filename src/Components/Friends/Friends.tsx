@@ -4,6 +4,8 @@ import Preloader from "../Preloader/Preloader";
 import {User} from "../Users/User";
 import '../Users/users.css'
 import Paginator from "../Paginator/Paginator";
+import {navBarType} from "../../redux/app-reducer";
+import {UsersType} from "../../requestAPI/requestAPI";
 
 
 type FriendsType = {
@@ -12,7 +14,7 @@ type FriendsType = {
     selectedPageUsersAC: (page: number) => void
     getSubscribedThunk: (pageUsers: number, pageSize: number) => void
     unfollowUserInComponentFriendsThunk: (idUser: number, pageUsers: number, pageSize: number) => void
-
+    handlerFocusNavLinkAC:(navLinkFocus: navBarType) => void
 }
 
 export class Friends extends React.PureComponent<FriendsType, { numberPage: number }> {
@@ -31,21 +33,26 @@ export class Friends extends React.PureComponent<FriendsType, { numberPage: numb
         this.setState({numberPage: numberPage})
     }
 
+    requestNewPage = (friend: UsersType)=>{
+        let page = this.state.numberPage
+        if (this.props.stateUsers.totalCountFriends <= 11) {
+            page = 1
+        }
+        this.props.unfollowUserInComponentFriendsThunk
+        (friend.id, page, 10)
+    }
+
+
     render() {
         return <> {this.props.stateUsers.loadingStatus && <Preloader/>}
             <div className={'window_users'}>
                 <div className={'wrapper_users'}>{this.props.stateUsers.friends.map(friend => {
                     if (friend.followed) {
-                        return <User user={friend} imgNoPhoto={this.props.imgNoPhoto}
+                        return <User user={friend}
+                                     handlerFocusNavLinkAC={this.props.handlerFocusNavLinkAC}
+                                     imgNoPhoto={this.props.imgNoPhoto}
                                      followUser={null}
-                                     unfollowUser={() => {
-                                         let page = this.state.numberPage
-                                         if (this.props.stateUsers.totalCountFriends <= 11) {
-                                             page = 1
-                                         }
-                                         this.props.unfollowUserInComponentFriendsThunk
-                                         (friend.id, page, 10)
-                                     }}
+                                     unfollowUser={()=>this.requestNewPage(friend)}
                                      key={friend.id}
                                      disabledButton={this.props.stateUsers.disabledButton}/>
                     }

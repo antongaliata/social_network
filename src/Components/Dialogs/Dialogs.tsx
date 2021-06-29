@@ -18,7 +18,7 @@ export type DialogsComponentType = {
     profile: ProfileUsersType
 }
 
-class Dialogs extends React.Component<DialogsComponentType, {focusUserId:number}> {
+class Dialogs extends React.Component<DialogsComponentType, { focusUserId: number }> {
     constructor(props: DialogsComponentType) {
         super(props);
         this.state = {
@@ -38,7 +38,7 @@ class Dialogs extends React.Component<DialogsComponentType, {focusUserId:number}
         return <div className={'Message_Component'}>
             <div className={'list_users'}>
                 {this.props.dialogsState.dialogs.map(user => {
-                    return <NavLink className={this.state.focusUserId === user.id? 'focusUser' : 'noFocusUser'}
+                    return <NavLink className={this.state.focusUserId === user.id ? 'focusUser' : 'noFocusUser'}
                                     onClick={() => this.handlerFocus(user.id)}
                                     to={`/message/dialogs/id/${user.id}`}
                                     key={user.id}>
@@ -48,7 +48,9 @@ class Dialogs extends React.Component<DialogsComponentType, {focusUserId:number}
             </div>
             {this.props.dialogsState.message.map(mes => {
                 const user = this.props.dialogsState.dialogs.find(user => user.id === mes.idDialogs)
+
                 return <Route path={`/message/dialogs/id/${mes.idDialogs}`} key={mes.idDialogs}>{
+
                     <Messages textInput={this.props.dialogsState.textInputDialog}
                               messageObj={mes}
                               changeSendMessage={this.props.changeSendMessage}
@@ -57,7 +59,7 @@ class Dialogs extends React.Component<DialogsComponentType, {focusUserId:number}
                               botMessage={this.props.botMessage}
                               isTyping={this.props.dialogsState.isTyping}
                               user={user}
-                    myPhoto={this.props.profile.profile.photos.small}/>
+                              myPhoto={this.props.profile.myPhoto.small}/>
                 }</Route>
             })}
 

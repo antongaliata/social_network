@@ -1,13 +1,14 @@
 import React from "react";
 import {NavLink} from "react-router-dom";
 import {UsersType} from "../../requestAPI/requestAPI";
+import {navBarType} from "../../redux/app-reducer";
 
 type UserCardType = {
     user: UsersType
     imgNoPhoto: string
     followUser: ((idUser: number) => void) | null
     unfollowUser: (idUser: number) => void
-
+    handlerFocusNavLinkAC: (navLinkFocus: navBarType) => void
     disabledButton: Array<number>
 }
 
@@ -15,7 +16,9 @@ type UserCardType = {
 export const User = (props: UserCardType) => {
 
     return <div className={'user'}>
-        <NavLink to={`/profile/${props.user.id}`} className={'navLink_wrapper'}>
+        <NavLink to={`/profile/${props.user.id}`}
+                 className={'navLink_wrapper'}
+                 onClick={()=>props.handlerFocusNavLinkAC('profile')}>
             <div className={'photo'}>{props.user.photos.small ?
                 <img src={props.user.photos.small} alt='photo'/> :
                 <img src={props.imgNoPhoto} alt='photo'/>}</div>

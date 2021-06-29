@@ -4,7 +4,7 @@ import React, {ChangeEvent, PureComponent} from "react";
 import {ProfileUsersType} from "../../redux/profile-reducer";
 import Status from "../Status/Status";
 import Preloader from "../Preloader/Preloader";
-import imgCamera from '../../images/camera.png'
+import imgCamera from '../../images/camera3.png'
 import {InfoProfile} from "./InfoProfile";
 import {UpdateProfileType} from "../../requestAPI/requestAPI";
 

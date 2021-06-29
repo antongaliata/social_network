@@ -13,12 +13,6 @@ code {
 }
 
 
-
-@font-face {
-  font-family: 'Kaushan Script';
-  src: local('Lato'), url(./fonts/KaushanScript-Regular.ttf) format('truetype');
-}
-
 @font-face {
   font-family: 'Kaushan Script';
   font-weight: 900;
@@ -26,7 +20,7 @@ code {
 }
 
 @font-face {
-  font-family: 'Kaushan Script';
-  font-weight: 900;
-  src: local('Lato'), url(./fonts/KaushanScript-Regular.ttf) format('truetype');
+  font-family: 'Open Sans';
+  font-weight: 100;
+  src: local('Lato'), url(./fonts/OpenSans-Regular.ttf) format('truetype');
 }
