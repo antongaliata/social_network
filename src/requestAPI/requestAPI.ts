@@ -101,7 +101,6 @@ export const requestAPI = {
     updateProfile: (profile: UpdateProfileType) => {
         return instance.put<responseType<UpdateProfileType>>('/profile', profile)
     }
-
 }
 
 export const newsAPI = {

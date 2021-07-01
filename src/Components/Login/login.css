@@ -61,14 +61,14 @@
 
 
 .login_container {
-    background: rgba(47, 45, 46, .8);
+    background: rgba(61, 61, 61, 0.8);
     width: 400px;
     height: 300px;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
     color: white;
-    box-shadow: 4px 4px 8px 0 rgba(34, 60, 80, 0.2);
+    box-shadow: 8px 7px 5px -5px rgba(34, 60, 80, 0.6);
 }
 
 .login_container h1 {

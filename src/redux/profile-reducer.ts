@@ -1,5 +1,6 @@
 import {requestAPI, UpdateProfileType} from "../requestAPI/requestAPI";
 import {Dispatch} from "redux";
+import {handlerWindowErrorThunk} from "./app-reducer";
 
 
 export type photoType = {
@@ -26,14 +27,24 @@ export type profileType = {
     photos: photoType
 }
 
-
 export type ProfileUsersType = {
     profile: profileType
     status: string
     loadingStatus: boolean
     myPhoto: photoType
     myId: number
+    nameError: nameErrorType
+    editMode: boolean
 }
+export type nameErrorType = 'github'
+    | 'vk'
+    | 'facebook'
+    | 'instagram'
+    | 'twitter'
+    | 'website'
+    | 'youtube'
+    | 'mainLink'
+    | ''
 
 type getUserACType = {
     type: 'PROFILE/GET-USER'
@@ -64,12 +75,25 @@ type getMyIdForProfileType = {
     myId: number
 }
 
+type handlerErrorUpdateProfileType = {
+    type: 'PROFILE/HANDLER-ERROR-UPDATE'
+    error: string
+}
+
+type editModeACType = {
+    type: 'PROFILE/EDIT-MODE'
+    editMode: boolean
+}
+
+
 type actionType = getUserACType
     | getStatusUserACType
     | updateStatusACType
     | handlerLoadingStatusProfileACType
     | updatePhotoACType
     | getMyIdForProfileType
+    | handlerErrorUpdateProfileType
+    | editModeACType
 
 const initialState: ProfileUsersType = {
     profile: {
@@ -99,7 +123,9 @@ const initialState: ProfileUsersType = {
         small: '',
         large: '',
     },
-    myId: 0
+    myId: 0,
+    nameError: '',
+    editMode: false
 }
 
 
@@ -117,7 +143,9 @@ export const profileReducer = (state = initialState, action: actionType) => {
             }
             return {
                 ...state, profile: {...action.user},
-                myPhoto: myPhoto
+                myPhoto: myPhoto,
+                editMode: false,
+                nameError: ''
             }
         }
         case "GET-STATUS": {
@@ -132,6 +160,15 @@ export const profileReducer = (state = initialState, action: actionType) => {
         case "PROFILE/UPDATE-PHOTO": {
             return {...state, profile: {...state.profile, ...action.photos}}
         }
+        case "PROFILE/HANDLER-ERROR-UPDATE": {
+            const a = action.error.split('')
+            const nameError = a.slice(a.indexOf('>') + 1, a.indexOf(')')).join('').toLocaleLowerCase()
+            return {...state, nameError, editMode: true}
+        }
+        case "PROFILE/EDIT-MODE": {
+            return {...state, editMode: action.editMode}
+        }
+
         default : {
             return state
         }
@@ -150,6 +187,7 @@ const getStatusUserAC = (status: string | null): getStatusUserACType => {
 const updateStatusAC = (status: string | null): updateStatusACType => {
     return {type: 'UPDATE-STATUS', status}
 }
+
 const handlerLoadingProfileAC = (loadingStatus: boolean): handlerLoadingStatusProfileACType => {
     return {type: 'PROFILE/LOADING-STATUS', loadingStatus}
 }
@@ -158,10 +196,18 @@ const updatePhotoAC = (photos: photoType): updatePhotoACType => {
     return {type: 'PROFILE/UPDATE-PHOTO', photos}
 }
 
+const handlerErrorUpdateProfileAC = (error: string): handlerErrorUpdateProfileType => {
+    return {type: 'PROFILE/HANDLER-ERROR-UPDATE', error}
+}
+
+export const editModeAC = (editMode: boolean) => {
+    return {type: 'PROFILE/EDIT-MODE', editMode}
+}
+
+
 export const getMyIdForProfileAC = (myId: number): getMyIdForProfileType => {
     return {type: 'PROFILE/GET-MY-ID', myId}
 }
-
 
 export const getUserThunk = (userId: string) => {
     return async (Dispatch: Dispatch) => {
@@ -199,17 +245,21 @@ export const updatePhotoThunk = (photoFile: any) => {
     }
 }
 
-
 export const updateProfileThunk = (profile: UpdateProfileType) => {
     return async (Dispatch: any) => {
         Dispatch(handlerLoadingProfileAC(true))
         const promise = await requestAPI.updateProfile(profile)
         try {
-            Dispatch(getUserThunk(profile.userId.toString()))
+            if (promise.data.messages[0]) {
+                Dispatch(handlerErrorUpdateProfileAC(promise.data.messages[0]))
+                Dispatch(handlerLoadingProfileAC(false))
+                Dispatch(handlerWindowErrorThunk(true))
+            } else {
+                Dispatch(getUserThunk(profile.userId.toString()))
+                Dispatch(handlerWindowErrorThunk(false))
+            }
         } catch {
             Dispatch(handlerLoadingProfileAC(false))
-            console.log('catch')
-            console.log(promise)
         }
     }
 }

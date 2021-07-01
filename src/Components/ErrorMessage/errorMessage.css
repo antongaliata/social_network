@@ -1,0 +1,35 @@
+.window_error_contact {
+    min-width: 300px;
+    padding: 25px;
+    height: 50px;
+    background: #ef7768;
+    position: absolute;
+    bottom: 100px;
+    right: -450px;
+    border-radius: 5px;
+    color: white;
+    font-weight: bolder;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 6px 6px 5px -5px rgba(34, 60, 80, 0.6);
+    z-index: 111111;
+}
+
+.closeWindow {
+    font-weight: normal;
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    width: 10px;
+    height: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    opacity: .5;
+}
+
+.closeWindow:hover {
+    opacity: 1;
+}

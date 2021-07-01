@@ -24,12 +24,13 @@
     box-shadow: 4px 4px 8px 0 rgba(34, 60, 80, 0.2);
     border: 1px solid rgb(241, 239, 239);
     padding: 10px;
+
 }
 
 .user_name {
-    font-size: 30px;
+    font-size: xx-large;
+    color: #474747;
 }
-
 
 .Profile {
     width: 100%;
@@ -81,33 +82,51 @@
     transition: .3s;
 }
 
-.input_camera div:hover{
+.input_camera div:hover {
     background: white;
     transition: .3s;
     opacity: 1;
 
 }
+
 .input_camera img {
     width: 80%;
     height: 80%;
 }
 
-.input_camera div:hover img{
+.input_camera div:hover img {
     width: 90%;
     height: 90%;
 }
 
 
-
-.myPosts {
-    background: white;
+.myPostsContainer {
     height: 100%;
     box-shadow: 4px 4px 8px 0 rgba(34, 60, 80, 0.2);
     border: 1px solid rgb(241, 239, 239);
+    overflow: hidden;
+    background: rgb(236, 238, 238);
+}
+
+.wrapper_posts {
+    overflow-y: scroll;
+    height: 90%;
+    padding-bottom: 10px;
+    background: white;
+}
+
+.wrapper_posts::-webkit-scrollbar {
+    width: 1px;
+}
+
+.wrapper_posts::-webkit-scrollbar-thumb {
+    background: #5982ee;
 }
 
 .wrapper_text_but {
-    margin: 5px 5px 35px 5px;
+    padding: 5px;
+    height: 10%;
+    background: white;
 }
 
 .wrapper_text_but textarea {
@@ -115,12 +134,20 @@
     outline: none;
     width: 100%;
     height: 50px;
-    border: 2px solid rgb(241, 239, 239);
-    padding: 2px;
+    border: 2px solid white;
+    background: rgb(236, 238, 238);
+    padding: 1px 3px;
+    border-radius: 5px;
 }
-.wrapper_text_but textarea:focus{
+
+.wrapper_text_but textarea:focus {
     border: 2px solid #5982ee;
 }
+
+.wrapper_text_but textarea:hover {
+    background: rgb(230, 232, 232);
+}
+
 
 .wrapper_text_but button {
     width: 100px;
@@ -139,6 +166,14 @@
     box-shadow: 5px 5px 5px -3px rgba(34, 60, 80, 0.6);
 }
 
+.wrapper_text_but textarea::-webkit-scrollbar {
+    width: 3px;
+    background-color: white;
+}
 
+.wrapper_text_but textarea::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: #dedede;
+}
 
 

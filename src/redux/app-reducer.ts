@@ -31,12 +31,18 @@ type handlerFocusNavLinkACType = {
     navLinkFocus: navBarType
 }
 
+type windowErrorACType = {
+    type: 'APP/WINDOW-ERROR'
+    error: boolean
+}
+
 
 type actionType = authMeACType |
     handlerWereRedirectWithACType |
     handlerPreloaderACType |
     loginErrorACType |
-    handlerFocusNavLinkACType
+    handlerFocusNavLinkACType |
+    windowErrorACType
 
 export type navBarType = 'profile' | 'friends' | 'message' | 'users' | 'news'
 export type authStateType = {
@@ -49,6 +55,7 @@ export type authStateType = {
     loginMessageError: Array<string>
     navBarFocus: navBarType
     myPhoto: photoType
+    showWindowError: boolean
 }
 
 
@@ -61,14 +68,14 @@ const initialState: authStateType = {
     loadingStatus: false,
     loginMessageError: [],
     navBarFocus: 'profile',
-    myPhoto: {small: '', large: ''}
+    myPhoto: {small: '', large: ''},
+    showWindowError: false
 }
 
 export const appReducer = (state = initialState, action: actionType) => {
 
     switch (action.type) {
         case "AUTH-ME": {
-            console.log(action)
             if (action.isAuth) {
                 return {
                     ...state,
@@ -91,6 +98,9 @@ export const appReducer = (state = initialState, action: actionType) => {
         case "APP-NAV/FOCUS-NAV": {
             return {...state, navBarFocus: action.navLinkFocus}
         }
+        case "APP/WINDOW-ERROR": {
+            return {...state, showWindowError: action.error}
+        }
 
         default :
             return state
@@ -100,6 +110,10 @@ export const appReducer = (state = initialState, action: actionType) => {
 
 const loginErrorAC = (messagesError: Array<string>): loginErrorACType => {
     return {type: 'LOGIN-ERROR', messagesError}
+}
+
+const windowErrorAC = (error: boolean): windowErrorACType => {
+    return {type: 'APP/WINDOW-ERROR', error}
 }
 
 const authMeAC = (authState: authType, isAuth: boolean): authMeACType => {
@@ -120,7 +134,6 @@ export const handlerFocusNavLinkAC = (navLinkFocus: navBarType): handlerFocusNav
 
 
 export const authMeThunk = () => {
-
     return (Dispatch: Dispatch) => {
         Dispatch(handlerPreloaderAC(true))
         requestAPI.authMe()
@@ -139,7 +152,6 @@ export const authMeThunk = () => {
 
 
 export const loginThunk = (log: LoginType) => {
-
     return (Dispatch: any) => {
         Dispatch(handlerPreloaderAC(true))
         requestAPI.login(log)
@@ -155,7 +167,6 @@ export const loginThunk = (log: LoginType) => {
 }
 
 export const logOutThunk = () => {
-
     return (Dispatch: any) => {
         Dispatch(handlerPreloaderAC(true))
         requestAPI.logOut()
@@ -171,7 +182,16 @@ export const logOutThunk = () => {
 }
 
 
-
+export const handlerWindowErrorThunk = (error: boolean) => {
+    return (Dispatch: Dispatch) => {
+        Dispatch(windowErrorAC(error))
+        if (error) {
+            setTimeout(() => {
+                Dispatch(windowErrorAC(false))
+            }, 5000)
+        }
+    }
+}
 
 
 

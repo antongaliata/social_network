@@ -3,14 +3,21 @@
     margin-top: 20px;
     word-break: break-word;
     max-width: 350px;
+    font-weight: bolder;
+    font-size: small;
+    color: #636363;
 }
 
 .container_about .text {
     margin-top: 10px;
-    font-size: 1.2vh;
+    font-weight: bolder;
+    font-size: small;
 }
-.contacts div{
-    color: #8fa7ef;
+
+.contacts div {
+    color: #636363;
+    font-weight: bolder;
+    font-size: small;
 }
 
 .container_info {
@@ -26,8 +33,9 @@
 
 .container_info span {
     color: darkgray;
+    font-weight: bolder;
+    font-size: small;
 }
-
 
 .edit {
     width: 100%;
@@ -35,6 +43,7 @@
     display: flex;
     flex-direction: column;
 }
+
 
 .edit input {
     height: 25px;
@@ -44,13 +53,21 @@
     outline: none;
 }
 
+.edit .errorContact {
+    border-bottom: 2px solid #ef7768;
+}
+
+.edit .noErrorContact {
+    border-bottom: 1px solid rgb(241, 239, 239);
+}
+
 .edit input:focus {
     border-bottom: 1px solid #5982ee;
 }
 
 
 .edit textarea {
-    background: rgb(241, 239, 239);
+    background: rgb(236, 238, 238);
     border: none;
     border-bottom: 1px solid rgb(241, 239, 239);
     outline: none;
@@ -63,7 +80,6 @@
     border-bottom: 1px solid #5982ee;
 }
 
-
 .butt {
     position: absolute;
     right: 2px;
@@ -71,36 +87,56 @@
     width: 20px;
     cursor: pointer;
 }
-.container_info .butt:hover{
+
+.container_info .butt:hover {
     width: 21px;
 }
 
-.container_about_job{
+.container_about_job {
     margin: 20px 0;
+    font-weight: lighter;
 }
-.container_about_job div{
+
+.container_about_job div {
     height: 15px;
     display: flex;
     align-items: center;
-    font-size: 12px;
 }
-.container_about_job .inputText{
+
+.container_about_job .inputText {
     width: 100%;
 }
 
 
-.container_edit_fullName{
+.container_edit_fullName {
     width: 100%;
-    background: rgb(241, 239, 239);
-    padding:  2px;
+    background: rgb(236, 238, 238);
+    padding: 2px;
 
 }
-.container_edit_fullName input{
+
+.container_edit_fullName input {
     width: 99%;
 }
 
-.container_job{
+.container_job {
     height: 30px;
     margin: 30px 0;
-    border-top: 1px solid rgb(241, 239, 239); ;
+    border-top: 1px solid rgb(241, 239, 239);;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

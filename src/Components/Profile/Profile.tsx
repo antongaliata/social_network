@@ -21,8 +21,10 @@ type ProfileType = {
     myId: number
     updatePhotoThunk: (photoFile: any) => void
     updateProfileThunk: (profile: UpdateProfileType) => void
+    editModeAC: (editMode: boolean) => void
+    handlerWindowErrorThunk: (error: boolean) => void
+    showWindowError: boolean
 }
-
 
 class Profile extends PureComponent<ProfileType> {
 
@@ -64,9 +66,14 @@ class Profile extends PureComponent<ProfileType> {
                         </>}
 
                     </div>
-                        <InfoProfile profile={this.props.state.profile}
-                                     updateProfile={this.props.updateProfileThunk}
-                        isMyProfile={this.props.myId === this.props.state.profile.userId}/>
+                    <InfoProfile profile={this.props.state.profile}
+                                 updateProfile={this.props.updateProfileThunk}
+                                 isMyProfile={this.props.myId === this.props.state.profile.userId}
+                                 handlerEditMode={this.props.editModeAC}
+                                 editMode={this.props.state.editMode}
+                                 nameErrorUpdate={this.props.state.nameError}
+                                 handlerWindowError={this.props.handlerWindowErrorThunk}
+                                 showWindowError={this.props.showWindowError}/>
                 </div>
                 <div className={'container_posts_and_status'}>
                     <div className={'container_status_and_name'}>

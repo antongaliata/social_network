@@ -27,8 +27,10 @@
 .post_message {
     padding: 0 25px 0 10px;
     width: 100%;
-    font-size: 1.2vh;
     font-family: 'Open Sans', sans-serif;
+    font-weight: bolder;
+    font-size: inherit;
+    color: #474747;
 }
 
 .wrapper_post_like {
@@ -46,11 +48,11 @@
     user-select: none;
     height: 20px;
     padding-right: 2px;
-    border-bottom: 2px solid #acabab;
+    border-bottom: 1px solid #acabab;
 }
 
 .like {
-    border-bottom: 2px solid #3498DB;
+    border-bottom: 1px solid #3498DB;
     color: #3498DB;
 }
 

@@ -8,6 +8,7 @@ import {NewsContainer} from "./News/NewsContainer";
 import {FriendsContainer} from "./Friends/FriendsContainer";
 
 
+
 const Body = (props: { isLoading: boolean, myId: number | null }) => {
 
     return <div className={'Body'}>

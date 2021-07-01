@@ -8,32 +8,43 @@ type MyPostsType = {
     posts: postsType
     photo: string
     showPosts: boolean
-    handlerLikeAC: (id: string)=>void
+    handlerLikeAC: (id: string) => void
     deletePostAC: (idPost: string) => void
 }
 
 
 const MyPosts = (props: MyPostsType) => {
     const newPostsElement = React.createRef<HTMLTextAreaElement>()
+    const sendEnter = (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
+        if (event.key === 'Enter' && !event.shiftKey) {
+            event.preventDefault();
+            if(newPostsElement.current?.value){
+                props.addPost(newPostsElement.current.value)
+            }
+        }
+    }
 
-
-    return <div className={'myPosts'}>
-        <div className={'wrapper_text_but'}>{props.showPosts && <>
-            <textarea onChange={(e) => {
+    return <div className={'myPostsContainer'}>
+            <div className={'wrapper_text_but'}>{props.showPosts && <>
+            <textarea placeholder={'what\'s new with you?'}
+                      onKeyDown={sendEnter}
+                onChange={(e) => {
                 props.onPostChange(e.currentTarget.value)
             }} ref={newPostsElement} value={props.posts.textInput}/>
-            <button onClick={() => {
-                props.addPost(newPostsElement.current?.value)
-            }}>Post
-            </button>
-        </>}</div>
-        {props.showPosts && props.posts.posts.map((post => {
-            return <Posts key={post.id}
-                          post={post}
-                          photo={props.photo}
-                          handlerLikeAC={props.handlerLikeAC}
-                          deletePostAC={props.deletePostAC}/>
-        }))}
+                <button onClick={() => {
+                    props.addPost(newPostsElement.current?.value)
+                }}>Post
+                </button>
+            </>}</div>
+            <div className={'wrapper_posts'}>
+                {props.showPosts && props.posts.posts.map((post => {
+                    return <Posts key={post.id}
+                                  post={post}
+                                  photo={props.photo}
+                                  handlerLikeAC={props.handlerLikeAC}
+                                  deletePostAC={props.deletePostAC}/>
+                }))}
+            </div>
     </div>
 }
 
