@@ -19,7 +19,7 @@ const ErrorMessage = (props: ErrorMessageType) => {
 
     return <>{props.showWindowError && < div className={'window_error_contact'}>
         <div onClick={closeWindow} className={'closeWindow'}>&#10006;</div>
-        {props.nameErrorUpdate} contact is incorrect
+        contact "{props.nameErrorUpdate}" is incorrect
     </div>
     }</>
 }

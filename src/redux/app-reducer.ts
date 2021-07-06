@@ -35,6 +35,10 @@ type windowErrorACType = {
     type: 'APP/WINDOW-ERROR'
     error: boolean
 }
+type openCloseMenuBurgerACType = {
+    type: 'APP/OPEN-CLOSE-MENU'
+    isOpen: boolean
+}
 
 
 type actionType = authMeACType |
@@ -42,7 +46,8 @@ type actionType = authMeACType |
     handlerPreloaderACType |
     loginErrorACType |
     handlerFocusNavLinkACType |
-    windowErrorACType
+    windowErrorACType |
+    openCloseMenuBurgerACType
 
 export type navBarType = 'profile' | 'friends' | 'message' | 'users' | 'news'
 export type authStateType = {
@@ -56,6 +61,7 @@ export type authStateType = {
     navBarFocus: navBarType
     myPhoto: photoType
     showWindowError: boolean
+    isOpenMenuBurger: boolean
 }
 
 
@@ -69,7 +75,8 @@ const initialState: authStateType = {
     loginMessageError: [],
     navBarFocus: 'profile',
     myPhoto: {small: '', large: ''},
-    showWindowError: false
+    showWindowError: false,
+    isOpenMenuBurger: false
 }
 
 export const appReducer = (state = initialState, action: actionType) => {
@@ -101,11 +108,18 @@ export const appReducer = (state = initialState, action: actionType) => {
         case "APP/WINDOW-ERROR": {
             return {...state, showWindowError: action.error}
         }
-
+        case "APP/OPEN-CLOSE-MENU": {
+            return {...state, isOpenMenuBurger: action.isOpen}
+        }
         default :
             return state
 
     }
+}
+
+
+export const openCloseMenuBurgerAC = (isOpen: boolean): openCloseMenuBurgerACType => {
+    return {type: "APP/OPEN-CLOSE-MENU", isOpen}
 }
 
 const loginErrorAC = (messagesError: Array<string>): loginErrorACType => {
@@ -177,10 +191,8 @@ export const logOutThunk = () => {
                     Dispatch(handlerPreloaderAC(false))
                 }
             })
-
     }
 }
-
 
 export const handlerWindowErrorThunk = (error: boolean) => {
     return (Dispatch: Dispatch) => {

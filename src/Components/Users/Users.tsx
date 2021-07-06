@@ -1,12 +1,10 @@
 import './users.css'
-import './pagination.css'
 import React from "react";
 import {usersStateType} from "../../redux/users-reducer";
 import {User} from "./User";
 import Preloader from "../Preloader/Preloader";
 import Paginator from "../Paginator/Paginator";
 import {navBarType} from "../../redux/app-reducer";
-
 
 type usersComponentType = {
     usersState: usersStateType,

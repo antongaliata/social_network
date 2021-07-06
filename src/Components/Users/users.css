@@ -8,14 +8,12 @@
     border: 1px solid rgb(241, 239, 239);
 }
 
-
 .wrapper_users {
     margin: 15px 15px;
 }
 
 .user {
     background: white;
-    height: 100px;
     width: 100%;
     border-bottom: 1px solid rgb(241, 239, 239);
     display: flex;
@@ -24,7 +22,7 @@
 }
 
 .user:hover {
-    background: radial-gradient(circle, rgba(213,220,248,1) 0%, rgba(255,255,255,1) 83%);
+    background: radial-gradient(circle, rgba(213, 220, 248, 1) 0%, rgba(255, 255, 255, 1) 83%);
 }
 
 .container_button_user {
@@ -35,21 +33,18 @@
     padding: 0 10px 10px 0;
 }
 
+
 button {
     color: white;
-    width: 100%;
-    height: 25px;
     border: none;
     outline: none;
     transition: .3s;
     cursor: pointer;
 }
 
-
 .but_follow {
     background: rgb(97, 160, 243);
     border-radius: 5px;
-    font-size: 1.1vh;
 }
 
 .but_follow:hover {
@@ -60,7 +55,6 @@ button {
 .but_unfollow {
     background: tomato;
     border-radius: 5px;
-    font-size: 1.1vh;
 }
 
 .but_unfollow:hover {
@@ -91,20 +85,92 @@ button {
 
 .navLink_wrapper .photo img {
     background: white;
-    margin: 10px;
-    width: 80px;
-    height: 80px;
     border: 1px solid rgb(241, 239, 239);
     border-radius: 50%;
 }
 
 
 
+@media (max-height: 1144px) {
+    .navLink_wrapper .photo img{
+        margin: 5px;
+        max-width: 50px;
+        max-height: 50px;
+    }
+    .user {
+        max-height: 70px;
+    }
+}
 
 
+@media (max-width: 450px) {
+    .navLink_wrapper .photo img{
+        margin: 5px;
+        max-width: 35px;
+        max-height: 35px;
+    }
+    .user {
+        max-height: 50px;
+        font-size: 12px;
+    }
+    .but_follow, .but_unfollow{
+        font-size:  11px;
+    }
+    button {
+        width: 90%;
+        height: 22px;
+    }
+}
 
 
+@media (min-width: 451px) {
+    .navLink_wrapper .photo img{
+        margin: 10px;
+        width: 80px;
+        height: 80px;
+    }
+    .user {
+        height: 100px;
+    }
+    .but_follow, .but_unfollow{
+        font-size:  15px;
+    }
+    button {
+        width: 100%;
+        height: 25px;
+    }
 
+
+}
+
+@media (max-width: 780px) {
+    .navLink_wrapper .photo img{
+        margin: 10px;
+        width: 50px;
+        height: 50px;
+    }
+    .user {
+        height: 70px;
+        font-size: 12px;
+    }
+    .but_follow, .but_unfollow{
+        font-size:  12px;
+    }
+}
+
+@media (min-width: 781px) {
+    .navLink_wrapper .photo img{
+        margin: 10px;
+        width: 80px;
+        height: 80px;
+    }
+    .user {
+        height: 100px;
+    }
+    .but_follow, .but_unfollow{
+        font-size:  15px;
+    }
+}
 
 
 

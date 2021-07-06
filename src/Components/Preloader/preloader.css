@@ -110,7 +110,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 999;
+    z-index: 2222;
     background: white;
     box-shadow: 4px 4px 8px 0 rgba(34, 60, 80, 0.2);
     border: 1px solid rgb(241, 239, 239);

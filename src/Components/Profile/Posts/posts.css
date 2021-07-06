@@ -25,12 +25,10 @@
 }
 
 .post_message {
-    padding: 0 25px 0 10px;
     width: 100%;
     font-family: 'Open Sans', sans-serif;
-    font-weight: bolder;
-    font-size: inherit;
     color: #474747;
+    padding: 0 25px 0 10px;
 }
 
 .wrapper_post_like {
@@ -90,6 +88,25 @@
 
 
 
+@media (max-width: 950px) {
+    .post_message {
+        font-weight: bolder;
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 800px) {
+    .post_message {
+        font-weight: bolder;
+        font-size: 11px;
+    }
+}
 
 
+@media (min-width: 950px) {
+    .post_message {
+        font-weight: bolder;
+        font-size: inherit;
+    }
+}
 

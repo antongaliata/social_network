@@ -23,7 +23,7 @@ const Paginator = (props: paginatorType) => {
             breakClassName={'break-me'}
             pageCount={props.quantityPageLength}
             marginPagesDisplayed={1}
-            pageRangeDisplayed={6}
+            pageRangeDisplayed={3}
             onPageChange={(selectedItem) => {
                 props.updateSubscribers && props.updateSubscribers(selectedItem.selected + 1)
                 props.getUsersThunk(selectedItem.selected + 1, props.pageSize)

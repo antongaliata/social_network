@@ -25,7 +25,7 @@ const MyPosts = (props: MyPostsType) => {
     }
 
     return <div className={'myPostsContainer'}>
-            <div className={'wrapper_text_but'}>{props.showPosts && <>
+            <div className={'wrapper_text_butt'}>{props.showPosts && <>
             <textarea placeholder={'what\'s new with you?'}
                       onKeyDown={sendEnter}
                 onChange={(e) => {

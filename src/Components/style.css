@@ -12,7 +12,6 @@
     height: 100vh;
 }
 
-
 .wrapper_preloader {
     position: relative;
     width: 1200px;
@@ -30,26 +29,24 @@
 
 .NavbarContainer {
     background: rgb(236, 238, 238);
-    width: 25%;
 }
 
-.navbar {
-    display: flex;
+
+.navbar, .navbarClose {
     flex-direction: column;
     width: 200px;
     float: right;
-    margin-top: 50px;
 }
 
-.navbar img {
+
+.navbar img, .navbarClose img {
     height: 22px;
     width: 24px;
     margin-right: 5px;
 }
 
-.navbar a {
+.navbar a, .navbarClose a {
     text-decoration: none;
-    font-size: 1.5vh;
     font-weight: bold;
     color: black;
     transition: .2s;
@@ -60,47 +57,38 @@
     letter-spacing: .5px;
 }
 
-.navbar .a:hover {
+.navbar .a:hover, .navbarClose .a:hover {
     transition: .2s;
     background: #c9c9c9;
     border-radius: 10px 0 0 10px;
 }
 
-.navbar .focusNavLink{
+.navbar .focusNavLink, .navbarClose .focusNavLink {
     background: #d5dcf8;
-    border-radius: 10px 0 0 10px;
 }
 
 .Body {
     background: rgb(236, 238, 238);
-    position: relative;
-    width: 1200px;
     height: 100%;
     display: flex;
+    position: relative;
 }
 
-
-.Header ul {
+.Header a {
     display: flex;
-    justify-content: space-evenly;
     align-items: center;
-    width: 15%;
+    width: 100px;
     height: 100%;
     list-style-type: none;
     float: right;
-}
-
-.Header ul a {
     text-decoration: none;
     color: white;
-    font-size: 20px;
     transition: .2s;
 }
 
-.Header ul a:hover {
+.Header a:hover {
     color: gray;
 }
-
 
 .Header {
     display: flex;
@@ -110,7 +98,7 @@
     background: rgb(2, 0, 36);
     background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(186, 98, 190, 1) 0%, rgba(69, 206, 233, 1) 100%);
     box-shadow: 1px 3px 8px -2px rgba(34, 60, 80, 0.28);
-    z-index: 1000;
+    z-index: 44444;
     position: fixed;
     width: 100%;
 }
@@ -123,9 +111,166 @@
     justify-content: center;
     font-family: 'Kaushan Script', cursive;
     color: #ffffff;
-    font-size: 30px;
-    text-shadow: 3px 1px 0px rgb(68, 68, 68);
+    text-shadow: 3px 1px 0 rgb(68, 68, 68);
     user-select: none;
 }
+
+
+@media (max-width: 1660px) {
+    .NavbarContainer {
+        width: 15%;
+    }
+
+    .wrapper_navbar_and_body {
+        padding-right: 100px;
+    }
+
+    .Body {
+        min-width: 1150px;
+    }
+}
+
+@media (max-width: 1438px) {
+    .NavbarContainer {
+        width: 12%;
+    }
+
+    .navbar, .navbarClose {
+        max-width: 140px;
+    }
+
+    .Body {
+        margin-right: 10px;
+    }
+}
+
+
+@media (min-width: 1438px) {
+    .Body {
+        width: 1200px;
+    }
+}
+
+.wrapper_burger {
+    display: none;
+}
+
+@media (max-width: 1290px) {
+
+    .NavbarContainer {
+        position: absolute;
+        top: 60px;
+        min-width: 100%;
+        max-height: 0;
+    }
+
+    .navbar, .navbarClose {
+        position: absolute;
+        top: 0;
+        z-index: 3333;
+        background: rgba(186, 172, 186, 0.9);
+        padding-top: 20px;
+        min-width: 100%;
+        min-height: 250px;
+        display: block;
+        font-size: 17px;
+    }
+
+    .navbar {
+        transition: all .5s ease-in-out;
+        transform: translateY(0%);
+    }
+
+    .navbar img, .navbarClose img {
+        display: none;
+    }
+
+    .navbarClose {
+        transition: all .5s ease-in-out;
+        transform: translateY(-150%);
+    }
+
+    .Header ul {
+        font-size: 17px;
+    }
+
+    .wrapper_navbar_and_body {
+        margin-top: 60px;
+        padding: 0;
+    }
+
+    .Body {
+        margin: 0;
+        min-width: 100%;
+    }
+
+    .wrapper_burger {
+        margin-left: 10px;
+        position: absolute;
+        left: 10px;
+        top: 10px;
+        display: block;
+    }
+}
+
+
+@media (min-width: 1290px) {
+    .navbar, .navbarClose {
+        margin-top: 50px;
+        display: flex;
+        font-size: 20px;
+    }
+
+    .navbar .focusNavLink, .navbarClose .focusNavLink {
+        border-radius: 10px 0 0 10px;
+    }
+
+    .navbarClose {
+        flex-direction: column;
+        width: 200px;
+        float: right;
+    }
+
+    .Header ul a {
+        font-size: 20px;
+    }
+
+    .NavbarContainer {
+        width: 25%;
+    }
+}
+
+@media (max-width: 375px) {
+
+    .Header .title {
+        font-size: 22px;
+    }
+    .Header a{
+        font-size: 13px;
+        justify-content: center;
+    }
+}
+
+@media (min-width: 376px) {
+    .Header .title {
+        font-size: 30px;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

@@ -5,11 +5,9 @@
     right: 0;
 }
 
-
 .text_status {
     width: 100%;
     min-height: 30px;
-    font-size: 17px;
     padding-right: 15px;
     word-wrap: break-word;
 }
@@ -39,3 +37,29 @@
 .wrapper_status img:hover {
     filter: invert(0);
 }
+
+
+@media (max-width: 1290px) {
+    .wrapper_status{
+        width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    .text_status {
+        font-size: 14px;
+    }
+
+}
+@media (min-width: 769px){
+    .text_status {
+        font-size: 19px;
+    }
+}
+
+
+
+
+
+
+

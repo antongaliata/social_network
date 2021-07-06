@@ -1,0 +1,38 @@
+.container {
+    cursor: pointer;
+}
+.change .bar3 {
+    -webkit-transform: rotate(45deg) translate(-9px, -6px) ;
+    transform: rotate(45deg) translate(-8px, -6px) ;
+}
+.change .bar1 {
+    -webkit-transform: rotate(-45deg) translate(-9px, 6px) ;
+    transform: rotate(-47deg) translate(-10px, 7px) ;
+}
+
+.bar1, .bar2, .bar3 {
+    background-color: white;
+    margin: 6px 0;
+    transition: 0.4s;
+    width: 30px;
+    height: 5px;
+}
+
+.change .bar2 {
+    opacity: 0;
+}
+
+
+/*@media (max-width: 375px) {*/
+/*    .bar1, .bar2, .bar3 {*/
+/*        max-width: 30px;*/
+/*        height: 5px;*/
+/*    }*/
+/*}*/
+
+/*@media (min-width: 375px) {*/
+/*    .bar1, .bar2, .bar3 {*/
+/*        width: 35px;*/
+/*        height: 5px;*/
+/*    }*/
+/*}*/

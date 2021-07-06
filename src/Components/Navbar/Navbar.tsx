@@ -12,35 +12,43 @@ type NavbarType = {
     myData: authStateType
     navBarFocus: navBarType
     handlerFocusNavLinkAC: (navLinkFocus: navBarType) => void
+    isOpenMenu: boolean
 }
 
 
-export class Navbar extends React.Component<NavbarType> {
+export function Navbar(props: NavbarType) {
 
-    render() {
-        return <div className={'NavbarContainer'}>
-            <div className={'navbar'}>
-                <NavLink className={this.props.navBarFocus === 'profile' ? 'focusNavLink' : 'a'}
-                         to={`/profile/${this.props.myData.id}`}
-                         onClick={() => this.props.handlerFocusNavLinkAC('profile')}>
-                    <img alt={'profile'} src={imgProfile}/>Profile</NavLink>
-                <NavLink className={this.props.navBarFocus === 'friends' ? 'focusNavLink' : 'a'}
-                         to="/friends"
-                         onClick={() => this.props.handlerFocusNavLinkAC('friends')}>
-                    <img alt={'friends'} src={imgFriends}/>Friends</NavLink>
-                <NavLink className={this.props.navBarFocus === 'message' ? 'focusNavLink' : 'a'}
-                         to="/message"
-                         onClick={() => this.props.handlerFocusNavLinkAC('message')}>
-                    <img alt={'message'} src={imgMessage}/>Message</NavLink>
-                <NavLink className={this.props.navBarFocus === 'users' ? 'focusNavLink' : 'a'}
-                         to="/users"
-                         onClick={() => this.props.handlerFocusNavLinkAC('users')}>
-                    <img alt={'users'} src={imgUsers}/>Users</NavLink>
-                <NavLink className={this.props.navBarFocus === 'news' ? 'focusNavLink' : 'a'}
-                         to="/news"
-                         onClick={() => this.props.handlerFocusNavLinkAC('news')}>
-                    <img alt={'news'} src={imgNews}/>News</NavLink>
-            </div>
-        </div>
+    const handlerClassNavbar = () => {
+     if ((!props.isOpenMenu && window.innerWidth <= 1291)  || !props.myData.isAuth ) {
+            return 'navbarClose'
+        }
+        return 'navbar'
     }
+
+
+
+    return <div className={'NavbarContainer'}>
+        <div className={handlerClassNavbar()}>
+            <NavLink className={props.navBarFocus === 'profile' ? 'focusNavLink' : 'a'}
+                     to={`/profile/${props.myData.id}`}
+                     onClick={() => props.handlerFocusNavLinkAC('profile')}>
+                <img alt={'profile'} src={imgProfile}/>Profile</NavLink>
+            <NavLink className={props.navBarFocus === 'friends' ? 'focusNavLink' : 'a'}
+                     to="/friends"
+                     onClick={() => props.handlerFocusNavLinkAC('friends')}>
+                <img alt={'friends'} src={imgFriends}/>Friends</NavLink>
+            <NavLink className={props.navBarFocus === 'message' ? 'focusNavLink' : 'a'}
+                     to="/message"
+                     onClick={() => props.handlerFocusNavLinkAC('message')}>
+                <img alt={'message'} src={imgMessage}/>Message</NavLink>
+            <NavLink className={props.navBarFocus === 'users' ? 'focusNavLink' : 'a'}
+                     to="/users"
+                     onClick={() => props.handlerFocusNavLinkAC('users')}>
+                <img alt={'users'} src={imgUsers}/>Users</NavLink>
+            <NavLink className={props.navBarFocus === 'news' ? 'focusNavLink' : 'a'}
+                     to="/news"
+                     onClick={() => props.handlerFocusNavLinkAC('news')}>
+                <img alt={'news'} src={imgNews}/>News</NavLink>
+        </div>
+    </div>
 }

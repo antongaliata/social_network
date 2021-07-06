@@ -1,6 +1,6 @@
 import './style.css';
 import Body from "./Body";
-import {HeaderContainer} from "./HeaderContainer";
+import {HeaderContainer} from "./Header/HeaderContainer";
 import {NavbarContainer} from "./Navbar/NavbarContainer";
 import React from "react";
 import {connect} from "react-redux";
