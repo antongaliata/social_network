@@ -1,23 +1,23 @@
 {
   "files": {
-    "main.css": "/social_network/static/css/main.65bb66cc.chunk.css",
-    "main.js": "/social_network/static/js/main.507e69e8.chunk.js",
-    "main.js.map": "/social_network/static/js/main.507e69e8.chunk.js.map",
-    "runtime-main.js": "/social_network/static/js/runtime-main.ad468b7c.js",
-    "runtime-main.js.map": "/social_network/static/js/runtime-main.ad468b7c.js.map",
-    "static/js/2.2e70c7be.chunk.js": "/social_network/static/js/2.2e70c7be.chunk.js",
-    "static/js/2.2e70c7be.chunk.js.map": "/social_network/static/js/2.2e70c7be.chunk.js.map",
-    "static/js/3.dbff6f90.chunk.js": "/social_network/static/js/3.dbff6f90.chunk.js",
-    "static/js/3.dbff6f90.chunk.js.map": "/social_network/static/js/3.dbff6f90.chunk.js.map",
+    "main.css": "/social_network/static/css/main.aef44cd8.chunk.css",
+    "main.js": "/social_network/static/js/main.dbe43e80.chunk.js",
+    "main.js.map": "/social_network/static/js/main.dbe43e80.chunk.js.map",
+    "runtime-main.js": "/social_network/static/js/runtime-main.77333502.js",
+    "runtime-main.js.map": "/social_network/static/js/runtime-main.77333502.js.map",
+    "static/js/2.216265c4.chunk.js": "/social_network/static/js/2.216265c4.chunk.js",
+    "static/js/2.216265c4.chunk.js.map": "/social_network/static/js/2.216265c4.chunk.js.map",
+    "static/js/3.d3eed51e.chunk.js": "/social_network/static/js/3.d3eed51e.chunk.js",
+    "static/js/3.d3eed51e.chunk.js.map": "/social_network/static/js/3.d3eed51e.chunk.js.map",
     "index.html": "/social_network/index.html",
-    "static/css/main.65bb66cc.chunk.css.map": "/social_network/static/css/main.65bb66cc.chunk.css.map",
-    "static/js/2.2e70c7be.chunk.js.LICENSE.txt": "/social_network/static/js/2.2e70c7be.chunk.js.LICENSE.txt",
+    "static/css/main.aef44cd8.chunk.css.map": "/social_network/static/css/main.aef44cd8.chunk.css.map",
+    "static/js/2.216265c4.chunk.js.LICENSE.txt": "/social_network/static/js/2.216265c4.chunk.js.LICENSE.txt",
     "static/media/index.css": "/social_network/static/media/OpenSans-Regular.1b0809d5.ttf"
   },
   "entrypoints": [
-    "static/js/runtime-main.ad468b7c.js",
-    "static/js/2.2e70c7be.chunk.js",
-    "static/css/main.65bb66cc.chunk.css",
-    "static/js/main.507e69e8.chunk.js"
+    "static/js/runtime-main.77333502.js",
+    "static/js/2.216265c4.chunk.js",
+    "static/css/main.aef44cd8.chunk.css",
+    "static/js/main.dbe43e80.chunk.js"
   ]
 }
