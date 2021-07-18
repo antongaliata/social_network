@@ -3,47 +3,67 @@
     flex-direction: row;
     width: 100%;
     height: 100%;
-    box-shadow: 4px 4px 8px 0 rgba(34, 60, 80, 0.2);
+    border: 1px solid #b3b3b3;
     background: radial-gradient(circle, rgb(219, 219, 219) 0%, rgb(208, 208, 206) 63%);
-    border: 1px solid rgb(241, 239, 239);
-    border-right: 1px solid rgb(208, 208, 206);
+
 }
 
-
 .window_messages {
-    width: 80%;
     display: flex;
     flex-direction: column;
     height: 100%;
     overflow: hidden;
 }
 
+
 .header_dialog {
     width: 100%;
-    min-height: 50px;
     display: flex;
     align-items: center;
     background-color: white;
-    color: black;
     font-weight: bold;
+    border-bottom: 1px solid #b3b3b3;
 }
 
-.header_dialog img, .messages img, .messages2 img {
+.header_dialog a {
+    color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+}
+
+.header_dialog .ava, .messages img, .messages2 img {
     width: 40px;
     height: 40px;
-    border: 1px solid gray;
+    border: 1px solid #b3b3b3;
     border-radius: 50%;
     margin: 0 5px;
     background: white;
 }
 
+.arrow_back {
+    border-radius: 50%;
+    margin: 0 15px;
+    width: 30px;
+    height: 30px;
+}
+
+
+.wrapper_messages2 {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    overflow: hidden;
+}
 
 .wrapper_messages {
     position: relative;
-    height: 100%;
     overflow-y: scroll;
     width: 100%;
-    padding: 0 15%;
+    max-height: 100%;
 }
 
 .wrapper_messages::-webkit-scrollbar {
@@ -56,7 +76,6 @@
     border-radius: 10px;
     background: #5982ee;
 }
-
 
 .messages {
     width: 100%;
@@ -151,7 +170,6 @@
 
 
 .wrapper_textarea textarea {
-    height: 50px;
     width: 100%;
     resize: none;
     outline: none;
@@ -186,39 +204,161 @@
 
 
 .container_send_message {
-    height: 10%;
+    height: 100px;
     width: 100%;
-    padding: 0 15%;
 }
 
 .container_send_message .wrapper_typing {
     height: 20px;
+    margin-bottom: 2px;
 }
 
-.container_send_message .wrapper_send_button button img {
-    width: 25px;
-    height: 25px;
+@media (max-width: 700px) {
+    .wrapper_typing {
+        margin-left: 20px;
+    }
 }
 
-.container_send_message .wrapper_send_button button {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    border: none;
-    outline: none;
-    background: #5982ee;
-    transition: .3s;
-    color: white;
-    float: right;
-    display: flex;
-    align-items: center;
-    padding-left: 10px;
+
+@media (max-width: 1289px) {
+    .Message_Component, .window_messages {
+        border-radius: 0;
+    }
+
+    .window_messages {
+        border-radius: 0;
+    }
+}
+
+@media (min-width: 1290px) {
+    .Message_Component {
+        border-radius: 10px 10px 0 0;
+    }
+
+    .window_messages {
+        border-radius: 0 10px 0 0;
+    }
+}
+
+@media (max-width: 600px) {
+    .window_messages {
+        width: 100%;
+    }
+
+    .wrapper_messages {
+        padding: 10px;
+    }
+
+    .wrapper_textarea_button {
+        background: white;
+        height: 50px;
+    }
+
+    .container_send_message {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        height: 70px;
+    }
+
+    .container_send_message .wrapper_send_button button {
+        background: #5982ee;
+        border-radius: 50%;
+        width: 30px;
+        height: 30px;
+        display: flex;
+        align-items: center;
+        padding-left: 3px;
+        margin-right: 15px;
+        border: none;
+    }
+
+    .container_send_message .wrapper_send_button button img {
+        width: 20px;
+        height: 20px;
+    }
+
+    .container_send_message textarea {
+        height: 30px;
+        border-radius: 5px;
+    }
+
+    .header_dialog {
+        position: fixed;
+        top: 60px;
+        z-index: 555;
+        max-height: 30px;
+    }
+
+    .header_dialog .ava {
+        margin-left: 10px;
+        width: 27px;
+        height: 27px;
+    }
+
+}
+
+@media (min-width: 601px) {
+    .window_messages {
+        width: 80%;
+    }
+
+    .wrapper_messages {
+        padding: 0 15%;
+    }
+
+    .container_send_message {
+        padding: 0 15%;
+    }
+
+    .header_dialog {
+        min-height: 50px;
+    }
+
+    .container_send_message .wrapper_send_button button {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        border: none;
+        outline: none;
+        background: #5982ee;
+        transition: .3s;
+        color: white;
+        float: right;
+        display: flex;
+        align-items: center;
+        padding-left: 10px;
+    }
+
+    .container_send_message .wrapper_send_button button img {
+        width: 25px;
+        height: 25px;
+    }
+
 }
 
 .container_send_message .wrapper_send_button button:hover {
     background: #3175db;
     box-shadow: 5px 5px 5px -3px rgba(34, 60, 80, 0.6);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

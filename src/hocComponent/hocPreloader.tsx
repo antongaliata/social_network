@@ -5,7 +5,7 @@ import Preloader from "../Components/Preloader/Preloader";
 
 
 const mapStateToProps = (state: stateType) => {
-    return {isLoading: state.app.loadingStatus}
+    return {isLoading: state.dialogs.isLoadingStatusDialog}
 }
 
 export const witchPreloader = (Component: any) => {

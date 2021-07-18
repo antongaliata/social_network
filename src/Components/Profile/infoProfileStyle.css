@@ -1,5 +1,5 @@
 .container_about {
-    border-top: 1px solid rgb(241, 239, 239);;
+    border-top: 1px solid rgb(241, 239, 239);
     margin-top: 20px;
     word-break: break-word;
     max-width: 350px;
@@ -7,6 +7,7 @@
     font-size: small;
     color: #636363;
 }
+
 .container_about .text {
     margin-top: 10px;
     font-weight: bolder;
@@ -25,7 +26,6 @@
     width: 100%;
     padding: 5px 5px;
     background: white;
-    border: 1px solid rgb(241, 239, 239);
 }
 
 
@@ -84,6 +84,7 @@
     top: 4px;
     width: 20px;
     cursor: pointer;
+    z-index: 10;
 }
 
 .container_info .butt:hover {
@@ -105,12 +106,10 @@
     width: 100%;
 }
 
-
 .container_edit_fullName {
     width: 100%;
     background: rgb(236, 238, 238);
     padding: 2px;
-
 }
 
 .container_edit_fullName input {
@@ -124,6 +123,17 @@
     word-break: break-word;
 }
 
+@media (max-width: 1289px) {
+    .container_info {
+        border-radius: 0;
+    }
+}
+
+@media (min-width: 1290px) {
+    .container_info {
+        border-radius: 10px 10px 0 0;
+    }
+}
 
 @media (max-width: 768px) {
     .container_about .text {
@@ -131,6 +141,7 @@
         font-weight: bolder;
         font-size: 10px;
     }
+
     .contacts div {
         font-weight: bolder;
         font-size: 10px;
@@ -145,37 +156,66 @@
         font-weight: bolder;
         font-size: small;
     }
+
     .contacts div {
         font-weight: bolder;
         font-size: small;
     }
-
 }
 
 
 @media (min-width: 1290px) {
     .container_info {
-        box-shadow: 4px 4px 8px 0 rgba(34, 60, 80, 0.2);
         margin-top: 20px;
     }
 }
-
 
 @media (max-width: 700px) {
     .container_info {
         position: absolute;
         top: 99px;
         right: 0;
-        width: 50vmin;
+        width: 60vmin;
         max-height: 210px;
+        border: none;
     }
-    .container_about{
+
+    .container_about {
         display: none;
     }
+
+    .edit {
+        position: absolute;
+        z-index: 111;
+        top: -20px;
+        right: 0;
+        width: 100vmin;
+        height: auto;
+        background: white;
+        overflow: hidden;
+        border: 1px solid #b3b3b3;
+    }
+
+    .edit input {
+        z-index: 1111;
+    }
+
+    .edit textarea {
+        display: none;
+    }
+
+    .inputText {
+        z-index: 1111;
+    }
+
 }
 
 
-
+@media (min-width: 701px) {
+    .container_info {
+        border: 1px solid #b3b3b3;
+    }
+}
 
 
 

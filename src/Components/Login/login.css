@@ -1,38 +1,19 @@
-
-
-
-
-.wrapper_login{
+.page_login {
     width: 100%;
     height: 90%;
-    background: rgb(241, 239, 239);
+    background: rgb(236, 238, 238);
     position: absolute;
     right: 0;
     display: flex;
     align-items: center;
     justify-content: center;
-}
-
-
-
-
-.container_inputs input {
-    width: 300px;
-    height: 40px;
-    border-radius: 2px;
-    border: none;
-    outline: none;
-    opacity: .4;
-    font-size: 20px;
-    padding: 5px;
-    margin-top: 15px;
+    user-select: none;
 }
 
 
 .container_inputs input:focus {
     background: white;
     opacity: .9;
-
 }
 
 
@@ -50,7 +31,7 @@
     flex-direction: row;
     align-items: center;
     height: 35px;
-    width: 300px;
+    width: 100%;
     margin: 0 auto;
 }
 
@@ -60,22 +41,76 @@
 }
 
 
-.login_container {
-    background: rgba(61, 61, 61, 0.8);
-    width: 400px;
-    height: 300px;
+.autofill_password {
+    width: 100%;
+    height: 70px;
+    position: absolute;
+    border: 1px solid #b3b3b3;
+    border-bottom: none;
+    background: white;
+    top: 0;
+    transition: .6s;
     display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    color: white;
-    box-shadow: 8px 7px 5px -5px rgba(34, 60, 80, 0.6);
+    align-items: center;
+    color: black;
+    user-select: none;
 }
+
+.autofill_password:hover{
+    position: absolute;
+    top: -70px;
+    transition: .6s;
+}
+
+
+.autofill_password button{
+    text-decoration: none;
+    width: 70px;
+    height: 25px;
+    color: #5982ee;
+    border: 1px solid #b3b3b3;
+    outline: none;
+    transition: .3s;
+    cursor: pointer;
+    user-select: none;
+    border-radius: 3px;
+    background: white;
+    margin: 0 10px;
+}
+.autofill_password button:hover {
+    background: #5982ee;
+    color: white;
+}
+
+.autofill_password::before{
+    content: '';
+    width: 100px;
+    height: 20px;
+    border: 20px solid transparent; border-bottom: 20px solid #535252;
+    position: absolute;
+    top: -60px;
+    left: -1px;
+
+}
+
+.autofill_password span{
+    color: #e5e5e5;
+    user-select: none;
+    text-align: center;
+    width: 100px;
+    height: 20px;
+    background: #535252;
+    position: absolute;
+    top: -21px;
+    left: 19px;
+    border-radius: 2px;
+}
+
 
 .login_container h1 {
     text-align: center;
     opacity: .7;
 }
-
 
 .container_button {
     margin: 10px;
@@ -86,16 +121,18 @@
 .container_button button {
     width: 150px;
     height: 40px;
-    color: white;
+    color: #5982ee;
+    background: white;
     font-size: 20px;
-    background: #5982ee;
     border-radius: 2px;
-    border: none;
+    border: 1px solid #b3b3b3;
     transition: .4s;
+    cursor: pointer;
 }
 
 .container_button button:hover {
-    background: #3864e8;
+    background: #5982ee;
+    color: white;
 }
 
 
@@ -105,13 +142,66 @@
     height: 100%;
     text-align: center;
 }
+.login_container {
+    width: 100%;
+    height: 100%;
+    background: #ffffff;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    color: black;
+    border: 1px solid #b3b3b3;
+    position: absolute;
+}
+.container_inputs input {
+    border-radius: 2px;
+    outline: none;
+    background: #f6f6f6;
+    font-size: 20px;
+    padding: 5px;
+    margin-top: 15px;
+    border: 1px solid #b3b3b3;
+}
+.wrapper_login {
+    position: relative;
+    width: 400px;
+    margin: 0 10px;
+}
 
 
+@media (max-width: 400px) {
+    .wrapper_login {
+        height: 270px;
+    }
+}
+
+@media (min-width: 400px) {
+    .wrapper_login {
+        height: 300px;
+    }
+}
 
 
+@media (max-width: 320px) {
+    .container_inputs input {
+        width: 250px;
+        height: 40px;
+    }
+    .container_remember {
+        width: 250px;
+    }
+}
 
+@media (min-width: 321px) {
+    .container_inputs input {
+        height: 40px;
+        width: 300px;
+    }
+    .container_remember {
+        width: 300px;
+    }
 
-
+}
 
 
 

@@ -1,24 +1,11 @@
 .list_users {
-    border-right: 1px solid rgb(241, 239, 239);
+    border-right: 1px solid #b3b3b3;
     height: 100%;
-
     display: flex;
     flex-direction: column;
     overflow: auto;
     background: white;
-}
-
-@media (max-width: 1000px) {
-    .list_users {
-        min-width: 250px;
-    }
-}
-
-@media (min-width: 1000px) {
-    .list_users {
-        min-width: 350px;
-    }
-
+    border-radius: 10px 0 0 0;
 }
 
 .list_users a {
@@ -45,7 +32,7 @@
 .list_users a img {
     background: white;
     height: 90%;
-    border: 1px solid gray;
+    border: 1px solid #b3b3b3;
     border-radius: 50%;
     margin: 5px;
 }
@@ -65,3 +52,67 @@
     border-radius: 10px;
     background-color: #f9f9fd;
 }
+
+@media (max-width: 1289px) {
+    .list_users {
+        border-radius: 0;
+    }
+}
+@media (min-width: 1290px) {
+    .list_users {
+        border-radius: 10px 0 0 0;
+    }
+}
+
+@media (max-width: 1000px) {
+    .list_users {
+        min-width: 250px;
+    }
+}
+
+@media (min-width: 1000px) {
+    .list_users {
+        min-width: 350px;
+    }
+}
+
+@media (max-width: 600px) {
+    .list_users{
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 3333;
+    }
+    .hide_List_users{
+        display: none;
+    }
+}
+@media (min-width: 601px) {
+    .list_users{
+        position: relative;
+        z-index: 0;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

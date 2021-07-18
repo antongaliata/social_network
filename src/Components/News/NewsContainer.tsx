@@ -5,7 +5,7 @@ import {getNewsThunk} from "../../redux/news-reducer";
 
 
 const mapStateToProps = (state:stateType)=>{
-    return {news: state.news.articles, isLoading: state.news.loadingStatus}
+    return {news: state.news.news, isLoading: state.news.loadingStatus}
 }
 
 

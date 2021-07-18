@@ -1,5 +1,6 @@
 import {requestAPI, UsersType} from "../requestAPI/requestAPI";
 import {Dispatch} from "redux";
+import {handlerSubscribedAC} from "./users-reducer";
 
 
 export type DialogsType = {
@@ -15,15 +16,21 @@ export type MessageType = {
 export type dialogsPageType = {
     dialogs: Array<DialogsType>
     message: Array<MessageType>
-    textInputDialog: Array<{text: string, idUser: number}>
+    textInputDialog: Array<{ text: string, idUser: number }>
     isTyping: boolean
+    classNameListUsers: 'list_users' | 'hide_List_users'
+    focusUserId: number
+    isLoadingStatusDialog: boolean
 }
 
 export const initialState: dialogsPageType = {
     dialogs: [] as Array<DialogsType>,
     message: [] as Array<MessageType>,
     textInputDialog: [{text: '', idUser: 0}],
-    isTyping: false
+    isTyping: false,
+    classNameListUsers: 'list_users',
+    focusUserId: 0,
+    isLoadingStatusDialog: false
 }
 
 
@@ -40,7 +47,7 @@ export const dialogsReducer = (state = initialState, action: actionType): dialog
             min = min.toString().length === 1 ? '0' + '' + min.toString() : min.toString()
             const currentTime = now.getHours() + ':' + min
 
-            const textMessage: string = state.textInputDialog.find(s=> s.idUser === action.idDialogs)?.text || ''
+            const textMessage: string = state.textInputDialog.find(s => s.idUser === action.idDialogs)?.text || ''
             copyState.message.forEach(mes => {
                 if (mes.idDialogs === action.idDialogs) {
                     mes.message.push({whoId: action.myId, text: textMessage, time: currentTime})
@@ -59,6 +66,7 @@ export const dialogsReducer = (state = initialState, action: actionType): dialog
             const currentTime = now.getHours() + ':' + min
 
             const botName = copyState.dialogs.find(user => user.id === action.userId)
+
             copyState.message.forEach(mes => {
                 if (mes.idDialogs === action.idDialogs) {
                     mes.message.push({whoId: action.userId, text: `hello, I'm ${botName?.name}`, time: currentTime})
@@ -70,10 +78,10 @@ export const dialogsReducer = (state = initialState, action: actionType): dialog
         case 'DIALOGS/CHANGE-TEXT-INPUT' : {
             return {
                 ...state,
-                textInputDialog: state.textInputDialog.map(textObj=>{
-                    if(textObj.idUser === action.idUser){
+                textInputDialog: state.textInputDialog.map(textObj => {
+                    if (textObj.idUser === action.idUser) {
                         return {...textObj, text: action.text || ''}
-                    }else {
+                    } else {
                         return {text: action.text || '', idUser: action.idUser}
                     }
                 })
@@ -81,26 +89,36 @@ export const dialogsReducer = (state = initialState, action: actionType): dialog
         }
 
         case 'DIALOGS/GET-STATE-DIALOGS': {
-            const copyState = {
-                ...state,
-                dialogs: state.dialogs.filter(user => {
-                    if (action.users.find(friend => friend.id === user.id)) {
-                        return user
+                const copyState = {
+                    ...state,
+                    dialogs: state.dialogs.filter(user => {
+                        if (action.users.find(friend => friend.id === user.id)) {
+                            return user
+                        }
+                    }),
+                    message: <Array<MessageType>>[...state.message]
+                }
+
+                action.users.forEach(user => {
+                    if (!copyState.dialogs.find(friend => friend.id === user.id)) {
+                        copyState.dialogs.push({id: user.id, name: user.name, photo: user.photos.small})
+                        copyState.message.push({idDialogs: user.id, message: []})
                     }
-                }),
-                message: <Array<MessageType>>[...state.message]
+                })
+                return copyState
             }
 
-            action.users.forEach(user => {
-                if (!copyState.dialogs.find(friend => friend.id === user.id)) {
-                    copyState.dialogs.push({id: user.id, name: user.name, photo: user.photos.small})
-                    copyState.message.push({idDialogs: user.id, message: []})
-                }
-            })
-            return copyState
-        }
         case 'DIALOGS/IS-TYPING': {
             return {...state, isTyping: action.isTyping}
+        }
+        case 'DIALOGS/HIDE-LIST-USERS': {
+            return {...state, classNameListUsers: action.className}
+        }
+        case "DIALOGS/FOCUS-USER": {
+            return {...state, focusUserId: action.idUser}
+        }
+        case "DIALOGS/LOADING-STATUS": {
+            return {...state, isLoadingStatusDialog: action.loadingStatus}
         }
 
         default:
@@ -136,12 +154,29 @@ export type handlerTypingACType = {
     isTyping: boolean
 }
 
+export type handlerHideListUsersACType = {
+    type: 'DIALOGS/HIDE-LIST-USERS'
+    className: 'list_users' | 'hide_List_users'
+}
+
+export type handlerFocusUserACACType = {
+    type: 'DIALOGS/FOCUS-USER'
+    idUser: number
+}
+
+export type handlerLoadingDialogsACType = {
+    type: 'DIALOGS/LOADING-STATUS'
+    loadingStatus: boolean
+}
 
 type actionType = sendMessageACType
     | changeTextInputDialogsACType
     | getStateDialogsACType
     | botMessageACType
     | handlerTypingACType
+    | handlerHideListUsersACType
+    | handlerFocusUserACACType
+    | handlerLoadingDialogsACType
 
 
 const getStateDialogsAC = (users: Array<UsersType>): getStateDialogsACType => {
@@ -165,18 +200,34 @@ const handlerTypingAC = (isTyping: boolean): handlerTypingACType => {
 }
 
 
-export const formDialogsThunk = () => {
+// const handlerLoadingDialogsAC = (loadingStatus: boolean): handlerLoadingDialogsACType => {
+//     return {type: 'DIALOGS/LOADING-STATUS', loadingStatus}
+// }
+
+
+export const handlerHideListUsersAC = (className: 'list_users' | 'hide_List_users'): handlerHideListUsersACType => {
+    return {type: 'DIALOGS/HIDE-LIST-USERS', className}
+}
+
+export const handlerFocusUserAC = (idUser: number): handlerFocusUserACACType => {
+    return {type: 'DIALOGS/FOCUS-USER', idUser}
+}
+
+
+export const getStateDialogsThunk = () => {
     return (Dispatch: Dispatch) => {
+        // Dispatch(handlerLoadingDialogsAC(true))
         requestAPI.getUsers(1, 100, true)
             .then(res => {
                 Dispatch(getStateDialogsAC(res.data.items))
+                Dispatch(handlerSubscribedAC(res.data))
+                // Dispatch(handlerLoadingDialogsAC(false))
             })
     }
 }
 
 export const botMessageThunk = (idDialogs: number, userId: number) => {
     const delay = Math.floor(Math.random() * 3000)
-
     return (Dispatch: Dispatch) => {
         setTimeout(() => {
             Dispatch(handlerTypingAC(true))
@@ -185,8 +236,6 @@ export const botMessageThunk = (idDialogs: number, userId: number) => {
                 Dispatch(handlerTypingAC(false))
             }, delay)
         }, 500)
-
-
     }
 }
 

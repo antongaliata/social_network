@@ -112,12 +112,3 @@ export const newsAPI = {
 
 
 
-
-
-
-
-
-
-
-
-

@@ -36,7 +36,8 @@ export default class Users extends React.Component<usersComponentType> {
                                  handlerFocusNavLinkAC={this.props.handlerFocusNavLinkAC}/>
                 })}
                 </div>
-                <Paginator getUsersThunk={this.props.getUsersThunk} selectedPageUsersAC={this.props.selectedPageUsersAC}
+                <Paginator getUsersThunk={this.props.getUsersThunk}
+                           selectedPageUsersAC={this.props.selectedPageUsersAC}
                            quantityPageLength={this.props.usersState.quantityPage.length}
                            pageSize={this.props.usersState.pageSize}
                            updateSubscribers={null}/>

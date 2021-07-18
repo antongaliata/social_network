@@ -73,7 +73,7 @@
     .pagination a {
         width: 50px;
         height: 50px;
-        border-right: 1px solid gray;
+        border-right: 1px solid #b3b3b3;
     }
 
     .pagination a:hover {
@@ -87,7 +87,7 @@
         color: white;
     }
     .pagination {
-        border: 1px solid gray;
+        border: 1px solid #b3b3b3;
         border-right: none;
         font-size: 17px;
     }
@@ -96,3 +96,4 @@
         width: 50%;
     }
 }
+

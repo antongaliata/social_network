@@ -10,7 +10,7 @@ import Login from "./Login/Login";
 import {Redirect, Route} from "react-router-dom";
 import Preloader from "./Preloader/Preloader";
 import {getSubscribedThunk} from "../redux/users-reducer";
-import {formDialogsThunk} from "../redux/dialogs-reducer";
+import {getStateDialogsThunk} from "../redux/dialogs-reducer";
 
 
 type AppType = {
@@ -34,8 +34,9 @@ class App extends React.Component<AppType> {
                 {this.props.isLoading ? <div className={'wrapper_preloader'}><Preloader/></div> :
                     <div className={'wrapper_navbar_and_body'}>
                         <NavbarContainer/>
-                        {this.props.isAuth ? <Body isLoading={this.props.isLoading} myId={this.props.myId}/> :
-                            <Redirect to={'/login'}/>}
+                        {this.props.isAuth ?
+                            <Body isLoading={this.props.isLoading} myId={this.props.myId}/>
+                            : <Redirect to={'/login'}/>}
                         <Route path={'/login'}><Login/></Route>
                     </div>
                 }
@@ -53,5 +54,5 @@ const mapStateToProps = (state: stateType) => {
     }
 }
 
-export default connect(mapStateToProps, {authMeThunk, getSubscribedThunk, formDialogsThunk})(App);
+export default connect(mapStateToProps, {authMeThunk, getSubscribedThunk, formDialogsThunk: getStateDialogsThunk})(App);
 

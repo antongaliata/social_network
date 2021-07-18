@@ -3,9 +3,6 @@
     padding: 25px;
     height: 50px;
     background: #ef7768;
-    position: absolute;
-    bottom: 100px;
-    right: -450px;
     border-radius: 5px;
     color: white;
     font-weight: bolder;
@@ -13,7 +10,7 @@
     justify-content: center;
     align-items: center;
     box-shadow: 6px 6px 5px -5px rgba(34, 60, 80, 0.6);
-    z-index: 111111;
+    z-index: 9999;
 }
 
 .closeWindow {
@@ -32,4 +29,42 @@
 
 .closeWindow:hover {
     opacity: 1;
+}
+
+
+@media (max-width: 700px) {
+    .window_error_contact{
+        position: absolute;
+        bottom: -110%;
+        right: 45%;
+    }
+}
+@media (min-width: 700px) {
+    .window_error_contact{
+        position: absolute;
+        bottom: 12%;
+        right: -110%;
+    }
+}
+
+@media (max-width: 600px) {
+    .window_error_contact{
+        position: absolute;
+        bottom: -110%;
+        right: 35%;
+    }
+}
+@media (max-width: 475px) {
+    .window_error_contact{
+        position: absolute;
+        bottom: -110%;
+        right: 30%;
+    }
+}
+@media (max-width: 400px) {
+    .window_error_contact{
+        position: absolute;
+        bottom: -110%;
+        right: 20%;
+    }
 }

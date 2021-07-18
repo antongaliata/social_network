@@ -13,6 +13,8 @@ type NavbarType = {
     navBarFocus: navBarType
     handlerFocusNavLinkAC: (navLinkFocus: navBarType) => void
     isOpenMenu: boolean
+    handlerHideListUsersAC: (className: 'list_users' | 'hide_List_users')=>void
+    handlerFocusUserAC: (isUser: number)=>void
 }
 
 
@@ -24,7 +26,6 @@ export function Navbar(props: NavbarType) {
         }
         return 'navbar'
     }
-
 
 
     return <div className={'NavbarContainer'}>
@@ -39,7 +40,12 @@ export function Navbar(props: NavbarType) {
                 <img alt={'friends'} src={imgFriends}/>Friends</NavLink>
             <NavLink className={props.navBarFocus === 'message' ? 'focusNavLink' : 'a'}
                      to="/message"
-                     onClick={() => props.handlerFocusNavLinkAC('message')}>
+                     onClick={() =>{
+                         props.handlerFocusNavLinkAC('message')
+                         props.handlerHideListUsersAC('list_users')
+                         props.handlerFocusUserAC(0)
+
+                     }}>
                 <img alt={'message'} src={imgMessage}/>Message</NavLink>
             <NavLink className={props.navBarFocus === 'users' ? 'focusNavLink' : 'a'}
                      to="/users"

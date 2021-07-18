@@ -51,7 +51,7 @@ class Status extends React.Component<StatusType, { editMode: boolean, value: str
 
 
     handlerValue = (e: ChangeEvent<HTMLInputElement>) => {
-        if (e.target.value.length <= 200) {
+        if (e.target.value.length <= 60) {
             this.setState(s => {
                 return {...s, value: e.target.value}
             })

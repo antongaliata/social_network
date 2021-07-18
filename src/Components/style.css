@@ -17,6 +17,7 @@
     width: 1200px;
     height: 100%;
     margin-left: 25%;
+    margin-top: 80px;
 }
 
 .wrapper_navbar_and_body {
@@ -31,13 +32,11 @@
     background: rgb(236, 238, 238);
 }
 
-
 .navbar, .navbarClose {
     flex-direction: column;
     width: 200px;
     float: right;
 }
-
 
 .navbar img, .navbarClose img {
     height: 22px;
@@ -134,11 +133,9 @@
     .NavbarContainer {
         width: 12%;
     }
-
     .navbar, .navbarClose {
         max-width: 140px;
     }
-
     .Body {
         margin-right: 10px;
     }
@@ -167,7 +164,7 @@
     .navbar, .navbarClose {
         position: absolute;
         top: 0;
-        z-index: 3333;
+        z-index: 8888;
         background: rgba(186, 172, 186, 0.9);
         padding-top: 20px;
         min-width: 100%;
@@ -239,19 +236,32 @@
         width: 25%;
     }
 }
+@media (max-width: 700px) {
+    .Body{
+        overflow-y: scroll;
+        overflow-x:hidden;
+        background: white;
+    }
+}
 
-@media (max-width: 375px) {
+
+@media (max-width: 415px) {
 
     .Header .title {
-        font-size: 22px;
+        font-size: 25px;
+        width: 200px;
+        margin-left: 70px;
     }
     .Header a{
         font-size: 13px;
         justify-content: center;
     }
+    .Body{
+        background: white;
+    }
 }
 
-@media (min-width: 376px) {
+@media (min-width: 415px) {
     .Header .title {
         font-size: 30px;
     }

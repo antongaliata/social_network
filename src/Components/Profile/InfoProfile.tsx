@@ -108,7 +108,7 @@ export const InfoProfile = React.memo((props: InfoProfileType) => {
                 {contactKeys.map((key, i) => {
                     return <input type={'text'}
                                   className={(props.nameErrorUpdate === key && props.showWindowError) ? 'errorContact' : 'noErrorContact'}
-                                  onClick={()=>props.handlerWindowError(false)}
+                                  onClick={() => props.handlerWindowError(false)}
                                   key={i}
                                   onChange={(e) => handlerInput(e, key)}
                                   value={profileForm.contacts[key] ? profileForm.contacts[key] : ''}
@@ -116,10 +116,12 @@ export const InfoProfile = React.memo((props: InfoProfileType) => {
                 })}
 
                 <div className={'container_about_job'}>
-                    <div><input type={'checkbox'} onChange={handlerLookingForAJob}
-                                checked={profileForm.lookingForAJob}/><span>show information about work</span>
+                    <div>
+                        <input type={'checkbox'}
+                               onChange={handlerLookingForAJob}
+                               checked={profileForm.lookingForAJob}/>
+                        <span>show information about work</span>
                     </div>
-
                     <input type={'text'}
                            className={'inputText'}
                            value={profileForm.lookingForAJobDescription}

@@ -7,12 +7,22 @@ import Preloader from "../Preloader/Preloader";
 import imgCamera from '../../images/camera3.png'
 import {InfoProfile} from "./InfoProfile";
 import {UpdateProfileType} from "../../requestAPI/requestAPI";
+import ButtonFollowUnfollow from "../Users/ButtonFollowUnfollow";
+import {usersStateType} from "../../redux/users-reducer";
+import '../Users/button.css'
+import {NavLink} from "react-router-dom";
+import {navBarType} from "../../redux/app-reducer";
 
 type ProfileType = {
+    handlerFocusNavLinkAC: (navLinkFocus: navBarType) => void
+    handlerFocusUserAC: (isUser: number)=>void
+    usersState: usersStateType
+    followUserThunk: (idUser: number) => void
+    unfollowUserThunk: (idUser: number) => void
     getUserThunk: (userID: string) => void
     getStatusThunk: (userID: number) => void
     updateStatusThunk: (status: string) => void
-    state: ProfileUsersType
+    stateProfilePage: ProfileUsersType
     history: any
     location: { pathname: string, search: string, hash: string, state: any, key: string }
     match: { path: string, url: string, isExact: boolean, params: { idUsers: string } }
@@ -33,7 +43,6 @@ class Profile extends PureComponent<ProfileType> {
         this.props.getUserThunk(this.props.match.params.idUsers)
     }
 
-
     componentDidUpdate(prevProps: Readonly<ProfileType>, prevState: Readonly<{}>, snapshot?: any) {
         if (this.props.match.params.idUsers !== prevProps.match.params.idUsers) {
             this.props.getUserThunk(this.props.match.params.idUsers)
@@ -46,17 +55,23 @@ class Profile extends PureComponent<ProfileType> {
         }
     }
 
+    userForButtonFollow = () => {
+        const user1 = this.props.usersState.users.find(user => user.id === this.props.stateProfilePage.profile.userId)
+        const user2 = this.props.usersState.friends.find(user => user.id === this.props.stateProfilePage.profile.userId)
+        return user1 || user2
+    }
+
 
     render() {
-        return <>{this.props.state.loadingStatus && <Preloader/>}
+        return <>{this.props.stateProfilePage.loadingStatus && <Preloader/>}
             <div className={'Profile'}>
                 <div className={'container_info_and_avatar'}>
                     <div className={'container_avatar'}>
-                        <div className={'wrapper_avatar'}>{this.props.state.profile.photos.large ?
-                            <img src={this.props.state.profile.photos.large} alt={'photo'}/> :
+                        <div className={'wrapper_avatar'}>{this.props.stateProfilePage.profile.photos.large ?
+                            <img src={this.props.stateProfilePage.profile.photos.large} alt={'photo'}/> :
                             <img src={this.props.imgNoPhoto} alt={'photo'}/>}
                         </div>
-                        {this.props.state.profile.userId === this.props.myId && <>
+                        {this.props.stateProfilePage.profile.userId === this.props.myId && <>
                             <div><input id={'change_photo'} type={'file'} onChange={this.changePhoto}/></div>
                             <label htmlFor='change_photo' className={'input_camera'}>
                                 <div>
@@ -65,31 +80,52 @@ class Profile extends PureComponent<ProfileType> {
                             </label>
                         </>}
 
-                    </div>
-                    <InfoProfile profile={this.props.state.profile}
+                        {this.props.stateProfilePage.profile.userId !== this.props.myId &&
+                        <div className={'wrapper_buttons'}>
+                            <div className={'wrapper_butt_message'}>
+                                <div className={this.userForButtonFollow()?.followed ?
+                                    'butt_follow_or_message' : 'butt_disabled'}>
+                                    <NavLink onClick={() => {
+                                        this.props.handlerFocusNavLinkAC('message')
+                                        this.props.handlerFocusUserAC(this.props.stateProfilePage.profile.userId)
+                                    }}
+                                             to={`/message/dialogs/id/${this.props.stateProfilePage.profile.userId}`}>
+                                        Message
+                                    </NavLink>
+                                </div>
+                            </div>
+                            <ButtonFollowUnfollow
+                                unfollowUser={this.props.unfollowUserThunk}
+                                followUser={this.props.followUserThunk}
+                                disabledButton={this.props.usersState?.disabledButton}
+                                user={this.userForButtonFollow()}/>
+                        </div>
+                        }</div>
+
+                    <InfoProfile profile={this.props.stateProfilePage.profile}
                                  updateProfile={this.props.updateProfileThunk}
-                                 isMyProfile={this.props.myId === this.props.state.profile.userId}
+                                 isMyProfile={this.props.myId === this.props.stateProfilePage.profile.userId}
                                  handlerEditMode={this.props.editModeAC}
-                                 editMode={this.props.state.editMode}
-                                 nameErrorUpdate={this.props.state.nameError}
+                                 editMode={this.props.stateProfilePage.editMode}
+                                 nameErrorUpdate={this.props.stateProfilePage.nameError}
                                  handlerWindowError={this.props.handlerWindowErrorThunk}
                                  showWindowError={this.props.showWindowError}/>
                 </div>
                 <div className={'container_posts_and_status'}>
                     <div className={'container_status_and_name'}>
-                        <div className={'user_name'}>{this.props.state.profile.fullName}</div>
+                        <div className={'user_name'}>{this.props.stateProfilePage.profile.fullName}</div>
+
                         {<Status userId={Number(this.props.match.params.idUsers)}
                                  myId={this.props.myId}
                                  getStatusThunk={this.props.getStatusThunk}
                                  updateStatusThunk={this.props.updateStatusThunk}
-                                 status={this.props.state.status}
+                                 status={this.props.stateProfilePage.status}
                                  imgEdit={this.props.imgEdit}/>}</div>
 
-                    <MyPosts photo={this.props.state.profile.photos.small ?
-                        this.props.state.profile.photos.small :
+                    <MyPosts photo={this.props.stateProfilePage.profile.photos.small ?
+                        this.props.stateProfilePage.profile.photos.small :
                         this.props.imgNoPhoto}
-                             showPosts={this.props.state.profile.userId === this.props.myId}/>
-
+                             showPosts={this.props.stateProfilePage.profile.userId === this.props.myId}/>
                 </div>
             </div>
         </>

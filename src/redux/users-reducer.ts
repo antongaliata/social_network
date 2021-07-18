@@ -104,12 +104,24 @@ export const usersReducer = (state = initialState, action: actionType) => {
                         user.followed = true
                     }
                     return user
+                }),
+                friends: state.friends.map(user => {
+                    if (user.id === action.idUser) {
+                        user.followed = true
+                    }
+                    return user
                 })
             }
         }
         case 'UNFOLLOW-USER': {
             return {
                 ...state, users: state.users.map(user => {
+                    if (user.id === action.idUser) {
+                        user.followed = false
+                    }
+                    return user
+                }),
+                friends: state.friends.map(user => {
                     if (user.id === action.idUser) {
                         user.followed = false
                     }
@@ -164,7 +176,7 @@ const getUsersAC = (users: responseUsersType<Array<UsersType>>): getUsersACType 
     return {type: 'USERS/GET-USERS', users}
 }
 
-const handlerSubscribedAC = (users: responseUsersType<Array<UsersType>>): handlerSubscribedACType => {
+export const handlerSubscribedAC = (users: responseUsersType<Array<UsersType>>): handlerSubscribedACType => {
     return {type: 'USERS/GET-SUBSCRIBED', users}
 }
 

@@ -4,14 +4,21 @@ import Dialogs from "./Dialogs";
 import {
     botMessageThunk,
     changeTextInputDialogsAC,
-    formDialogsThunk,
+    getStateDialogsThunk,
+    handlerFocusUserAC,
+    handlerHideListUsersAC,
     sendMessageAC
 } from "../../redux/dialogs-reducer";
 import {authMeThunk} from "../../redux/app-reducer";
 
 
 const mapStateToProps = (state: stateType) => {
-    return {dialogsState: state.dialogs, myId: state.app.id, profile: state.profilePage}
+    return {
+        dialogsState: state.dialogs,
+        myId: state.app.id,
+        profile: state.profilePage,
+        classNameListUsers: state.dialogs.classNameListUsers
+    }
 }
 
 const mapDispatchToProps = (Dispatch: any) => {
@@ -19,9 +26,11 @@ const mapDispatchToProps = (Dispatch: any) => {
         authMe: () => Dispatch(authMeThunk()),
         changeSendMessage: (idDialogs: number, myId: number) => Dispatch(sendMessageAC(idDialogs, myId)),
         changeTextInputDialogs: (text: string | undefined, idUser: number) => Dispatch(changeTextInputDialogsAC(text, idUser)),
-        formDialogs: () => Dispatch(formDialogsThunk()),
-        botMessage: (idDialogs: number, userId: number) => Dispatch(botMessageThunk(idDialogs, userId))
+        formDialogs: () => Dispatch(getStateDialogsThunk()),
+        botMessage: (idDialogs: number, userId: number) => Dispatch(botMessageThunk(idDialogs, userId)),
+        handlerHideListUsers: (className: 'list_users' | 'hide_List_users') => Dispatch(handlerHideListUsersAC(className)),
+        handlerFocusUser: (isUser: number) => Dispatch(handlerFocusUserAC(isUser))
     }
 }
-
-export default connect(mapStateToProps, mapDispatchToProps)(Dialogs)
+const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs)
+export default DialogsContainer;

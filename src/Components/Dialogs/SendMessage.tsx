@@ -35,10 +35,10 @@ const SendMessage = (props: sendMessageType) => {
 
     return (
         <div className={'container_send_message'}>
-            <div className={'wrapper_typing'}>
-                {props.isTyping && props.textInput.find(textObj => textObj.idUser === props.messageObj.idDialogs) &&
+            {window.innerWidth > 600 && <div className={'wrapper_typing'}>
+                { props.isTyping && props.textInput.find(textObj => textObj.idUser === props.messageObj.idDialogs) &&
                 <Typing/>}
-            </div>
+            </div>}
             <div className={'wrapper_textarea_button'}>
                 <div className={'wrapper_textarea'}>
             <textarea placeholder={'Message'}
