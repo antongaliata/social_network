@@ -9,7 +9,7 @@ import {
     handlerHideListUsersAC,
     sendMessageAC
 } from "../../redux/dialogs-reducer";
-import {authMeThunk} from "../../redux/app-reducer";
+import {authMeThunk, handlerFocusNavLinkAC, navBarType} from "../../redux/app-reducer";
 
 
 const mapStateToProps = (state: stateType) => {
@@ -29,7 +29,8 @@ const mapDispatchToProps = (Dispatch: any) => {
         formDialogs: () => Dispatch(getStateDialogsThunk()),
         botMessage: (idDialogs: number, userId: number) => Dispatch(botMessageThunk(idDialogs, userId)),
         handlerHideListUsers: (className: 'list_users' | 'hide_List_users') => Dispatch(handlerHideListUsersAC(className)),
-        handlerFocusUser: (isUser: number) => Dispatch(handlerFocusUserAC(isUser))
+        handlerFocusUser: (isUser: number) => Dispatch(handlerFocusUserAC(isUser)),
+        handlerFocusNavLink: (navLinkFocus: navBarType) => Dispatch(handlerFocusNavLinkAC(navLinkFocus))
     }
 }
 const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs)

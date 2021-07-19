@@ -6,6 +6,7 @@ import {dialogsPageType} from "../../redux/dialogs-reducer";
 import Messages from "./Messages";
 import imgNoPhoto from "../../images/gender.png"
 import {stateProfileType} from "../../redux/profile-reducer";
+import {navBarType} from "../../redux/app-reducer";
 
 export type DialogsComponentType = {
     dialogsState: dialogsPageType
@@ -19,13 +20,14 @@ export type DialogsComponentType = {
     classNameListUsers: string
     handlerHideListUsers: (className: 'list_users' | 'hide_List_users') => void
     handlerFocusUser: (isUser: number) => void
+    handlerFocusNavLink: (navLinkFocus: navBarType) => void
 }
 
 const Dialogs = React.memo((props: DialogsComponentType) => {
 
     useEffect(() => {
-            props.formDialogs()
-    },[])
+        props.formDialogs()
+    }, [])
 
     return <>
         <div className={'Message_Component'}>
@@ -57,7 +59,8 @@ const Dialogs = React.memo((props: DialogsComponentType) => {
                               isTyping={props.dialogsState.isTyping}
                               user={user}
                               myPhoto={props.profile.myPhoto.small}
-                              handlerHideListUsers={props.handlerHideListUsers}/>
+                              handlerHideListUsers={props.handlerHideListUsers}
+                              handlerFocusNavLink={props.handlerFocusNavLink}/>
                 }</Route>
             })}
         </div>

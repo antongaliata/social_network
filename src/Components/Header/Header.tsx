@@ -16,7 +16,7 @@ type HeaderType = {
 }
 
 
-function Header(props: HeaderType) {
+const Header = (props: HeaderType) => {
 
     const navLinkProfile = () => {
         if (props.isAuth) {

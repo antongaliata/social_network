@@ -6,6 +6,7 @@ import arrowBack from "../../images/arrow4.png"
 import SendMessage from "./SendMessage";
 import Typing from "../Typing/Typing";
 import {NavLink} from "react-router-dom";
+import {navBarType} from "../../redux/app-reducer";
 
 
 export type MessagesType = {
@@ -19,6 +20,7 @@ export type MessagesType = {
     user: DialogsType | undefined
     myPhoto: string
     handlerHideListUsers: (className: 'list_users' | 'hide_List_users') => void
+    handlerFocusNavLink:(navLinkFocus: navBarType)=>void
 }
 
 
@@ -39,7 +41,7 @@ const Messages = (props: MessagesType) => {
                      props.handlerHideListUsers('list_users')
                  }
                  }/>}
-            <NavLink to={`/profile/${props.user?.id}`}>
+            <NavLink to={`/profile/${props.user?.id}`} onClick={()=>props.handlerFocusNavLink('profile')}>
                 <img className={'ava'} src={props.user?.photo ? props.user?.photo : imgNoPhoto} alt={'avatar'}/>
                 {props.user?.name}
             </NavLink>
