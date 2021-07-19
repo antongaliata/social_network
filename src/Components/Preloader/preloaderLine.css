@@ -1,0 +1,23 @@
+.preloader_track {
+    position: absolute;
+    bottom: -5px;
+    min-width: 100%;
+    min-height: 10px;
+    z-index: 999999999;
+}
+
+.preloader_track .progress {
+    width: 0;
+    height: 5px;
+    background: #5982ee;
+    margin-top: 10px;
+    border-radius: 12px;
+    animation: loading 1s ease-in-out forwards;
+}
+
+
+@keyframes loading {
+    to {
+        width: 100%;
+    }
+}

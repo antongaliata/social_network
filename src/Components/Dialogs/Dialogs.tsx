@@ -5,7 +5,7 @@ import React, {useEffect} from "react";
 import {dialogsPageType} from "../../redux/dialogs-reducer";
 import Messages from "./Messages";
 import imgNoPhoto from "../../images/gender.png"
-import {ProfileUsersType} from "../../redux/profile-reducer";
+import {stateProfileType} from "../../redux/profile-reducer";
 
 export type DialogsComponentType = {
     dialogsState: dialogsPageType
@@ -15,7 +15,7 @@ export type DialogsComponentType = {
     formDialogs: () => void
     myId: number
     botMessage: (idDialogs: number, userId: number) => void
-    profile: ProfileUsersType
+    profile: stateProfileType
     classNameListUsers: string
     handlerHideListUsers: (className: 'list_users' | 'hide_List_users') => void
     handlerFocusUser: (isUser: number) => void

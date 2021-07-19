@@ -1,5 +1,5 @@
 import React from "react";
-import '../style.css'
+import './navbar.css'
 import {NavLink} from "react-router-dom";
 import {authStateType, navBarType} from "../../redux/app-reducer";
 import imgProfile from '../../images/profile2.png'
@@ -26,7 +26,6 @@ export function Navbar(props: NavbarType) {
         }
         return 'navbar'
     }
-
 
     return <div className={'NavbarContainer'}>
         <div className={handlerClassNavbar()}>

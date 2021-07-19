@@ -15,8 +15,6 @@ const mapDispatchToProps = (Dispatch: any) => {
             if (text) {
                 Dispatch(addPostAC())
                 Dispatch(changeTextInputPostAC(''))
-            } else {
-                alert('введите текст')
             }
         },
         handlerLikeAC: (id: string) => Dispatch(handlerLikeAC(id)),

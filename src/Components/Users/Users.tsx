@@ -2,7 +2,6 @@ import './users.css'
 import React from "react";
 import {usersStateType} from "../../redux/users-reducer";
 import {User} from "./User";
-import Preloader from "../Preloader/Preloader";
 import Paginator from "../Paginator/Paginator";
 import {navBarType} from "../../redux/app-reducer";
 
@@ -24,7 +23,7 @@ export default class Users extends React.Component<usersComponentType> {
     }
 
     render() {
-        return <> {this.props.usersState.loadingStatus && <Preloader/>}
+        return <>
             <div className={'window_users'}>
                 <div className={'wrapper_users'}>{this.props.usersState.users.map(user => {
                     return <User user={user}
@@ -36,6 +35,7 @@ export default class Users extends React.Component<usersComponentType> {
                                  handlerFocusNavLinkAC={this.props.handlerFocusNavLinkAC}/>
                 })}
                 </div>
+
                 <Paginator getUsersThunk={this.props.getUsersThunk}
                            selectedPageUsersAC={this.props.selectedPageUsersAC}
                            quantityPageLength={this.props.usersState.quantityPage.length}

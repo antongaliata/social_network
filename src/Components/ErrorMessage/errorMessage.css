@@ -1,5 +1,5 @@
 .window_error_contact {
-    min-width: 300px;
+    width: 300px;
     padding: 25px;
     height: 50px;
     background: #ef7768;
@@ -11,6 +11,7 @@
     align-items: center;
     box-shadow: 6px 6px 5px -5px rgba(34, 60, 80, 0.6);
     z-index: 9999;
+    position: relative;
 }
 
 .closeWindow {
@@ -31,40 +32,15 @@
     opacity: 1;
 }
 
-
-@media (max-width: 700px) {
-    .window_error_contact{
-        position: absolute;
-        bottom: -110%;
-        right: 45%;
-    }
-}
-@media (min-width: 700px) {
-    .window_error_contact{
-        position: absolute;
-        bottom: 12%;
-        right: -110%;
-    }
+.wrapper_error{
+    position: fixed;
+    bottom: 10%;
+    left: 0;
+    right: 0;
+    z-index: 3333333333333;
+    display: flex;
+    justify-content: center;
 }
 
-@media (max-width: 600px) {
-    .window_error_contact{
-        position: absolute;
-        bottom: -110%;
-        right: 35%;
-    }
-}
-@media (max-width: 475px) {
-    .window_error_contact{
-        position: absolute;
-        bottom: -110%;
-        right: 30%;
-    }
-}
-@media (max-width: 400px) {
-    .window_error_contact{
-        position: absolute;
-        bottom: -110%;
-        right: 20%;
-    }
-}
+
+

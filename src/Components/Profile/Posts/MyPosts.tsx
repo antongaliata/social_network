@@ -16,14 +16,12 @@ type MyPostsType = {
 
 const MyPosts = (props: MyPostsType) => {
     const newPostsElement = React.createRef<HTMLTextAreaElement>()
-    const messagesStartRef = React.useRef<HTMLDivElement>(null)
 
 
     const sendEnter = (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
         if (event.key === 'Enter' && !event.shiftKey) {
             event.preventDefault();
             if(newPostsElement.current?.value){
-                messagesStartRef.current?.scrollIntoView({behavior: "auto"})
                 props.addPost(newPostsElement.current.value)
             }
         }
@@ -31,7 +29,7 @@ const MyPosts = (props: MyPostsType) => {
 
     return <div className={'myPostsContainer'}>
         {props.showPosts && <div className={'wrapper_text_butt'}>{props.showPosts && <>
-            <textarea placeholder={'what\'s new with you?'}
+            <textarea placeholder={'What\'s new with you?'}
                       onKeyDown={sendEnter}
                       onChange={(e) => {
                           props.onPostChange(e.currentTarget.value)
@@ -42,12 +40,11 @@ const MyPosts = (props: MyPostsType) => {
             </button>
         </>}</div>
 
-        }<div className={'wrapper_posts'}>
+        }<div className={props.showPosts?'wrapper_posts' : 'wrapper_posts_dont_my_page' }>
             {(!props.posts.posts.length || !props.showPosts) && <div className={'imgNoPost'}>
                 <img src={imgNoPost} alt='noPost'/>
                 <span>No more posts</span>
             </div>}
-            <div ref={messagesStartRef}/>
             {props.showPosts && props.posts.posts.map((post => {
                 return <Post key={post.id}
                              post={post}

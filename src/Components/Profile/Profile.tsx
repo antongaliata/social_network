@@ -1,9 +1,8 @@
 import './profile.css';
 import MyPosts from "./Posts/MyPostsContainer";
 import React, {ChangeEvent, PureComponent} from "react";
-import {ProfileUsersType} from "../../redux/profile-reducer";
+import {stateProfileType} from "../../redux/profile-reducer";
 import Status from "../Status/Status";
-import Preloader from "../Preloader/Preloader";
 import imgCamera from '../../images/camera3.png'
 import {InfoProfile} from "./InfoProfile";
 import {UpdateProfileType} from "../../requestAPI/requestAPI";
@@ -15,14 +14,14 @@ import {navBarType} from "../../redux/app-reducer";
 
 type ProfileType = {
     handlerFocusNavLinkAC: (navLinkFocus: navBarType) => void
-    handlerFocusUserAC: (isUser: number)=>void
+    handlerFocusUserAC: (isUser: number) => void
     usersState: usersStateType
     followUserThunk: (idUser: number) => void
     unfollowUserThunk: (idUser: number) => void
-    getUserThunk: (userID: string) => void
+    getUserThunk: (userID: string, status?: boolean) => void
     getStatusThunk: (userID: number) => void
     updateStatusThunk: (status: string) => void
-    stateProfilePage: ProfileUsersType
+    stateProfilePage: stateProfileType
     history: any
     location: { pathname: string, search: string, hash: string, state: any, key: string }
     match: { path: string, url: string, isExact: boolean, params: { idUsers: string } }
@@ -34,13 +33,19 @@ type ProfileType = {
     editModeAC: (editMode: boolean) => void
     handlerWindowErrorThunk: (error: boolean) => void
     showWindowError: boolean
+    isLoadingApp: boolean
+    handlerHideListUsersAC: (className: 'list_users' | 'hide_List_users') => void
 }
 
 class Profile extends PureComponent<ProfileType> {
 
 
     componentDidMount() {
-        this.props.getUserThunk(this.props.match.params.idUsers)
+        if (this.props.match.params.idUsers !== String(this.props.myId)) {
+            this.props.getUserThunk(this.props.match.params.idUsers)
+        }else {
+            this.props.getUserThunk(this.props.match.params.idUsers, false)
+        }
     }
 
     componentDidUpdate(prevProps: Readonly<ProfileType>, prevState: Readonly<{}>, snapshot?: any) {
@@ -63,7 +68,7 @@ class Profile extends PureComponent<ProfileType> {
 
 
     render() {
-        return <>{this.props.stateProfilePage.loadingStatus && <Preloader/>}
+        return <>
             <div className={'Profile'}>
                 <div className={'container_info_and_avatar'}>
                     <div className={'container_avatar'}>
@@ -86,6 +91,9 @@ class Profile extends PureComponent<ProfileType> {
                                 <div className={this.userForButtonFollow()?.followed ?
                                     'butt_follow_or_message' : 'butt_disabled'}>
                                     <NavLink onClick={() => {
+                                        if (window.innerWidth < 600) {
+                                            this.props.handlerHideListUsersAC('hide_List_users')
+                                        }
                                         this.props.handlerFocusNavLinkAC('message')
                                         this.props.handlerFocusUserAC(this.props.stateProfilePage.profile.userId)
                                     }}

@@ -131,11 +131,9 @@ export const newsReducer = (state = initialState, action: actionType) => {
         case "NEWS/LOADING-STATUS": {
             return {...state, loadingStatus: action.loadingStatus}
         }
-
         default :
             return state
     }
-
 }
 
 

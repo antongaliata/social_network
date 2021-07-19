@@ -1,5 +1,6 @@
 import {requestAPI, responseUsersType, UsersType} from "../requestAPI/requestAPI";
 import {Dispatch} from "redux";
+import {handlerPreloaderPagesAC} from "./app-reducer";
 
 
 type getUsersACType = {
@@ -195,21 +196,25 @@ const disabledButtonAC = (idUser: number, disabled: boolean): disabledButtonACTy
 
 export const getStateUsersThunk = (pageUsers: number, pageSize: number) => {
     return (Dispatch: Dispatch) => {
-        Dispatch(handlerLoadingAC(true))
+        Dispatch(handlerPreloaderPagesAC(true))
         requestAPI.getUsers(pageUsers || 1, pageSize)
             .then(res => {
                 Dispatch(getUsersAC(res.data))
-                Dispatch(handlerLoadingAC(false))
+                setTimeout(()=>{
+                    Dispatch(handlerPreloaderPagesAC(false))
+                }, 1000)
             })
     }
 }
 export const getSubscribedThunk = (pageUsers: number, pageSize: number) => {
     return (Dispatch: Dispatch) => {
-        Dispatch(handlerLoadingAC(true))
+        Dispatch(handlerPreloaderPagesAC(true))
         requestAPI.getUsers(pageUsers, pageSize, true)
             .then(res => {
                 Dispatch(handlerSubscribedAC(res.data))
-                Dispatch(handlerLoadingAC(false))
+                setTimeout(()=>{
+                    Dispatch(handlerPreloaderPagesAC(false))
+                }, 1000)
             })
     }
 }

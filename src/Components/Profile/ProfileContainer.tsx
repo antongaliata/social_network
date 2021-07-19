@@ -17,10 +17,18 @@ import {compose} from "redux";
 import {handlerWindowErrorThunk} from "../../redux/app-reducer";
 import {followUserThunk, unfollowUserThunk} from "../../redux/users-reducer";
 import {handlerFocusNavLinkAC} from "../../redux/app-reducer";
-import {handlerFocusUserAC} from "../../redux/dialogs-reducer";
+import {handlerFocusUserAC, handlerHideListUsersAC} from "../../redux/dialogs-reducer";
 
 const mapStateToProps = (state: stateType) => {
-    return {stateProfilePage: state.profilePage, imgNoPhoto, imgEdit, myId: state.app.id, showWindowError: state.app.showWindowError, usersState: state.users }
+    return {
+        stateProfilePage: state.profilePage,
+        imgNoPhoto,
+        imgEdit,
+        myId: state.app.id,
+        showWindowError: state.app.showWindowError,
+        usersState: state.users,
+        isLoadingApp: state.app.loadingStatus
+    }
 }
 
 export const ProfileContainer = compose(
@@ -37,5 +45,6 @@ export const ProfileContainer = compose(
         editModeAC,
         handlerWindowErrorThunk,
         handlerFocusNavLinkAC,
-        handlerFocusUserAC
+        handlerFocusUserAC,
+        handlerHideListUsersAC
     }))(Profile)

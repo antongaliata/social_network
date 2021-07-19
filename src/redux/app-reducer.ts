@@ -1,6 +1,6 @@
 import {Dispatch} from "redux";
 import {authType, requestAPI} from "../requestAPI/requestAPI";
-import {getMyIdForProfileAC, photoType} from "./profile-reducer";
+import {getMyIdForProfileAC, getUserThunk, photoType} from "./profile-reducer";
 
 
 export type LoginType = { email: string, password: string, RememberMe: boolean }
@@ -19,6 +19,11 @@ type handlerWereRedirectWithACType = {
 type handlerPreloaderACType = {
     type: 'APP/LOADING-STATUS'
     loadingStatus: boolean
+}
+
+type handlerPreloaderPagesACType = {
+    type: 'APP/LOADING-STATUS-PAGES'
+    loadingStatusPages: boolean
 }
 
 type loginErrorACType = {
@@ -47,7 +52,8 @@ type actionType = authMeACType |
     loginErrorACType |
     handlerFocusNavLinkACType |
     windowErrorACType |
-    openCloseMenuBurgerACType
+    openCloseMenuBurgerACType|
+    handlerPreloaderPagesACType
 
 export type navBarType = 'profile' | 'friends' | 'message' | 'users' | 'news'
 export type authStateType = {
@@ -57,6 +63,7 @@ export type authStateType = {
     isAuth: boolean
     wereRedirectWith: string
     loadingStatus: boolean
+    loadingStatusPages: boolean
     loginMessageError: Array<string>
     navBarFocus: navBarType
     myPhoto: photoType
@@ -72,6 +79,7 @@ const initialState: authStateType = {
     isAuth: false,
     wereRedirectWith: '',
     loadingStatus: false,
+    loadingStatusPages: false,
     loginMessageError: [],
     navBarFocus: 'profile',
     myPhoto: {small: '', large: ''},
@@ -111,6 +119,9 @@ export const appReducer = (state = initialState, action: actionType) => {
         case "APP/OPEN-CLOSE-MENU": {
             return {...state, isOpenMenuBurger: action.isOpen}
         }
+        case "APP/LOADING-STATUS-PAGES": {
+            return {...state, loadingStatusPages: action.loadingStatusPages}
+        }
         default :
             return state
 
@@ -138,6 +149,11 @@ export const handlerWereRedirectWithAC = (wereRedirectWith: string): handlerWere
     return {type: 'WERE-REDIRECTED', wereRedirectWith}
 }
 
+
+export const handlerPreloaderPagesAC = (loadingStatusPages: boolean): handlerPreloaderPagesACType => {
+    return {type: 'APP/LOADING-STATUS-PAGES', loadingStatusPages}
+}
+
 export const handlerPreloaderAC = (loadingStatus: boolean): handlerPreloaderACType => {
     return {type: 'APP/LOADING-STATUS', loadingStatus}
 }
@@ -148,18 +164,20 @@ export const handlerFocusNavLinkAC = (navLinkFocus: navBarType): handlerFocusNav
 
 
 export const authMeThunk = () => {
-    return (Dispatch: Dispatch) => {
+    return (Dispatch: any) => {
         Dispatch(handlerPreloaderAC(true))
         requestAPI.authMe()
             .then(res => {
                 if (!res.data.resultCode) {
                     Dispatch(authMeAC(res.data.data, true))
                     Dispatch(getMyIdForProfileAC(res.data.data.id))
-
+                    Dispatch(getUserThunk(String(res.data.data.id), false))
                 } else {
                     Dispatch(authMeAC(res.data.data, false))
                 }
-                Dispatch(handlerPreloaderAC(false))
+                setTimeout(()=>{
+                    Dispatch(handlerPreloaderAC(false))
+                }, 2000)
             })
     }
 }

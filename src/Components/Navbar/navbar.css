@@ -1,0 +1,125 @@
+.NavbarContainer {
+    background: rgb(236, 238, 238);
+}
+
+.navbar, .navbarClose {
+    flex-direction: column;
+    width: 200px;
+    float: right;
+}
+
+.navbar img, .navbarClose img {
+    height: 22px;
+    width: 24px;
+    margin-right: 5px;
+}
+
+.navbar a, .navbarClose a {
+    text-decoration: none;
+    font-weight: bold;
+    transition: .2s;
+    display: flex;
+    align-items: center;
+    height: 40px;
+    padding-left: 10px;
+    letter-spacing: .5px;
+}
+
+.navbar .a:hover, .navbarClose .a:hover {
+    transition: .2s;
+}
+
+
+@media (max-width: 1660px) {
+    .NavbarContainer {
+        width: 15%;
+    }
+}
+@media (max-width: 1438px) {
+    .NavbarContainer {
+        width: 12%;
+        margin-right: 10px;
+    }
+
+    .navbar, .navbarClose {
+        max-width: 140px;
+    }
+}
+@media (max-width: 1290px) {
+    .navbar a, .navbarClose a{
+        color: black;
+    }
+    .focusNavLink {
+        background: rgba(89, 130, 238, 0.55);
+    }
+
+    .NavbarContainer {
+        position: absolute;
+        top: 60px;
+        min-width: 100%;
+        max-height: 0;
+    }
+
+    .navbar, .navbarClose {
+        position: absolute;
+        top: 0;
+        z-index: 8888;
+        background: rgba(186, 172, 186, 0.9);
+        padding-top: 20px;
+        min-width: 100%;
+        min-height: 250px;
+        display: block;
+        font-size: 17px;
+    }
+
+    .navbar {
+        transition: all .5s ease-in-out;
+        transform: translateY(0%);
+    }
+
+    .navbar img, .navbarClose img {
+        display: none;
+    }
+
+    .navbarClose {
+        transition: all .5s ease-in-out;
+        transform: translateY(-150%);
+    }
+}
+
+@media (min-width: 1290px) {
+    .a{
+        color: #535252;
+    }
+
+    .navbar a:hover{
+        color: black;
+    }
+
+    .focusNavLink {
+        font-size: 25px;
+        color: black;
+    }
+    .focusNavLink .navbar a{
+        color: black;
+    }
+
+
+    .navbar, .navbarClose {
+        margin-top: 50px;
+        display: flex;
+        font-size: 20px;
+    }
+
+    .navbarClose {
+        flex-direction: column;
+        width: 200px;
+        float: right;
+    }
+
+    .NavbarContainer {
+        width: 25%;
+    }
+}
+
+

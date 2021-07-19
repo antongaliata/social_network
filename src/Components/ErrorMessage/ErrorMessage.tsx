@@ -17,9 +17,11 @@ const ErrorMessage = (props: ErrorMessageType) => {
         props.handlerWindowError(false)
     }
 
-    return <>{props.showWindowError && < div className={'window_error_contact'}>
-        <div onClick={closeWindow} className={'closeWindow'}>&#10006;</div>
-        contact "{props.nameErrorUpdate}" is incorrect
+    return <>{props.showWindowError && <div className={'wrapper_error'}>
+        <div className={'window_error_contact'}>
+            <div onClick={closeWindow} className={'closeWindow'}>&#10006;</div>
+            contact "{props.nameErrorUpdate}" is incorrect
+        </div>
     </div>
     }</>
 }

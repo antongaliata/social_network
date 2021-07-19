@@ -1,6 +1,7 @@
 import {requestAPI, UsersType} from "../requestAPI/requestAPI";
 import {Dispatch} from "redux";
 import {handlerSubscribedAC} from "./users-reducer";
+import {handlerPreloaderPagesAC} from "./app-reducer";
 
 
 export type DialogsType = {
@@ -199,12 +200,6 @@ const handlerTypingAC = (isTyping: boolean): handlerTypingACType => {
     return {type: 'DIALOGS/IS-TYPING', isTyping}
 }
 
-
-// const handlerLoadingDialogsAC = (loadingStatus: boolean): handlerLoadingDialogsACType => {
-//     return {type: 'DIALOGS/LOADING-STATUS', loadingStatus}
-// }
-
-
 export const handlerHideListUsersAC = (className: 'list_users' | 'hide_List_users'): handlerHideListUsersACType => {
     return {type: 'DIALOGS/HIDE-LIST-USERS', className}
 }
@@ -216,12 +211,14 @@ export const handlerFocusUserAC = (idUser: number): handlerFocusUserACACType => 
 
 export const getStateDialogsThunk = () => {
     return (Dispatch: Dispatch) => {
-        // Dispatch(handlerLoadingDialogsAC(true))
+        handlerPreloaderPagesAC(true)
         requestAPI.getUsers(1, 100, true)
             .then(res => {
                 Dispatch(getStateDialogsAC(res.data.items))
                 Dispatch(handlerSubscribedAC(res.data))
-                // Dispatch(handlerLoadingDialogsAC(false))
+                setTimeout(()=>{
+                    Dispatch(handlerPreloaderPagesAC(false))
+                }, 1000)
             })
     }
 }

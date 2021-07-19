@@ -4,12 +4,11 @@
     flex-direction: column;
     justify-content: space-between;
     width: 100%;
-    border: 1px solid #b3b3b3;
-    border-radius: 10px 10px 0 0;
+    padding: 0 15px;
 }
 
 .wrapper_users {
-    margin: 15px 15px;
+    margin-top: 15px;
 }
 
 .user {
@@ -24,7 +23,7 @@
 }
 
 .user:hover {
-    background: radial-gradient(circle, rgba(213, 220, 248, 1) 0%, rgba(255, 255, 255, 1) 83%);
+    background: radial-gradient(circle, rgb(238, 237, 237) 0%, rgba(255, 255, 255, 1) 83%);
 }
 
 .navLink_wrapper {
@@ -45,6 +44,19 @@
     background: white;
     border: 1px solid rgb(241, 239, 239);
     border-radius: 50%;
+}
+
+
+@media (max-height: 838px) {
+    .window_users {
+        height:auto;
+    }
+}
+
+@media (min-height: 838px) {
+    .window_users {
+        height:100%;
+    }
 }
 
 
@@ -118,11 +130,19 @@
     }
 }
 
+@media (max-width: 700px) {
+    .window_users {
+        border: none;
+        border-radius: 0;
+    }
+}
 
-
-
-
-
-
+@media (min-width: 700px) {
+    .window_users {
+        border: 1px solid #b3b3b3;
+        border-bottom: none;
+        border-radius: 10px 10px 0 0;
+    }
+}
 
 

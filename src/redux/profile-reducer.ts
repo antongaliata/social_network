@@ -1,6 +1,6 @@
 import {requestAPI, UpdateProfileType} from "../requestAPI/requestAPI";
 import {Dispatch} from "redux";
-import {handlerWindowErrorThunk} from "./app-reducer";
+import {handlerPreloaderPagesAC, handlerWindowErrorThunk} from "./app-reducer";
 
 
 export type photoType = {
@@ -27,7 +27,7 @@ export type profileType = {
     photos: photoType
 }
 
-export type ProfileUsersType = {
+export type stateProfileType = {
     profile: profileType
     status: string
     loadingStatus: boolean
@@ -95,7 +95,7 @@ type actionType = getUserACType
     | handlerErrorUpdateProfileType
     | editModeACType
 
-const initialState: ProfileUsersType = {
+const initialState: stateProfileType = {
     profile: {
         aboutMe: '',
         userId: 0,
@@ -168,7 +168,6 @@ export const profileReducer = (state = initialState, action: actionType) => {
         case "PROFILE/EDIT-MODE": {
             return {...state, editMode: action.editMode}
         }
-
         default : {
             return state
         }
@@ -188,7 +187,7 @@ const updateStatusAC = (status: string | null): updateStatusACType => {
     return {type: 'UPDATE-STATUS', status}
 }
 
-const handlerLoadingProfileAC = (loadingStatus: boolean): handlerLoadingStatusProfileACType => {
+export const handlerLoadingProfileAC = (loadingStatus: boolean): handlerLoadingStatusProfileACType => {
     return {type: 'PROFILE/LOADING-STATUS', loadingStatus}
 }
 
@@ -209,12 +208,14 @@ export const getMyIdForProfileAC = (myId: number): getMyIdForProfileType => {
     return {type: 'PROFILE/GET-MY-ID', myId}
 }
 
-export const getUserThunk = (userId: string) => {
+export const getUserThunk = (userId: string, status = true) => {
     return async (Dispatch: Dispatch) => {
-        Dispatch(handlerLoadingProfileAC(true))
+        Dispatch(handlerPreloaderPagesAC(status))
         const response = await requestAPI.getUserPage(userId)
         Dispatch(getUserAC(response.data))
-        Dispatch(handlerLoadingProfileAC(false))
+        setTimeout(()=>{
+            Dispatch(handlerPreloaderPagesAC(false))
+        }, 1000)
     }
 }
 
@@ -240,26 +241,29 @@ export const updatePhotoThunk = (photoFile: any) => {
         try {
             Dispatch(updatePhotoAC(promise.data.data))
         } catch {
-            console.log(promise)
         }
     }
 }
 
 export const updateProfileThunk = (profile: UpdateProfileType) => {
     return async (Dispatch: any) => {
-        Dispatch(handlerLoadingProfileAC(true))
+        Dispatch(handlerPreloaderPagesAC(true))
         const promise = await requestAPI.updateProfile(profile)
         try {
             if (promise.data.messages[0]) {
                 Dispatch(handlerErrorUpdateProfileAC(promise.data.messages[0]))
-                Dispatch(handlerLoadingProfileAC(false))
+                setTimeout(()=>{
+                    Dispatch(handlerPreloaderPagesAC(false))
+                }, 1000)
                 Dispatch(handlerWindowErrorThunk(true))
             } else {
                 Dispatch(getUserThunk(profile.userId.toString()))
                 Dispatch(handlerWindowErrorThunk(false))
             }
         } catch {
-            Dispatch(handlerLoadingProfileAC(false))
+            setTimeout(()=>{
+                Dispatch(handlerPreloaderPagesAC(false))
+            }, 1000)
         }
     }
 }

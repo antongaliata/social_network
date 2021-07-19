@@ -1,3 +1,12 @@
+.container_info {
+    position: relative;
+    min-height: 603px;
+    width: 100%;
+    padding: 5px 5px;
+    background: white;
+}
+
+
 .container_about {
     border-top: 1px solid rgb(241, 239, 239);
     margin-top: 20px;
@@ -18,14 +27,6 @@
 .contacts div {
     color: #636363;
     word-break: break-word;
-}
-
-.container_info {
-    position: relative;
-    height: 100%;
-    width: 100%;
-    padding: 5px 5px;
-    background: white;
 }
 
 
@@ -126,12 +127,15 @@
 @media (max-width: 1289px) {
     .container_info {
         border-radius: 0;
+        border: none;
     }
 }
 
 @media (min-width: 1290px) {
     .container_info {
-        border-radius: 10px 10px 0 0;
+        border-radius: 10px;
+        margin-top: 20px;
+        border: 1px solid #b3b3b3;
     }
 }
 
@@ -146,7 +150,6 @@
         font-weight: bolder;
         font-size: 10px;
     }
-
 
 }
 
@@ -163,21 +166,12 @@
     }
 }
 
-
-@media (min-width: 1290px) {
-    .container_info {
-        margin-top: 20px;
-    }
-}
-
 @media (max-width: 700px) {
     .container_info {
         position: absolute;
-        top: 99px;
+        top: 90px;
         right: 0;
-        width: 60vmin;
-        max-height: 210px;
-        border: none;
+        width: 60%;
     }
 
     .container_about {
@@ -185,11 +179,10 @@
     }
 
     .edit {
-        position: absolute;
+        position: fixed;
         z-index: 111;
-        top: -20px;
-        right: 0;
-        width: 100vmin;
+        top: 132px;
+        left: 0;
         height: auto;
         background: white;
         overflow: hidden;
@@ -209,14 +202,6 @@
     }
 
 }
-
-
-@media (min-width: 701px) {
-    .container_info {
-        border: 1px solid #b3b3b3;
-    }
-}
-
 
 
 
