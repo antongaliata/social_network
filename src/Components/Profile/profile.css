@@ -385,6 +385,7 @@
         border: none;
 
     }
+
     .wrapper_avatar {
         max-width: 150px;
         margin-top: 20px;
@@ -409,7 +410,9 @@
     }
 
     .wrapper_posts .imgNoPost, .wrapper_posts_dont_my_page .imgNoPost {
-        margin-top: 35px;
+        min-height: 50vh;
+       display: flex;
+        justify-content: center;
     }
 
     .wrapper_buttons {
@@ -426,7 +429,7 @@
         padding-top: 300px;
     }
 
-    .container_status_and_name{
+    .container_status_and_name {
         padding: 10px 100px 0 10px;
     }
 }
@@ -444,7 +447,6 @@
         padding-left: 2px;
     }
 }
-
 
 
 @media (min-width: 415px) {
