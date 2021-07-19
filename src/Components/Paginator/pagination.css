@@ -3,6 +3,10 @@
     justify-content: center;
     margin: 0 auto;
     background: white;
+    position: page;
+    bottom: 0;
+    left: 0;
+    right: 0;
 }
 
 .pagination {
@@ -51,26 +55,30 @@
 }
 
 
-@media(max-height: 1150px){
+@media (max-height: 1150px) {
     .pagination a {
         width: 30px;
         height: 30px;
         margin: 0 5px;
     }
+
     .pagination_wrapper {
         width: 100%;
     }
+
     .pagination {
         font-size: 14px;
         margin: 5px;
     }
+
     .pagination .active {
         font-size: 15px;
         font-weight: bold;
     }
 
 }
-@media (min-height: 1151px){
+
+@media (min-height: 1151px) {
     .pagination a {
         width: 50px;
         height: 50px;
@@ -86,6 +94,7 @@
         background: #5982ee;
         color: white;
     }
+
     .pagination {
         border-right: none;
         font-size: 17px;
