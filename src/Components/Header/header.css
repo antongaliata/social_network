@@ -27,8 +27,7 @@
 }
 
 .Header .title {
-    width: 300px;
-    margin-left: 10%;
+    margin-left: 190px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -79,13 +78,13 @@
     }
 }
 
-@media (max-width: 415px) {
+@media (max-width: 500px) {
     .Header .part_title1, .part_title2 {
         font-size: 25px;
     }
 
     .Header .title {
-        margin-left: 40px;
+        margin-left: 115px;
     }
 
     .Header a {
@@ -95,11 +94,20 @@
 
 }
 
-@media (min-width: 415px) {
+@media (min-width: 500px) {
     .Header .title {
         font-size: 30px;
     }
 }
 
+@media (max-width: 330px) {
+    .Header .part_title1, .part_title2 {
+        font-size: 22px;
+    }
 
+    .Header .title {
+        margin-left: 100px;
+    }
+
+}
 
