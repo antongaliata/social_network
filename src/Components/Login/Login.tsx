@@ -53,7 +53,7 @@ class Login extends React.Component<LoginComponentType, LoginStateType> {
         return (<div className={'page_login'}>
             <div className={'wrapper_login'}>
                 <div className={'autofill_password'}>
-                    <span>Test login</span>
+                    <span>Here is login</span>
                     <button onClick={() => this.setState({email: myLogin.email, password: myLogin.password})}>
                         Enter
                     </button>
