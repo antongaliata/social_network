@@ -13,8 +13,8 @@ import {Message} from "../Message/Message";
 export type MessagesType = {
     messageObj: MessageType
     textInput: Array<{ text: string, idUser: number }>
-    changeSendMessage: (idDialogs: number, myId: number) => void
-    changeTextInputDialogs: (text: string | undefined, idUser: number) => void
+    handlerSendMessage: (idDialogs: number, myId: number) => void
+    handlerTextInputDialogs: (text: string | undefined, idUser: number) => void
     myId: number
     botMessage: (idDialogs: number, userId: number) => void
     isTyping: boolean
@@ -75,8 +75,8 @@ const Messages = (props: MessagesType) => {
         <SendMessage
             messageObj={props.messageObj}
             textInput={props.textInput}
-            changeSendMessage={props.changeSendMessage}
-            changeTextInputDialogs={props.changeTextInputDialogs}
+            handlerSendMessage={props.handlerSendMessage}
+            handlerTextInputDialogs={props.handlerTextInputDialogs}
             myId={props.myId}
             botMessage={props.botMessage}
             isTyping={props.isTyping}/>

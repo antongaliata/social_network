@@ -29,7 +29,6 @@ export const TextareaAndSendMessage = (props: TextareaAndSendMessageType) => {
                       onChange={(e) => {
                           props.onChangeTextarea(e)
                       }}
-
                       value={props.textMessage}>
             </textarea>
         </div>

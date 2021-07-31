@@ -7,8 +7,8 @@ import './dialogs_and_message.css'
 type sendMessageType = {
     messageObj: MessageType
     textInput: Array<{ text: string, idUser: number }>
-    changeSendMessage: (idDialogs: number, myId: number) => void
-    changeTextInputDialogs: (text: string | undefined, idUser: number) => void
+    handlerSendMessage: (idDialogs: number, myId: number) => void
+    handlerTextInputDialogs: (text: string | undefined, idUser: number) => void
     myId: number
     botMessage: (idDialogs: number, userId: number) => void
     isTyping: boolean
@@ -16,15 +16,18 @@ type sendMessageType = {
 
 
 const SendMessage = (props: sendMessageType) => {
+
     const sendMessage = () => {
-        if (props.textInput.find(textObj => textObj.idUser === props.messageObj.idDialogs)?.text.length) {
-            props.changeSendMessage(props.messageObj.idDialogs, props.myId)
-            props.changeTextInputDialogs('', props.messageObj.idDialogs)
+        let str = props.textInput.find(textObj => textObj.idUser === props.messageObj.idDialogs)?.text
+        if (str?.trim()) {
+            props.handlerSendMessage(props.messageObj.idDialogs, props.myId)
+            props.handlerTextInputDialogs('', props.messageObj.idDialogs)
             props.botMessage(props.messageObj.idDialogs, props.messageObj.idDialogs)
         }
     }
     const onChangeTextarea = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        props.changeTextInputDialogs(e.currentTarget.value, props.messageObj.idDialogs)
+
+        props.handlerTextInputDialogs(e.currentTarget.value, props.messageObj.idDialogs)
     }
 
     return (

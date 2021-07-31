@@ -10,8 +10,8 @@ import {navBarType} from "../../redux/app-reducer";
 
 export type DialogsComponentType = {
     dialogsState: dialogsPageType
-    changeSendMessage: (idDialogs: number, myId: number) => void
-    changeTextInputDialogs: (text: string | undefined, idUser: number) => void
+    handlerSendMessage: (idDialogs: number, myId: number) => void
+    handlerTextInputDialogs: (text: string | undefined, idUser: number) => void
     authMe: () => void
     formDialogs: () => void
     myId: number
@@ -52,8 +52,8 @@ const Dialogs = React.memo((props: DialogsComponentType) => {
                 return <Route path={`/message/dialogs/id/${mes.idDialogs}`} key={mes.idDialogs}>{
                     <Messages textInput={props.dialogsState.textInputDialog}
                               messageObj={mes}
-                              changeSendMessage={props.changeSendMessage}
-                              changeTextInputDialogs={props.changeTextInputDialogs}
+                              handlerSendMessage={props.handlerSendMessage}
+                              handlerTextInputDialogs={props.handlerTextInputDialogs}
                               myId={props.myId}
                               botMessage={props.botMessage}
                               isTyping={props.dialogsState.isTyping}

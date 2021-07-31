@@ -5,49 +5,41 @@ import {useSelector} from "react-redux";
 import {stateType} from "../../redux/store";
 import './chat.css'
 import '../Dialogs/dialogs_and_message.css'
+import {MessageType} from "./ChatPage";
 
 
-type MessageType = {
-    message: string
-    photo: string
-    userId: number
-    userName: string
+type chatType = {
+    messages: Array<MessageType>
+    sendMessage: (message: string) => void
 }
 
 
-export const Chat = () => {
+export const Chat = (props: chatType) => {
     const myId = useSelector<stateType>(state => state.app.id)
     const messagesEndRef = React.useRef<HTMLDivElement>(null)
-    const [messages, setMessages] = useState<Array<MessageType>>([])
     const [textMessage, setTextMessage] = useState<string>('')
-    const socket = new WebSocket("wss://social-network.samuraijs.com/handlers/ChatHandler.ashx")
-
-    useEffect(() => {
-        socket.addEventListener('message', (e) => {
-            setMessages(JSON.parse(e.data))
-        })
-    }, [])
 
     useEffect(() => {
         messagesEndRef.current?.scrollIntoView({behavior: "auto"})
     })
 
     const onChangeTextarea = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        if (e.currentTarget.value) {
-            setTextMessage(e.currentTarget.value)
-        }
+        setTextMessage(e.currentTarget.value)
     }
 
     const sendMessage = () => {
-        socket.send(textMessage)
-        setTextMessage('')
+        let str = textMessage.replace(/ +/g, ' ').trim();
+        if (str.length) {
+            props.sendMessage(str)
+            setTextMessage('')
+        }
     }
 
     return <div className={'chat_container'}>
         <div className={'header_chat'}><h3>Chat</h3></div>
         <div className={'wrapper_messages2'}>
             <div className={'wrapper_messages'}>
-                {messages?.map((message, i) => {
+                {props.messages?.map((message, i) => {
                     return <Message isMyMessage={message.userId === myId}
                                     message={message.message}
                                     userName={message.userName}
@@ -70,7 +62,6 @@ export const Chat = () => {
         </div>
     </div>
 }
-
 
 
 

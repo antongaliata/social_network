@@ -76,7 +76,7 @@ export const dialogsReducer = (state = initialState, action: actionType): dialog
             return copyState
         }
 
-        case 'DIALOGS/CHANGE-TEXT-INPUT' : {
+        case 'DIALOGS/HANDLER-TEXT-INPUT' : {
             return {
                 ...state,
                 textInputDialog: state.textInputDialog.map(textObj => {
@@ -90,24 +90,24 @@ export const dialogsReducer = (state = initialState, action: actionType): dialog
         }
 
         case 'DIALOGS/GET-STATE-DIALOGS': {
-                const copyState = {
-                    ...state,
-                    dialogs: state.dialogs.filter(user => {
-                        if (action.users.find(friend => friend.id === user.id)) {
-                            return user
-                        }
-                    }),
-                    message: <Array<MessageType>>[...state.message]
-                }
-
-                action.users.forEach(user => {
-                    if (!copyState.dialogs.find(friend => friend.id === user.id)) {
-                        copyState.dialogs.push({id: user.id, name: user.name, photo: user.photos.small})
-                        copyState.message.push({idDialogs: user.id, message: []})
+            const copyState = {
+                ...state,
+                dialogs: state.dialogs.filter(user => {
+                    if (action.users.find(friend => friend.id === user.id)) {
+                        return user
                     }
-                })
-                return copyState
+                }),
+                message: <Array<MessageType>>[...state.message]
             }
+
+            action.users.forEach(user => {
+                if (!copyState.dialogs.find(friend => friend.id === user.id)) {
+                    copyState.dialogs.push({id: user.id, name: user.name, photo: user.photos.small})
+                    copyState.message.push({idDialogs: user.id, message: []})
+                }
+            })
+            return copyState
+        }
 
         case 'DIALOGS/IS-TYPING': {
             return {...state, isTyping: action.isTyping}
@@ -134,7 +134,7 @@ export type sendMessageACType = {
     myId: number | null
 }
 export type changeTextInputDialogsACType = {
-    type: 'DIALOGS/CHANGE-TEXT-INPUT'
+    type: 'DIALOGS/HANDLER-TEXT-INPUT'
     text: string | undefined
     idUser: number
 }
@@ -188,8 +188,8 @@ export const sendMessageAC = (idDialogs: number, myId: number): sendMessageACTyp
     return {type: 'SEND-MESSAGE', idDialogs, myId}
 }
 
-export const changeTextInputDialogsAC = (text: string | undefined, idUser: number): changeTextInputDialogsACType => {
-    return {type: 'DIALOGS/CHANGE-TEXT-INPUT', text, idUser}
+export const handlerTextInputDialogsAC = (text: string | undefined, idUser: number): changeTextInputDialogsACType => {
+    return {type: 'DIALOGS/HANDLER-TEXT-INPUT', text, idUser}
 }
 
 const botMessageAC = (idDialogs: number, userId: number): botMessageACType => {
@@ -216,7 +216,7 @@ export const getStateDialogsThunk = () => {
             .then(res => {
                 Dispatch(getStateDialogsAC(res.data.items))
                 Dispatch(handlerSubscribedAC(res.data))
-                setTimeout(()=>{
+                setTimeout(() => {
                     Dispatch(handlerPreloaderPagesAC(false))
                 }, 1000)
             })

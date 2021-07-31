@@ -3,7 +3,7 @@ import {stateType} from "../../redux/store";
 import Dialogs from "./Dialogs";
 import {
     botMessageThunk,
-    changeTextInputDialogsAC,
+    handlerTextInputDialogsAC,
     getStateDialogsThunk,
     handlerFocusUserAC,
     handlerHideListUsersAC,
@@ -24,8 +24,8 @@ const mapStateToProps = (state: stateType) => {
 const mapDispatchToProps = (Dispatch: any) => {
     return {
         authMe: () => Dispatch(authMeThunk()),
-        changeSendMessage: (idDialogs: number, myId: number) => Dispatch(sendMessageAC(idDialogs, myId)),
-        changeTextInputDialogs: (text: string | undefined, idUser: number) => Dispatch(changeTextInputDialogsAC(text, idUser)),
+        handlerSendMessage: (idDialogs: number, myId: number) => Dispatch(sendMessageAC(idDialogs, myId)),
+        handlerTextInputDialogs: (text: string | undefined, idUser: number) => Dispatch(handlerTextInputDialogsAC(text, idUser)),
         formDialogs: () => Dispatch(getStateDialogsThunk()),
         botMessage: (idDialogs: number, userId: number) => Dispatch(botMessageThunk(idDialogs, userId)),
         handlerHideListUsers: (className: 'list_users' | 'hide_List_users') => Dispatch(handlerHideListUsersAC(className)),

@@ -1,5 +1,5 @@
 import {DialogsType, MessageType} from "./state";
-import {changeTextInputDialogsAC, dialogsPageType, dialogsReducer, sendMessageAC} from "./dialogs-reducer";
+import {handlerTextInputDialogsAC, dialogsPageType, dialogsReducer, sendMessageAC} from "./dialogs-reducer";
 
 
 let startState: dialogsPageType = {
@@ -34,7 +34,7 @@ test('send message, push in obj message', () => {
 })
 
 test('add text in input', () => {
-    const action = changeTextInputDialogsAC('new title')
+    const action = handlerTextInputDialogsAC('new title')
     const endState = dialogsReducer(startState, action)
 
     expect(endState.textInputDialog).toBe('new title')
