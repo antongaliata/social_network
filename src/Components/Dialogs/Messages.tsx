@@ -7,6 +7,7 @@ import SendMessage from "./SendMessage";
 import Typing from "../Typing/Typing";
 import {NavLink} from "react-router-dom";
 import {navBarType} from "../../redux/app-reducer";
+import {Message} from "../Message/Message";
 
 
 export type MessagesType = {
@@ -20,7 +21,7 @@ export type MessagesType = {
     user: DialogsType | undefined
     myPhoto: string
     handlerHideListUsers: (className: 'list_users' | 'hide_List_users') => void
-    handlerFocusNavLink:(navLinkFocus: navBarType)=>void
+    handlerFocusNavLink: (navLinkFocus: navBarType) => void
 }
 
 
@@ -41,7 +42,7 @@ const Messages = (props: MessagesType) => {
                      props.handlerHideListUsers('list_users')
                  }
                  }/>}
-            <NavLink to={`/profile/${props.user?.id}`} onClick={()=>props.handlerFocusNavLink('profile')}>
+            <NavLink to={`/profile/${props.user?.id}`} onClick={() => props.handlerFocusNavLink('profile')}>
                 <img className={'ava'} src={props.user?.photo ? props.user?.photo : imgNoPhoto} alt={'avatar'}/>
                 {props.user?.name}
             </NavLink>
@@ -52,22 +53,19 @@ const Messages = (props: MessagesType) => {
             <div className={'wrapper_messages'}>
                 {props.messageObj.message.map((mes, i) => {
                     if (mes.whoId === props.myId) {
-                        return <div className={'messages'}
-                                    key={props.myId + i}>
-                            <div className={'myMessages'}>{mes.text}
-                                <div className={'time'}>{mes.time}</div>
-                            </div>
-                            <img alt={'avatar'} src={props.myPhoto ? props.myPhoto : imgNoPhoto}/>
-                        </div>
+                        return <Message
+                            isMyMessage={mes.whoId === props.myId}
+                            message={mes.text}
+                            photo={props.myPhoto}
+                            userId={mes.whoId} userName={null} time={mes.time} key={mes.whoId + i}/>
 
-                    } else if (mes.whoId !== props.myId) {
-                        return <div className={'messages2'} key={props.messageObj.idDialogs + i}>
-                            <img alt={'avatar'} src={props.user?.photo ? props.user?.photo : imgNoPhoto}/>
-                            <div className={'messagesBot'}>{mes.text}
-                                <div className={'time'}>{mes.time}</div>
-                            </div>
-
-                        </div>
+                    } else {
+                        return <Message isMyMessage={mes.whoId === props.myId}
+                                        photo={props.user?.photo ? props.user?.photo : imgNoPhoto}
+                                        userId={mes.whoId}
+                                        userName={null}
+                                        time={mes.time} key={i}
+                                        message={mes.text}/>
                     }
                 })}
                 <div ref={messagesEndRef}/>

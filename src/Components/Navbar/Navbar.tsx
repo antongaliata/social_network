@@ -4,6 +4,7 @@ import {NavLink} from "react-router-dom";
 import {authStateType, navBarType} from "../../redux/app-reducer";
 import imgProfile from '../../images/profile2.png'
 import imgMessage from '../../images/message3.png'
+import imgChat from '../../images/chat.png'
 import imgNews from '../../images/news2.png'
 import imgUsers from '../../images/users2.png'
 import imgFriends from '../../images/friends2.png'
@@ -54,6 +55,10 @@ export function Navbar(props: NavbarType) {
                      to="/news"
                      onClick={() => props.handlerFocusNavLinkAC('news')}>
                 <img alt={'news'} src={imgNews}/>News</NavLink>
+            <NavLink className={props.navBarFocus === 'chat' ? 'focusNavLink' : 'a'}
+                     to="/chat"
+                     onClick={() => props.handlerFocusNavLinkAC('chat')}>
+                <img alt={'chat'} src={imgChat}/>Chat</NavLink>
         </div>
     </div>
 }

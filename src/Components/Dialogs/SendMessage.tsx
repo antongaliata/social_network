@@ -1,7 +1,8 @@
 import Typing from "../Typing/Typing";
-import sendMessageImg from "../../images/send.png";
-import React from "react";
+import React, {ChangeEvent} from "react";
 import {MessageType} from "../../redux/dialogs-reducer";
+import {TextareaAndSendMessage} from "../TextareaAndSendMessage/TextareaAndSendMessage";
+import './dialogs_and_message.css'
 
 type sendMessageType = {
     messageObj: MessageType
@@ -15,8 +16,6 @@ type sendMessageType = {
 
 
 const SendMessage = (props: sendMessageType) => {
-    const newMessageText = React.createRef<HTMLTextAreaElement>()
-
     const sendMessage = () => {
         if (props.textInput.find(textObj => textObj.idUser === props.messageObj.idDialogs)?.text.length) {
             props.changeSendMessage(props.messageObj.idDialogs, props.myId)
@@ -24,37 +23,23 @@ const SendMessage = (props: sendMessageType) => {
             props.botMessage(props.messageObj.idDialogs, props.messageObj.idDialogs)
         }
     }
-
-
-    const sendEnter = (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
-        if (event.key === 'Enter' && !event.shiftKey) {
-            sendMessage()
-            event.preventDefault();
-        }
+    const onChangeTextarea = (e: ChangeEvent<HTMLTextAreaElement>) => {
+        props.changeTextInputDialogs(e.currentTarget.value, props.messageObj.idDialogs)
     }
 
     return (
         <div className={'container_send_message'}>
             {window.innerWidth > 600 && <div className={'wrapper_typing'}>
-                { props.isTyping && props.textInput.find(textObj => textObj.idUser === props.messageObj.idDialogs) &&
+                {props.isTyping && props.textInput.find(textObj => textObj.idUser === props.messageObj.idDialogs) &&
                 <Typing/>}
             </div>}
-            <div className={'wrapper_textarea_button'}>
-                <div className={'wrapper_textarea'}>
-            <textarea placeholder={'Message'}
-                      onKeyDown={sendEnter}
-                      onChange={(e) => {
-                          props.changeTextInputDialogs(e.currentTarget.value, props.messageObj.idDialogs)
-                      }}
-                      ref={newMessageText}
-                      value={props.textInput.find(textObj => textObj.idUser === props.messageObj.idDialogs)?.text || ''}>
-            </textarea>
-                </div>
-                <div className={'wrapper_send_button'}>
-                    <button onClick={sendMessage}><img src={sendMessageImg} alt={'send'}/>
-                    </button>
-                </div>
-            </div>
+
+            <TextareaAndSendMessage
+                textMessage={props.textInput?.find(textObj => textObj.idUser === props.messageObj?.idDialogs)?.text || ''}
+                sendMessage={sendMessage}
+                messageObj={props.messageObj}
+                onChangeTextarea={onChangeTextarea}/>
+
         </div>
     )
 }

@@ -1,0 +1,118 @@
+.wrapper_textarea_button {
+    display: flex;
+    align-items: center;
+}
+
+
+.wrapper_textarea {
+    display: flex;
+    width: 100%;
+    margin: 5px;
+    padding-right: 5px;
+    position: relative;
+}
+.wrapper_textarea:before {
+    content: '';
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    right: -7px;
+    bottom: 0;
+    border: 20px solid transparent;
+    border-bottom: 20px solid rgb(255, 255, 255);
+}
+
+
+
+.wrapper_textarea textarea {
+    width: 100%;
+    resize: none;
+    outline: none;
+    padding: 2px;
+    border: 2px solid rgb(255, 255, 255);
+    border-radius: 5px 5px 0 5px;
+    z-index: 1111;
+    font-weight: bolder;
+    font-size: 14px;
+}
+
+.wrapper_textarea textarea::-webkit-scrollbar {
+    width: 3px;
+    background-color: white;
+}
+
+.wrapper_textarea textarea::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: #dedede;
+}
+
+.wrapper_textarea:before {
+    content: '';
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    right: -7px;
+    bottom: 0;
+    border: 20px solid transparent;
+    border-bottom: 20px solid rgb(255, 255, 255);
+}
+
+
+@media (max-width: 600px) {
+
+    .wrapper_textarea_button {
+        background: white;
+        height: 50px;
+    }
+
+  .wrapper_send_button button {
+        background: #5982ee;
+        border-radius: 50%;
+        width: 30px;
+        height: 30px;
+        display: flex;
+        align-items: center;
+        padding-left: 3px;
+        margin-right: 15px;
+        border: none;
+    }
+
+    .wrapper_send_button button img {
+        width: 20px;
+        height: 20px;
+    }
+
+    textarea {
+        height: 30px;
+        border-radius: 5px;
+    }
+
+}
+
+@media (min-width: 601px) {
+ .wrapper_send_button button {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        border: none;
+        outline: none;
+        background: #5982ee;
+        transition: .3s;
+        color: white;
+        float: right;
+        display: flex;
+        align-items: center;
+        padding-left: 10px;
+    }
+
+ .wrapper_send_button button img {
+        width: 25px;
+        height: 25px;
+    }
+
+}
+
+ .wrapper_send_button button:hover {
+    background: #3175db;
+    box-shadow: 5px 5px 5px -3px rgba(34, 60, 80, 0.6);
+}

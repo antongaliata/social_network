@@ -55,7 +55,7 @@ type actionType = authMeACType |
     openCloseMenuBurgerACType|
     handlerPreloaderPagesACType
 
-export type navBarType = 'profile' | 'friends' | 'message' | 'users' | 'news'
+export type navBarType = 'profile' | 'friends' | 'message' | 'users' | 'news' | 'chat'
 export type authStateType = {
     id: number
     email: string | null

@@ -13,7 +13,6 @@
     overflow: hidden;
 }
 
-
 .header_dialog {
     width: 100%;
     display: flex;
@@ -31,7 +30,7 @@
     text-decoration: none;
 }
 
-.header_dialog .ava, .messages img, .messages2 img {
+.header_dialog .ava {
     width: 40px;
     height: 40px;
     border: 1px solid #b3b3b3;
@@ -46,7 +45,6 @@
     width: 30px;
     height: 30px;
 }
-
 
 .wrapper_messages2 {
     height: 100%;
@@ -73,131 +71,6 @@
 .wrapper_messages::-webkit-scrollbar-thumb {
     border-radius: 10px;
     background: #5982ee;
-}
-
-.messages {
-    width: 100%;
-    display: flex;
-    justify-content: flex-end;
-    margin: 15px 0;
-    align-items: flex-end;
-}
-
-.messages2 {
-    width: 100%;
-    display: flex;
-    justify-content: flex-start;
-    margin: 15px 0;
-    align-items: flex-end;
-}
-
-
-.messages .myMessages, .messagesBot {
-    display: flex;
-    justify-content: space-between;
-    flex-direction: column;
-    border-radius: 5px;
-    word-break: break-all;
-    max-width: 350px;
-    min-width: 60px;
-    padding: 10px 5px 2px 5px;
-    position: relative;
-    z-index: 1;
-    font-weight: bolder;
-    font-size: 13px;
-    font-family: Arial, Helvetica, Verdana, sans-serif;
-}
-
-.time {
-    color: #aaaaaa;
-    font-weight: normal;
-    font-size: 11px;
-}
-
-.messages .myMessages {
-    background: #d5eab6;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-}
-
-.messagesBot {
-    background: white;
-}
-
-
-.myMessages:before {
-    content: '';
-    width: 20px;
-    height: 20px;
-    position: absolute;
-    right: -7px;
-    bottom: 0;
-    border: 20px solid transparent;
-    border-bottom: 20px solid #d5eab6;;
-    z-index: -1;
-
-}
-
-.messagesBot:before {
-    content: '';
-    width: 20px;
-    height: 20px;
-    position: absolute;
-    left: -7px;
-    bottom: 0;
-    border: 20px solid transparent;
-    border-bottom: 20px solid rgb(255, 255, 255);
-    z-index: -1;
-}
-
-
-.wrapper_textarea_button {
-    display: flex;
-    align-items: center;
-}
-
-
-.wrapper_textarea {
-    display: flex;
-    width: 100%;
-    margin: 5px;
-    padding-right: 5px;
-    position: relative;
-}
-
-
-.wrapper_textarea textarea {
-    width: 100%;
-    resize: none;
-    outline: none;
-    padding: 2px;
-    border: 2px solid rgb(255, 255, 255);
-    border-radius: 5px 5px 0 5px;
-    z-index: 1111;
-    font-weight: bolder;
-    font-size: 14px;
-}
-
-.wrapper_textarea textarea::-webkit-scrollbar {
-    width: 3px;
-    background-color: white;
-}
-
-.wrapper_textarea textarea::-webkit-scrollbar-thumb {
-    border-radius: 10px;
-    background-color: #dedede;
-}
-
-.wrapper_textarea:before {
-    content: '';
-    width: 20px;
-    height: 20px;
-    position: absolute;
-    right: -7px;
-    bottom: 0;
-    border: 20px solid transparent;
-    border-bottom: 20px solid rgb(255, 255, 255);
 }
 
 
@@ -268,11 +141,6 @@
         padding: 10px;
     }
 
-    .wrapper_textarea_button {
-        background: white;
-        height: 50px;
-    }
-
     .container_send_message {
         display: flex;
         flex-direction: column;
@@ -334,33 +202,7 @@
         min-height: 50px;
     }
 
-    .container_send_message .wrapper_send_button button {
-        width: 50px;
-        height: 50px;
-        border-radius: 50%;
-        border: none;
-        outline: none;
-        background: #5982ee;
-        transition: .3s;
-        color: white;
-        float: right;
-        display: flex;
-        align-items: center;
-        padding-left: 10px;
-    }
-
-    .container_send_message .wrapper_send_button button img {
-        width: 25px;
-        height: 25px;
-    }
-
 }
-
-.container_send_message .wrapper_send_button button:hover {
-    background: #3175db;
-    box-shadow: 5px 5px 5px -3px rgba(34, 60, 80, 0.6);
-}
-
 
 
 

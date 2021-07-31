@@ -6,6 +6,7 @@ import Preloader from "./Preloader/Preloader";
 import {NewsContainer} from "./News/NewsContainer";
 import {FriendsContainer} from "./Friends/FriendsContainer";
 import DialogsContainer from "./Dialogs/DialogsContainer";
+import {Chat} from "./Chat/Chat";
 
 
 type bodyType = {
@@ -13,7 +14,7 @@ type bodyType = {
     myId: number | null
 }
 
-const Body = (props:bodyType) => {
+const Body = (props: bodyType) => {
 
     return <div className={'Body'}>
         <Switch>
@@ -24,6 +25,7 @@ const Body = (props:bodyType) => {
             <Route path={'/message'}><DialogsContainer/></Route>
             <Route path={'/users'}><UsersContainer/></Route>
             <Route path={'/news'}><NewsContainer/></Route>
+            <Route path={'/chat'}><Chat/></Route>
         </Switch>
     </div>
 }
