@@ -6,7 +6,7 @@
     align-items: flex-end;
 }
 
-.wrapperMessage2{
+.wrapperMessage2 {
     width: 100%;
     margin: 15px 0;
     display: flex;
@@ -58,8 +58,7 @@
     z-index: -1;
 }
 
-
-span{
+.message span, .message2 span {
     margin: 3px 3px 1px 3px;
 }
 
@@ -89,7 +88,7 @@ span{
 
 }
 
-.nameUserMessage{
+.nameUserMessage {
     color: #aaaaaa;
     font-weight: normal;
     font-size: 11px;
