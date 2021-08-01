@@ -74,7 +74,7 @@
 /*}*/
 
 
-@media (max-width: 1289px) {
+@media (max-width: 1290px) {
     .window_users {
         border-radius: 0;
     }
@@ -82,6 +82,8 @@
 @media (min-width: 1290px) {
     .window_users {
         border-radius: 10px 10px 0 0;
+        border: 1px solid #b3b3b3;
+        border-bottom: none;
     }
 }
 
@@ -131,20 +133,4 @@
         height: 100px;
     }
 }
-
-@media (max-width: 700px) {
-    .window_users {
-        border: none;
-        border-radius: 0;
-    }
-}
-
-@media (min-width: 700px) {
-    .window_users {
-        border: 1px solid #b3b3b3;
-        border-bottom: none;
-        border-radius: 10px 10px 0 0;
-    }
-}
-
 
