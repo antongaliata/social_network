@@ -11,6 +11,7 @@
     margin: 15px 0;
     display: flex;
     justify-content: flex-end;
+    align-items: flex-end;
     flex-direction: row-reverse;
 }
 

@@ -36,13 +36,12 @@ export const initialState: dialogsPageType = {
 
 
 export const dialogsReducer = (state = initialState, action: actionType): dialogsPageType => {
-
+    const copyState = {
+        ...state,
+        message: [...state.message]
+    }
     switch (action.type) {
         case 'SEND-MESSAGE' : {
-            const copyState = {
-                ...state,
-                message: [...state.message]
-            }
             const now = new Date()
             let min = now.getMinutes().toString()
             min = min.toString().length === 1 ? '0' + '' + min.toString() : min.toString()
@@ -57,20 +56,15 @@ export const dialogsReducer = (state = initialState, action: actionType): dialog
             return copyState
         }
         case 'DIALOGS/BOT-MESSAGE': {
-            const copyState = {
-                ...state,
-                message: [...state.message]
-            }
             const now = new Date()
             let min = now.getMinutes().toString()
             min = min.toString().length === 1 ? '0' + '' + min.toString() : min.toString()
             const currentTime = now.getHours() + ':' + min
 
             const botName = copyState.dialogs.find(user => user.id === action.userId)
-
             copyState.message.forEach(mes => {
                 if (mes.idDialogs === action.idDialogs) {
-                    mes.message.push({whoId: action.userId, text: `hello, I'm ${botName?.name}`, time: currentTime})
+                    mes.message.push({whoId: action.userId, text: ` hello, I'm ${botName?.name}`, time: currentTime})
                 }
             })
             return copyState
